@@ -1,0 +1,31 @@
+.container {
+  text-align: center;
+  padding: 100px 20px;
+}
+
+.errorCode {
+  font-size: 6rem;
+  color: #FFD700;
+  margin: 0;
+}
+
+.errorMessage {
+  font-size: 2rem;
+  color: white;
+}
+
+.homeLink {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #0044cc;
+  color: white;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.homeLink:hover {
+  background-color: #003399;
+}

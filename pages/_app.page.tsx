@@ -2,7 +2,6 @@ import "../public/fonts/stylesheet.css";
 import "../styles/styles.css";
 import "../styles/responsive.css";
 import type { AppProps } from "next/app";
-
 // import theme from "../config/theme";
 import { Toaster } from "react-hot-toast";
 import Head from "next/head";
@@ -11,11 +10,6 @@ import store from "@/store/store";
 import { ReactElement, ReactNode, useEffect, useState } from "react";
 import { NextPage } from "next";
 // import '../public/service-worker'
-import { Amplify } from "aws-amplify";
-import outputs from "@/amplify_outputs.json";
-import "@aws-amplify/ui-react/styles.css";
-
-Amplify.configure(outputs);
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
