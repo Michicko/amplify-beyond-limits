@@ -1,0 +1,180 @@
+.matchContainer {
+  padding: 20px;
+  background-color: #001f3f;
+  color: #fff;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.leagueInfo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.leagueLogo {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+.matchDetails {
+  margin-bottom: 20px;
+  padding: 6rem 0px;
+}
+
+.teamsContainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.team {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.teamLogo {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 10px;
+}
+
+.vs {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.score {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.result, .upcoming {
+  margin-top: 20px;
+}
+
+/* match */
+
+.matchHead{
+  display: grid;
+   grid-template-columns: auto 40% auto ;
+   gap: 10px;
+   align-items: center;
+   text-align: center;
+   width: 60%;
+   margin: 0 auto;
+}
+.matchHeadteamLogo img{
+  width: 100%;
+  max-width: 150px;
+}
+
+
+.matchStadium p{
+  display: inline-flex;
+   background-color: #D0002F; 
+   border-radius: 10px;
+    padding: 5px 10px;
+    font-size: 15px;
+}
+.matchTitle{
+  text-align: center;
+  width: 60%;
+  margin: 0 auto;
+}
+.matchTitle h3{
+  font-size: 100px;
+  font-weight: bold;
+  line-height: 100%;
+  padding: 2rem 0px;
+  text-transform: uppercase;
+}
+.matchLeague{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.matchLeague img{
+  width: 100%;
+  max-width: 60px;
+  padding-right: 10px;
+}
+.matchScore p{
+  font-size: 100px;
+  font-weight: bold;
+}
+.matchHeadMiddle{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tabsContainer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem 0px;
+}
+
+.tabs{
+    background: white;
+    border-radius: 20px;
+    padding: 6px;
+    display: inline-flex;
+    margin:  0 auto;
+}
+.tabs button{
+    background-color: transparent;
+    border: none;
+    padding: 10px 20px;
+  font-size: 1rem;
+  font-family: 'formula_condensedbold', roboto;
+  font-weight: 200;
+    letter-spacing: 2px;
+    color: #01305B;
+    border-radius: 15px;
+    cursor: pointer;
+ transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+ text-transform: uppercase;
+}
+.tabs .active{
+    background-color: #D7002C;
+    color: white;
+}
+.tabContent{
+    background-color: #1A6DBB;
+    border-radius: 20px;
+    padding: 50px 20px;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+  .matchTitle h3{
+  font-size: 70px;
+}
+}
+
+@media (max-width: 600px) {
+ .matchTitle{
+  width: 100%;
+}
+.matchHead{
+  width: 100%;
+}
+}
+
+@media (max-width: 500px) {
+  .matchScore p{
+  font-size: 60px;
+  font-weight: bold;
+}
+ .matchTitle h3{
+  font-size: 50px;
+}
+}

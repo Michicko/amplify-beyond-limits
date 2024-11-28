@@ -12,6 +12,24 @@ const schema = a.schema({
       content: a.string(),
     })
     .authorization((allow) => [allow.publicApiKey()]),
+
+  Match: a.model({
+    result_info: a.string(),
+    name: a.string(),
+    starting_at: a.datetime(),
+    //
+    league_id: a.integer(),
+    venue_id: a.integer(),
+    details: a.string(),
+  }),
+
+  Team: a.model({
+    name: a.string(),
+    type: a.string(),
+    image_path: a.string(),
+    venue_id: a.integer(),
+    last_played_at: a.datetime(),
+  }),
 });
 
 export type Schema = ClientSchema<typeof schema>;

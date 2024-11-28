@@ -1,0 +1,87 @@
+.tabsContainer {
+
+}
+
+.tabs {
+   gap: 10px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  overflow-x: auto;
+  white-space: nowrap;
+  justify-content: center;
+}
+
+.tabs button {
+  padding: 5px;
+  border: none;
+  color: #f0f0f0;
+  background: none;
+  cursor: pointer;
+  background-color: none;
+  margin: 5px;
+  font-size: 18px;
+   letter-spacing: 1px;
+  font-family: 'formula_condensedregular', roboto;
+  text-transform: uppercase;
+   transition: color 0.2s;
+}
+
+.tabs button.active {
+  color: #D0002F;
+}
+.tabs::-webkit-scrollbar {
+  display: none;
+}
+.tableContainer {
+  text-align: center;
+  overflow-x: auto;
+  border-radius: 22px;
+  margin-top: 20px;
+}
+
+.table {
+  width: 100%;
+
+  margin: 0 auto;
+  border-collapse: collapse;
+  background-color: #1A6DBB;
+  color: white;
+}
+
+.table th, .table td {
+  padding: 10px;
+  border-bottom: .2px solid #79BEFF;
+  font-size: 20px;
+}
+
+.table th {
+  background-color: #1A6DBB;
+  text-transform: uppercase;
+}
+
+.table td {
+  text-align: center;
+}
+
+.club {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+
+.clubLogo {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+
+/* .table tbody tr:nth-child(even) {
+  background-color: #1A6DBB;
+} */
+
+/* .table tbody tr:hover {
+  background-color: #00509e;
+} */
+ 

@@ -1,0 +1,236 @@
+/* Simple CSS for Tabs and News List */
+.newsPage {
+  padding: 5rem 10px;
+}
+
+.Tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+.academyNews, .tvNews{
+    display: grid;
+  grid-template-columns: repeat(4, 1fr); 
+    gap: 16px;
+    
+}
+
+
+.Tabs button {
+  padding: 10px 20px;
+  cursor: pointer;
+  color: white;
+  background: none;
+  background-color: none;
+  border: none;
+  font-size: 20px;
+  font-family: 'formula_condensedregular', roboto;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-radius: 15px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.Tabs button.active {
+  background-color: #D7002C !important;
+  color: white;
+}
+
+.tabContent .newsItem {
+  /* border: 1px solid #ddd; */
+  padding: 15px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  background-size: cover;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+height: 400px;
+ transition: transform 0.3s ease-in-out;
+}
+.tvNews a{
+ transition: transform 0.3s ease-in-out;
+}
+.tvNews a:hover{
+    cursor: pointer;
+  transform: translateY(-10px);
+}
+.newsItem:hover{
+  transform: translateY(-10px);
+}
+.newsItem h3 {
+  margin: 0 0 5px;
+}
+.tvItem img{
+    border-radius: 20px;
+}
+.tvItem{
+    text-align: center;
+}
+.tvItem h3{
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+.newsArticle {
+  padding: 20px;
+}
+
+.newsArticle img {
+  width: 100%;
+  height: auto;
+}
+
+.newsCard{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    
+}
+.newsContent{
+    width: 100%;
+    margin: 0 auto;
+    padding-bottom: 1rem;
+
+}
+
+.newsSpace{
+    height: 50px;
+}
+
+.newsTitle{
+    font-size: 18px;
+}
+.newsFooter{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 16px;
+}
+.newsLink{
+    cursor: pointer;
+}
+.newsLink:hover{
+   text-decoration: underline;
+}
+.newsArticleHead{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+       width: 100%;
+    height: 75vh;
+    border-radius: 20px;
+    padding-bottom: 10%;
+        /* position: absolute; */
+}
+.newsArticleHead h1{
+
+  font-size: 50px;
+  font-family: 'formula_condensedbold', roboto;
+  letter-spacing: 2px;
+  width: 70%;
+  margin: 0 auto;
+  text-align: center;
+  padding: 2%;
+}
+.newsArticleBody{
+    display: flex;
+    flex-direction: column;
+    padding: 5%;
+    border-radius: 20px;
+    align-items: center;
+    background-color: #2E70B3;
+    width: 65%;
+    margin: 0 auto;
+    margin-top: -50px;
+    z-index: 1000;
+}
+.newsArticleBody h2{
+    color: #FFD700;
+    font-size: 20px;
+    padding-bottom: 30px;
+}
+.newsArticleBody p{
+    font-family: roboto;
+    font-size: 16px;
+    padding-bottom: 20px;
+}
+.shareButtons {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.shareButton {
+  display: inline-block;
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: transparent;
+  color: #FFD700;
+  border-radius: 10px;
+  border: #FFD700 solid 1px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.shareButton:hover {
+  background-color: #FFD700; 
+  color: #2E70B3;
+}
+
+
+
+/* Starting into tablets somewhere in here */
+@media (max-width: 700px) {
+    .academyNews, .tvNews{
+  grid-template-columns: repeat(3, 1fr);   
+}
+.newsItem{
+    border-radius: 10px !important;
+height: 360px !important;
+}
+.tvItem img{
+        border-radius: 10px !important;
+}
+.newsArticleBody{
+    width: 80%;
+}
+.newsArticleHead h1{
+
+  font-size: 35px;
+  width: 80%;
+}
+}
+@media (max-width: 500px) {
+        .academyNews, .tvNews{
+  grid-template-columns: repeat(2, 1fr);   
+}
+.newsPage {
+  padding: 5rem 10px;
+}
+.newsItem{
+height: 300px !important;
+}
+.newsArticleBody{
+    width: 90%;
+}
+.newsArticleHead h1{
+
+  font-size: 30px;
+  width: 90%;
+}
+.newsArticleHead{
+    padding-bottom: 20%;
+       height: 50vh;
+}
+.shareButton {
+    font-size: 16px;
+}
+}

@@ -1,0 +1,221 @@
+.menu {
+    background-color: #002247;
+    width: 100%;
+
+    margin: 0 auto;
+    border-radius: 20px;
+}
+.menuContainer{
+    display: grid;
+    grid-template-columns: auto 25%;
+    border-radius: 22px;
+    overflow: hidden;
+    align-items: center;
+
+}
+.menuItem{
+    padding: 20px;
+    text-align: left;
+}
+.menuText{
+    background-color: #1A6DBB;
+    padding: 30px 10px;
+    height: 100%;
+}
+.menuTab{
+    display: grid;
+    grid-template-columns: 20% auto;
+      gap: 20px;
+      padding-bottom: 10px;
+}
+.menuLinks{
+    display: flex;
+    flex-direction: column;
+}
+.close{
+    padding: 0px 0px 10px 0px;
+}
+.close button{
+
+    background: none;
+    color: white;
+    border: none;
+    font-family: 'formula_condensedregular', roboto;
+     font-size: 16px;
+    align-items: center;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+.menuLinks button {
+    background: none;
+    background-color: none;
+    border: 1px white solid;
+    border-radius: 17px;
+    color: white;
+    padding: 14px 20px 14px 20px;
+    margin-bottom: 10px;
+    letter-spacing: 1.2px;
+    font-family: 'formula_condensedregular', roboto;
+    font-size: 16px;
+    align-items: center;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out; 
+}
+.menuLinks button svg{
+    min-width: 1.5rem;
+    height: auto;
+    margin-top: -3px;
+}
+.menuLinks button:hover > svg path{
+    fill: #002247;
+}
+.menuLinks button:hover{
+    cursor: pointer;
+    color: #002247;
+    background-color: #FFD700;
+}
+.active{
+    background: #FFD700 !important;
+    color: #002247 !important;
+}
+.active > svg path{
+    fill: #002247 !important;
+}
+
+.menuSubLinks{
+    width: 100%;
+
+}
+.menuSubLink{
+    display: grid;
+    grid-template: 100% / 1fr 1fr;
+    gap: 20px;
+      height: 100%;
+}
+/* .competition{
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+} */
+.team{
+  grid-template-columns: repeat(3, 1fr); /* 2 equal columns */
+  grid-template-rows: repeat(2, 1fr);
+
+}
+.team .menuSubLinkBody{
+    background-position: top !important;
+}
+.menuSubLinkBody{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover !important;
+    background-position: center !important;
+    border-radius: 22px;
+    overflow: hidden;
+    border: 0px solid transparent;
+    cursor: pointer;
+      background: white;
+      transition: border-color 0.3s ease-in-out;
+}
+.menuSubLinkBody:hover{
+    border: white solid 1px;
+}
+.menuSubLinkBody p{
+    font-family: 'formula_condensedbold', roboto;
+    font-size: 40px;
+    text-align: center;
+    letter-spacing: 3px;
+    line-height: 40px;
+    padding: 0px;
+    text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+.menuSubLinkBodyLink{
+    font-family: 'formula_condensedbold', roboto;
+        font-size: 20px;
+    letter-spacing: 1.5px;
+    fill: #FFFFFF;
+    color: #FFFFFF;
+    background-color: #EA1F2D;
+    border-style: none;
+    border-radius: 14px;
+    padding: .6rem 0rem;
+    text-align: center;
+    cursor: pointer;
+}
+.menuSubLinkBodyLink:hover{
+    border: 1px solid white;
+}
+.menuInterlude p {
+        font-family: roboto;
+    font-size: 12px;
+    /* font-weight: 400; */
+    width: 90%;
+    margin: 0 auto;
+    letter-spacing: 0px;
+}
+.menuCopyright p{
+
+        font-family: roboto;
+    font-size: 12px;
+}
+.menuText{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+}
+
+/* Desktop screen or landscape tablet */
+@media (max-width: 900px) {
+    .menuText{
+        display: none;
+    }
+    .menuContainer{
+    display: block;
+}
+}
+@media (max-width: 600px) {
+    .menuTab{
+    display: block;
+}
+.menuLinks{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+.menuSubLinkBody{
+    height: 30vh;
+}
+}
+.socials{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+@media (max-width: 460px) {
+.menuLinks button {
+    padding: 10px 10px 10px 10px;
+}
+.menuSubLinkBody{
+    height: 20vh;
+}
+.menuSubLinkBody p{
+    font-size: 20px;
+    letter-spacing: 3px;
+    line-height: 20px;
+}
+.team{
+  grid-template-columns: repeat(2, 1fr); /* 2 equal columns */
+  grid-template-rows: repeat(2, 1fr);
+
+}
+}

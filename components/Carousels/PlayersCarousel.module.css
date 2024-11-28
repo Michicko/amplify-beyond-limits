@@ -1,0 +1,145 @@
+.embla {
+  overflow: hidden;
+  width: 100%;
+}
+
+.embla__viewport {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  overflow: hidden;
+}
+
+.embla__container {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  will-change: transform;
+  touch-action: pan-y;
+  width: 100%;
+  height: 450px; /* Adjusted for larger player cards */
+}
+
+.embla__slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  min-width: 100%; /* Default for mobile */
+
+  @media (min-width: 600px) {
+    min-width: 50%; /* 2 slides for tablets */
+  }
+
+  @media (min-width: 1024px) {
+    min-width: 33.33%; /* 3 slides for desktops */
+  }
+}
+
+.playerCard {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  overflow: hidden;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.playerBackground {
+  position: relative;
+   width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  border: solid #327BC0 .6px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  text-align: center;
+}
+
+.playerPosition {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  color: #ffd700;
+  background-color: #327BC0;
+  padding: 8px 18px;
+  border-radius: 8px 0px;
+  font-size: 18px;
+}
+
+.playerImage {
+  position: absolute;
+  top: 0; /* Adjust based on design */
+  width: auto;
+  height: 100%;
+  object-fit: cover;
+}
+
+.playerDetails {
+  background-color: #005bb5; /* Adjust the background color */
+  color: white;
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  z-index: 2;
+}
+
+.playerFirstName {
+    font-family: 'formula_condensedlight', roboto;
+  font-size: 18px;
+}
+
+.playerLastName {
+    font-family: 'formula_condensedregular', roboto;
+    font-size: 24px;
+}
+
+.playerNumber {
+  color: #ffd700;
+  margin-bottom: 10px;
+   font-family: 'formula_condensedregular', roboto;
+    font-size: 24px;
+}
+
+.ProfileLink{
+    text-align: right;
+    
+    padding: 10px 0px;
+}
+
+.playerProfileLink {
+  color: white;
+  text-decoration: none;
+    font-family: 'formula_condensedlight', roboto;
+    font-size: 16px;
+}
+
+.playerProfileLink:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.playerTop{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: white solid 1px;
+    padding: 10px 0px;
+}
+
+.playerName{
+    text-align: left;
+}
+
+.playerNumber{
+    font-family: 'formula_condensedregular', roboto;
+    font-size: 26px;
+}

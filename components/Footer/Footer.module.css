@@ -1,0 +1,46 @@
+.footer {
+  color: white;
+  text-align: center;
+  padding: 10rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo {
+  margin-bottom: 20px;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.links a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: normal;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.links a:hover {
+  text-decoration: underline;
+}
+
+.socials {
+   display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.copyright {
+    font-family: roboto;
+  font-size: 15px;
+  color: #fff;
+}

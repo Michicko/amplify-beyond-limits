@@ -1,0 +1,171 @@
+
+.tabs {
+  gap: 10px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  overflow-x: auto;
+  white-space: nowrap;
+  justify-content: center;
+}
+
+.tabs button {
+  padding: 5px;
+  border: none;
+  color: #f0f0f0;
+  background: none;
+  cursor: pointer;
+  background-color: none;
+  margin: 5px;
+  font-size: 18px;
+   letter-spacing: 1px;
+  font-family: 'formula_condensedregular', roboto;
+  text-transform: uppercase;
+   transition: color 0.2s;
+}
+
+.tabs button.active {
+  color: #D0002F;
+}
+.tabs::-webkit-scrollbar {
+  display: none;
+}
+.fixTitle {
+    display: flex;
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.horizontalRule {
+  width: 30%; 
+  height: 1px; 
+  background-color: white;
+  border: none; 
+  margin: 10px auto; 
+}
+.matches {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+    text-align: center;
+}
+
+.match {
+    border-radius: 20px;
+  padding: 20px;
+  margin-bottom: 10px;
+  background-color: #1C61AD;
+}
+
+.teams {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.team {
+  display: flex;
+  align-items: center;
+}
+
+.team img {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+.vs {
+  font-size: 18px;
+  font-weight: bold;
+}
+.matchContainer{
+    display: grid; 
+    grid-template-columns: auto 60% auto;
+  gap: 10px;
+  text-align: center;
+}
+.leagueContainer{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+.leagueContainer img{
+    width: 50px;
+    padding-right: 10px;
+}
+.leftContent{
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.rightContent{
+    text-align: right;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+.middleContent{
+    display: grid;
+    grid-template-columns: auto 35% auto;
+    align-items: center;
+}
+.teamLogoContainer img{
+    width: 100%;
+    max-width: 100px;
+}
+.matchDate{
+    padding-bottom: 10px;
+}
+.matchStadium{
+    background-color: #D0002F;
+    border-radius: 10px;
+    display: inline-flex;
+    padding: 5px 10px;
+}
+
+.shareButton {
+  display: inline-block;
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: transparent;
+  color: #FFD700;
+  border-radius: 10px;
+  border: #FFD700 solid 1px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.shareButton:hover {
+  background-color: #FFD700; 
+  color: #2E70B3;
+}
+
+.scoreline{
+    font-size: 60px;
+}
+@media (max-width: 768px) {
+    .matchContainer{
+        display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.leftContent{
+    flex-direction: row;
+}
+.rightContent{
+    align-items: center;
+    justify-content: center;
+}
+.tabs {
+  justify-content: left;
+}
+}
+@media (max-width: 500px) {
+    .matchStadium{
+        font-size: 16px;
+    padding: 5px 6px;
+}
+}

@@ -1,0 +1,120 @@
+.dropdownContainer {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdownButton {
+  color: #01305B;
+  background-color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+
+  font-family: 'formula_condensedbold', roboto;
+}
+
+.dropdownButton:hover {
+  background-color: rgb(220, 220, 220);
+}
+
+.dropdownMenu {
+  display: block;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  margin-top: 10px;
+  border-radius: 5px;
+}
+
+.dropdownMenu a {
+  color: #01305B;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  font-size: 14px;
+  background-color: white;
+}
+
+.dropdownMenu a:hover {
+  background-color: #ddd;
+}
+
+.seasonHead{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+       width: 100%;
+    height: 75vh;
+    border-radius: 20px;
+    padding-bottom: 10%;
+        /* position: absolute; */
+}
+.seasonHead h1{
+
+  font-size: 6rem;
+  font-family: 'formula_condensedbold', roboto;
+  letter-spacing: 2px;
+  width: 70%;
+  margin: 0 auto;
+  text-align: center;
+  padding: 1% 2%;
+}
+.seasonHead p{
+    width: 40%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.seasonInfo{
+    padding: 20px;
+    width: 100%;
+    margin: 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.tabs{
+    background: white;
+    border-radius: 20px;
+    padding: 6px;
+    display: inline-flex;
+}
+.tabs button{
+    background-color: transparent;
+    border: none;
+    padding: 10px 20px;
+  font-size: 1rem;
+  font-family: 'formula_condensedbold', roboto;
+    letter-spacing: 2px;
+    color: #01305B;
+    border-radius: 15px;
+    cursor: pointer;
+ transition: background-color 0.3s ease-in-out;
+}
+.tabs .active{
+    background-color: #01305B;
+    color: white;
+}
+.tabContent{
+    background-color: #01305B;
+    border-radius: 20px;
+    padding: 50px 20px;
+}
+@media (max-width: 768px) {
+    .seasonHead p{
+    width: 90%;
+}
+.seasonHead h1{
+
+  font-size: 4rem;}
+}
+@media (max-width: 400px) {
+    .seasonHead h1{
+
+  font-size: 3rem;}
+}

@@ -1,0 +1,78 @@
+/* News Carousel */
+.embla {
+  overflow: hidden;
+  width: 100%;
+}
+
+.embla__viewport {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  overflow: hidden;
+}
+
+.embla__container {
+  display: flex;
+  flex-direction: row;
+  gap: 16px; /* Add space between slides */
+  will-change: transform;
+  touch-action: pan-y;
+  height: 27rem; /* Set the height of the carousel */
+border-radius: 22px;
+}
+
+.embla__slide {
+
+  width: 100%;
+  min-width: 100%; /* Default to full width for mobile */
+    border-radius: 22px;
+  overflow: hidden;
+}
+  /* For larger screens, adjust the width */
+  @media (min-width: 768px) {
+    .embla__slide {
+    min-width: 33.33%; /* 3 slides for tablets */
+    }
+}
+@media (min-width: 600px) {
+    .embla__slide {
+    min-width: 50%; /* 3 slides for tablets */
+    }
+}
+  @media (min-width: 1024px) {
+    .embla__slide {
+    min-width: 25%; /* 4 slides for desktops */
+  }
+}
+.newsCard{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    
+}
+.newsContent{
+    width: 90%;
+    margin: 0 auto;
+    padding-bottom: 1rem;
+}
+.newsSpace{
+    height: 50px;
+}
+
+.newsTitle{
+    font-size: 18px;
+}
+.newsFooter{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 16px;
+}
+.newsLink{
+    cursor: pointer;
+}
+.newsLink:hover{
+   text-decoration: underline;
+}

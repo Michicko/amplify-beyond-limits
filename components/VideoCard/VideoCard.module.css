@@ -1,0 +1,77 @@
+.videoList {
+  display: grid;
+grid-template-columns: repeat(3, 1fr);
+  justify-content: space-between;
+  gap: 16px;
+  padding: 5px;
+}
+
+.videoCard {
+  transition: transform 0.2s ease-in-out;
+  width: 100%;
+  height: auto;
+}
+
+.videoCard:hover {
+  transform: translateY(-5px);
+}
+
+.thumbnailWrapper {
+  position: relative;
+  width: 100%;
+  height: auto;
+}
+
+.thumbnailWrapper img{ 
+    height: 100px;
+}
+
+.thumbnail {
+  border-radius: 12px;
+  overflow: hidden;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.videoInfo {
+  padding: 16px;
+  text-align: left;
+  color: #fff;
+}
+
+.videoTitle {
+  font-size: 18px;
+  font-weight: normal;
+  margin: 0 0 8px 0;
+}
+
+.videoDate {
+  font-size: 14px;
+  color: #bbb;
+  margin-bottom: 12px;
+}
+
+.watchButton {
+  color: #fff;
+  padding: 5px;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: normal;
+  transition: background-color 0.2s ease-in-out;
+  text-align: center;
+  cursor: pointer;
+}
+
+.watchButton:hover {
+  cursor: pointer;
+}
+.buttonContainer{
+    text-align: center;
+    padding-top: 20px;
+}
+@media (max-width: 600px) {
+   .videoList {
+grid-template-columns: repeat(2, 1fr);
+}
+}

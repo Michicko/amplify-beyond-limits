@@ -1,0 +1,77 @@
+.latestNewsSection {
+}
+
+.newsRow {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  padding-top: 20px;
+}
+.newsItem {
+  /* border: 1px solid #ddd; */
+  padding: 15px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  background-size: cover;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+    
+  height: 400px;
+  width: 300px;
+  flex-shrink: 0;
+ transition: transform 0.3s ease-in-out;
+
+ scroll-snap-align: start;
+}
+.newsItem:hover{
+  transform: translateY(-10px);
+}
+.newsItem h3 {
+  margin: 0 0 5px;
+}
+.newsContent{
+    width: 100%;
+    margin: 0 auto;
+    padding-bottom: 1rem;
+
+}
+
+.newsSpace{
+    height: 50px;
+}
+
+.newsTitle{
+    font-size: 18px;
+}
+.newsFooter{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 16px;
+}
+.newsLink{
+    cursor: pointer;
+}
+.newsLink:hover{
+   text-decoration: underline;
+}
+
+/* For screens smaller than 768px */
+@media screen and (max-width: 768px) {
+  .newsRow {
+    gap: 0.5rem; /* Slightly reduce gap for smaller screens */
+  }
+  
+  .newsItem {
+    width: 250px; /* Still maintain a fixed width, but smaller on mobile */
+    scroll-snap-align: start; /* Align snapping on mobile */
+  }
+}

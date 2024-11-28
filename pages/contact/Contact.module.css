@@ -1,0 +1,56 @@
+.contactHead{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+       width: 100%;
+    height: 75vh;
+    border-radius: 20px;
+    padding-bottom: 10%;
+        /* position: absolute; */
+}
+.contactHead h1{
+
+  font-size: 6rem;
+  font-family: 'formula_condensedbold', roboto;
+  letter-spacing: 2px;
+  width: 70%;
+  margin: 0 auto;
+  text-align: center;
+  padding: 1% 2%;
+}
+.contactCard{
+  background: #01305B;
+  width: 70%;
+  border-radius: 20px;
+
+  margin: 30px auto;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+
+.contactCard h1{
+  font-size: 4rem;
+  color: #FFD700;
+  margin-bottom: 30px;
+}
+
+@media (max-width: 768px) {
+
+}
+@media (max-width: 600px) {
+
+.contactHead h1{
+  font-size: 4rem;
+}
+
+}
+
+@media (max-width: 400px) {
+.contactHead h1{
+
+  font-size: 3rem;
+}
+}
