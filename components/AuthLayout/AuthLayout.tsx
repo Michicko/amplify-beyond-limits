@@ -49,22 +49,23 @@ const AuthLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
     const token =
       sessionStorage.getItem(TOKEN_STORAGE_KEY as string) ||
       sessionStorage.getItem(TOKEN_STORAGE_KEY as string);
+
     if (!token) {
-      router.replace("/");
+      // router.replace("/");
       return;
     }
     getLoggedInUser(token);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
-  if (!user)
-    return (
-      <ChakraProvider theme={theme}>
-      <Center w='100vw' h='100vh' bg={"white"}>
-        <Spinner color='primary.500' size='lg' />
-      </Center>
-      </ChakraProvider>
-    );
+  // if (!user)
+  //   return (
+  //     <ChakraProvider theme={theme}>
+  //     <Center w='100vw' h='100vh' bg={"white"}>
+  //       <Spinner color='primary.500' size='lg' />
+  //     </Center>
+  //     </ChakraProvider>
+  //   );
 
   return (
     <ChakraProvider theme={theme}>

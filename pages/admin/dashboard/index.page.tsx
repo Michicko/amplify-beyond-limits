@@ -9,8 +9,7 @@ import {
 } from "@chakra-ui/react";
 import React, { ReactElement, useMemo } from "react";
 import { NextPageWithLayout } from "@/pages/_app.page";
-// import AuthLayout from "@/components/AuthLayout/AuthLayout";
-import GuestLayout from "@/components/GuestLayout/GuestLayout";
+import AuthLayout from "@/components/AuthLayout/AuthLayout";
 
 import Image from "next/image";
 import DashboardDetail from "@/components/DashboardDetail";
@@ -206,7 +205,7 @@ const AdminDashboard: NextPageWithLayout = () => {
 };
 
 AdminDashboard.getLayout = function getLayout(page: ReactElement) {
-  return <GuestLayout>{page}</GuestLayout>;
+  return <AuthLayout>{page}</AuthLayout>;
 };
 
 export default AdminDashboard;
