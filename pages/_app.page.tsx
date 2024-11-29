@@ -11,6 +11,10 @@ import { ReactElement, ReactNode, useEffect, useState } from "react";
 import { NextPage } from "next";
 // import '../public/service-worker'
 
+import { Amplify } from "aws-amplify";
+import outputs from "@/amplify_outputs.json";
+Amplify.configure(outputs);
+
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
 };

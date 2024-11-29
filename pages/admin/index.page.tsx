@@ -8,12 +8,9 @@ import { ChakraProvider } from "@chakra-ui/react";
 import GuestLayout from "@/components/GuestLayout/GuestLayout";
 import { NextPageWithLayout } from "../_app.page";
 
-import { Amplify } from "aws-amplify";
 import { Authenticator } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
-import outputs from "../../amplify_outputs.json";
 
-Amplify.configure(outputs);
 
 const LoginPage: NextPageWithLayout = () => {
   return (

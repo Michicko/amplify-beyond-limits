@@ -26,68 +26,71 @@ import { AddIcon } from "@chakra-ui/icons";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import { Column } from "react-table";
 import ErrorLogger from "@/helpers/errorLogger";
-import * as Yup from "yup";
+
 import CustomInput from "@/components/CustomInput/CustomInput";
-import { DownloadExcel } from "@/components/donwloadData";
-import {
-  useCreateLeagueMutation,
-  useGetOneLeagueQuery,
-  useUpdateLeagueMutation,
-  useGetLeagueQuery
-} from "@/store/api/league.api";
-import CustomTable from "@/components/CustomTable";
-import { LiaDownloadSolid } from "react-icons/lia";
-import { useRouter } from "next/router";
+// import CustomTable from "@/components/CustomTable";
 import { ITeam, IGetAllTeamsResponse, ILeague } from "@/types/auth";
 
+import { generateClient } from "aws-amplify/data";
+import type { Schema } from "@/amplify/data/resource";
+
+const client = generateClient<Schema>();
 
 const Match: NextPageWithLayout = () => {
-  const {
-    data,
-    isLoading: isLoadingTeam,
-    refetch,
-  } = useGetLeagueQuery();
-  const router = useRouter();
-
   const initialTeam = {
-   name: "",
-   logo: ""
-  }
+    name: "",
+    logo: "",
+  };
+
+  const [leagues, setLeagues] = useState<Array<Schema["League"]["type"]>>([]);
 
   const handleModalEdit = (value: ILeague) => {
-      setEditId(value._id ? value._id : "")
-      setFieldValue("logo", value.logo)
-      setFieldValue("name", value.name)
-      onEditModalOpen()
-  }
+    setEditId(value._id ? value._id : "");
+    setFieldValue("logo", value.logo);
+    setFieldValue("name", value.name);
+    onEditModalOpen();
+  };
 
   const handleEditModalClose = () => {
-      setEditId("")
-      setFieldValue("logo", "")
-      setFieldValue("name", "")
-      onEditTeamModalClose()
-  }
+    setEditId("");
+    setFieldValue("logo", "");
+    setFieldValue("name", "");
+    onEditTeamModalClose();
+  };
 
   const columns: Column<ILeague>[] = useMemo(() => {
     return [
-      { Header: "Logo", accessor: "logo", Cell: ({ value }) =>(<><img src={value} alt="img" width="40px" height="40px"/></>)},
+      {
+        Header: "Logo",
+        accessor: "logo",
+        Cell: ({ value }) => (
+          <>
+            <img src={value} alt="img" width="40px" height="40px" />
+          </>
+        ),
+      },
       { Header: "League's name", accessor: "name" },
-      { Header: "Action", accessor: "_id", Cell: (value) => <Button onClick={() => handleModalEdit(value.row.original)}>Edit</Button> },
+      {
+        Header: "Action",
+        accessor: "_id",
+        Cell: (value) => (
+          <Button onClick={() => handleModalEdit(value.row.original)}>
+            Edit
+          </Button>
+        ),
+      },
     ];
   }, []);
 
-  
+  const [editId, setEditId] = useState("");
 
-  const [createTeam, { isLoading, isError }] = useCreateLeagueMutation();
-  const [editLeague, { isLoading: isLoadingEdit, isError: isErrorEdit }] = useUpdateLeagueMutation();
-  const [editId, setEditId] = useState("")
   const {
     isOpen: isCreateTeamModalOpen,
     onOpen: onChairmanModalOpen,
     onClose: onCreateTeamModalClose,
   } = useDisclosure();
 
-    const {
+  const {
     isOpen: isEditTeamModalOpen,
     onOpen: onEditModalOpen,
     onClose: onEditTeamModalClose,
@@ -98,33 +101,32 @@ const Match: NextPageWithLayout = () => {
     actions: FormikHelpers<ITeam>
   ) => {
     try {
-      if(isEditTeamModalOpen && editId){
-      const res = await editLeague({...values, _id: editId}).unwrap();
-      if (res.code === 200) {
-        handleEditModalClose();
-        refetch();
-      }
-      }else{
-      const res = await createTeam(values).unwrap();
-      if (res.code === 200) {
-        onCreateTeamModalClose();
-        refetch();
-      }}
+      await client.models.League.create({
+        name: "",
+      });
+      // onCreateTeamModalClose();
     } catch (error) {
       ErrorLogger(error as string);
     }
   };
 
-  const { values, errors, touched, handleChange, handleBlur, handleSubmit, setFieldValue } =
-    useFormik({
-      initialValues: initialTeam,
-      onSubmit: handleCreateChairman,
-    });
+  const {
+    values,
+    errors,
+    touched,
+    handleChange,
+    handleBlur,
+    handleSubmit,
+    setFieldValue,
+  } = useFormik({
+    initialValues: initialTeam,
+    onSubmit: handleCreateChairman,
+  });
 
   return (
     <>
-      <Box w='full' h='full' pt={[6, 8]}></Box>
-      <Box w='full' h='full' py={[4, 6, 8]}>
+      <Box w="full" h="full" pt={[6, 8]}></Box>
+      <Box w="full" h="full" py={[4, 6, 8]}>
         <Flex
           align={["flex-start", "center"]}
           justify={["space-between"]}
@@ -132,17 +134,17 @@ const Match: NextPageWithLayout = () => {
           gap={[2, 0]}
           pb={[4, 6]}
         >
-          <Link href='/admin/settings'>
-            <Flex gap={[1]} align='center'>
+          <Link href="/admin/settings">
+            <Flex gap={[1]} align="center">
               <Icon
                 as={IoIosArrowRoundBack}
-                color='iconColor'
+                color="iconColor"
                 fontSize={["24px"]}
               />
             </Flex>
           </Link>
         </Flex>
-              <Flex
+        <Flex
           align="center"
           justify={["space-between"]}
           direction={["column", "row"]}
@@ -150,31 +152,31 @@ const Match: NextPageWithLayout = () => {
           pb={[4, 6]}
         >
           <Heading>Leagues</Heading>
-              <CustomButton
-                  onClick={onChairmanModalOpen}
-                  height={"48px"}
-                  minW={["full", "50px"]}
-                  mt='50px'
-                >
-                  <AddIcon mr='2' fontSize={"12px"} fontWeight={"500"} />
-                  Create League
-                </CustomButton>
-          
+          <CustomButton
+            onClick={onChairmanModalOpen}
+            height={"48px"}
+            minW={["full", "50px"]}
+            mt="50px"
+          >
+            <AddIcon mr="2" fontSize={"12px"} fontWeight={"500"} />
+            Create League
+          </CustomButton>
         </Flex>
-        
-        <Box h='full' pt={[6, 8]} borderBottomColor='neutral.50'>
-      {!data?.data || isLoadingTeam ? (
+
+        <Box h="full" pt={[6, 8]} borderBottomColor="neutral.50">
+          {!(leagues.length > 0) ? (
             <Center>
               <Spinner />
             </Center>
           ) : (
             <>
-              <CustomTable
+              {/* <CustomTable
                 data={data?.data ?? []}
                 columns={columns}
                 search
-                searchPlaceholder='Search for League'
-              />
+                searchPlaceholder="Search for League"
+              /> */}
+              <div>leagues are available</div>
             </>
           )}
         </Box>
@@ -187,44 +189,36 @@ const Match: NextPageWithLayout = () => {
             <ModalHeader>Create a League</ModalHeader>
             <ModalCloseButton />
             <ModalBody>
-             <CustomInput
+              <CustomInput
                 label="League's Name"
-                placeholder='name'
-                id='name'
+                placeholder="name"
+                id="name"
                 inputProps={{
                   onChange: handleChange,
                   onBlur: handleBlur("name"),
                 }}
                 mt={6}
-                errorText={
-                  errors.name && touched.name
-                    ? errors.name
-                    : null
-                }
+                errorText={errors.name && touched.name ? errors.name : null}
               />
               <CustomInput
                 label="League's Logo Url"
                 placeholder="League's logo"
-                id='logo'
+                id="logo"
                 inputProps={{
                   onChange: handleChange,
                   onBlur: handleBlur("logo"),
                 }}
                 mt={6}
-                errorText={
-                  errors.logo && touched.logo
-                    ? errors.logo
-                    : null
-                }
+                errorText={errors.logo && touched.logo ? errors.logo : null}
               />
             </ModalBody>
 
             <ModalFooter>
               <CustomButton
-                type='submit'
-                isLoading={isLoading}
-                isError={isError}
-                w='100%'
+                type="submit"
+                // isLoading={isLoading}
+                // isError={isError}
+                w="100%"
               >
                 Create
               </CustomButton>
@@ -233,54 +227,45 @@ const Match: NextPageWithLayout = () => {
         </form>
       </Modal>
 
-
-          <Modal isOpen={isEditTeamModalOpen} onClose={handleEditModalClose}>
+      <Modal isOpen={isEditTeamModalOpen} onClose={handleEditModalClose}>
         <ModalOverlay />
         <form onSubmit={handleSubmit}>
           <ModalContent>
             <ModalHeader>Edit a League</ModalHeader>
             <ModalCloseButton />
             <ModalBody>
-             <CustomInput
+              <CustomInput
                 label="League's Name"
-                placeholder='name'
-                id='name'
+                placeholder="name"
+                id="name"
                 inputProps={{
                   onChange: handleChange,
                   onBlur: handleBlur("name"),
-                  value: values.name
+                  value: values.name,
                 }}
                 mt={6}
-                errorText={
-                  errors.name && touched.name
-                    ? errors.name
-                    : null
-                }
+                errorText={errors.name && touched.name ? errors.name : null}
               />
               <CustomInput
                 label="League's Logo Url"
                 placeholder="League's logo"
-                id='logo'
+                id="logo"
                 inputProps={{
                   onChange: handleChange,
                   onBlur: handleBlur("logo"),
-                  value: values.logo
+                  value: values.logo,
                 }}
                 mt={6}
-                errorText={
-                  errors.logo && touched.logo
-                    ? errors.logo
-                    : null
-                }
+                errorText={errors.logo && touched.logo ? errors.logo : null}
               />
             </ModalBody>
 
             <ModalFooter>
               <CustomButton
-                type='submit'
-                isLoading={isLoadingEdit}
-                isError={isErrorEdit}
-                w='100%'
+                type="submit"
+                // isLoading={isLoadingEdit}
+                // isError={isErrorEdit}
+                w="100%"
               >
                 Update
               </CustomButton>

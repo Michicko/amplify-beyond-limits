@@ -133,12 +133,14 @@ const filteredNavLinks = filterNavLinks(NAV_LINKS[user?.role ?? "admin"], user);
           <Menu>
             <MenuButton as='button'>
               <Flex align='center' gap={2}>
-                <Image
+                {/* <Image
                   alt='Avatar image'
                   src='/images/avatar.webp'
                   width={32}
                   height={32}
-                />
+                /> */}
+
+<img src="/images/avatar.webp" width={32}/>
                 <Hide breakpoint='(max-width: 992px)'>
                   <Text
                     fontSize={16}

@@ -24,10 +24,10 @@
       "@/types/*": ["./types/*"],
       "@/helpers/*": ["./helpers/*"],
       "@/images/*": ["./public/images"],
-      "@/src/*": ["./*"]
+      "@/*": ["./*"]
     },
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/components/InstallPWA/index.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
 }

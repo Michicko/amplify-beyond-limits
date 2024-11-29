@@ -10,10 +10,10 @@ const schema = a.schema({
   League: a
     .model({
       name: a.string(),
-      image_path: a.string(),
+      imagePath: a.string(),
       competition: a.string(),
     })
-    .authorization((allow) => [allow.owner()]),
+    .authorization((allow) => [allow.owner(), allow.publicApiKey()]),
 });
 
 export type Schema = ClientSchema<typeof schema>;
