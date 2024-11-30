@@ -234,14 +234,14 @@ const Players: NextPageWithLayout = () => {
             <Center>No players are available</Center>
           )}
 
-          {!isLoading && allPlayers.length > 0 && (
+          {/* {!isLoading && allPlayers.length > 0 && (
             <CustomTable
               data={allPlayers}
               columns={columns}
               search
               searchPlaceholder="Search for Player"
             />
-          )}
+          )} */}
         </Box>
       </Box>
 

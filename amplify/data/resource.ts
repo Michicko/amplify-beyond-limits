@@ -25,20 +25,22 @@ const schema = a.schema({
       details: a.string(),
     })
     .authorization((allow) => [allow.owner(), allow.publicApiKey()]),
+
     Player: a
     .model({
       firstName: a.string().required(),
       lastName: a.string().required(),
       number: a.integer().required(),
       goals: a.integer(),
-      position: a.customType({
-        label: a.string().required(),
-        value: a.string().required(),
-      }),
+      // position: a.customType({
+      //   label: a.string().required(),
+      //   value: a.string().required(),
+      // }),
       appearance: a.integer(),
       image: a.string()
     })
     .authorization((allow) => [allow.owner(), allow.publicApiKey()]),
+    
   Team: a
     .model({
       name: a.string().required(),
