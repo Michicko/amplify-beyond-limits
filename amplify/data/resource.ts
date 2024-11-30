@@ -14,7 +14,6 @@ const schema = a.schema({
       competition: a.string(),
     })
     .authorization((allow) => [allow.owner(), allow.publicApiKey()]),
-
   Match: a
     .model({
       result_info: a.string(),
@@ -25,20 +24,8 @@ const schema = a.schema({
       venue_id: a.integer(),
       details: a.string(),
     })
-
     .authorization((allow) => [allow.owner(), allow.publicApiKey()]),
-
-  Team: a
-    .model({
-      name: a.string().required(),
-      type: a.string(),
-      image_path: a.string(),
-      venue_id: a.string(),
-      last_played_at: a.datetime(),
-    })
-    .authorization((allow) => [allow.owner(), allow.publicApiKey()]),
-
-  Player: a
+    Player: a
     .model({
       firstName: a.string().required(),
       lastName: a.string().required(),
@@ -52,6 +39,16 @@ const schema = a.schema({
       image: a.string()
     })
     .authorization((allow) => [allow.owner(), allow.publicApiKey()]),
+  Team: a
+    .model({
+      name: a.string().required(),
+      type: a.string(),
+      image_path: a.string(),
+      venue_id: a.string(),
+      last_played_at: a.datetime(),
+    })
+    .authorization((allow) => [allow.owner(), allow.publicApiKey()]),
+  
 });
 
 export type Schema = ClientSchema<typeof schema>;

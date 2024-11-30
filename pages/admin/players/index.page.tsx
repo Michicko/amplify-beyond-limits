@@ -36,10 +36,11 @@ import { IPlayer } from "@/types/auth";
 
 import { generateClient } from "aws-amplify/data";
 import type { Schema } from "@/amplify/data/resource";
+import ErrorLogger from "@/helpers/errorLogger";
 
 const client = generateClient<Schema>();
 
-const Match: NextPageWithLayout = () => {
+const Players: NextPageWithLayout = () => {
   const positionList = [
     {
       value: "gk",
@@ -78,23 +79,32 @@ const Match: NextPageWithLayout = () => {
     number: "",
   };
 
-  const [players, setPlayers] = useState<Array<Schema["Player"]["type"]>>([]);
+  const [allPlayers, setPlayers] = useState<Array<Schema["Player"]["type"]>>(
+    []
+  );
   const [isLoading, setIsLoading] = useState(false);
 
-  // function listPlayers() {
-  //   setIsLoading(true);
-  //   client.models.Player.observeQuery().subscribe({
-  //     next: (data) => {
-  //       console.log("Players", data.items);
-  //       setPlayers([...data.items]);
-  //       setIsLoading(false);
-  //     },
-  //   });
-  // }
+  function listPlayers() {
+    setIsLoading(true);
 
-  // useEffect(() => {
-  //   listPlayers();
-  // }, []);
+    try {
+      client.models.Player.observeQuery().subscribe({
+        next: (data) => {
+          // console.log("Players", data.items);
+          setPlayers([...data.items]);
+          setIsLoading(false);
+        },
+      });
+    } catch (error) {
+      ErrorLogger(error);
+      setIsLoading(false);
+
+    }
+  }
+
+  useEffect(() => {
+    listPlayers();
+  }, []);
 
   const columns: Column<IPlayer>[] = useMemo(() => {
     return [
@@ -131,11 +141,33 @@ const Match: NextPageWithLayout = () => {
     onClose: onCreatePlayerModalClose,
   } = useDisclosure();
 
-  const handleCreatePlayer = (
+  const handleCreatePlayer = async (
     values: IPlayer,
     actions: FormikHelpers<IPlayer>
   ) => {
-    console.log("PLYER", values);
+    // console.log("PLYER", values);
+
+    if (!values.first_name || !values.last_name || !values.number) return;
+
+    setIsLoading(true);
+
+    const { data, errors } = await client.models.Player.create({
+      firstName: values.first_name,
+      lastName: values.last_name,
+      number: Number(values.number),
+      position: values.position,
+      goals: Number(values.goals),
+      appearance: Number(values.appearance),
+      image: values.goals,
+    });
+
+    if (data) onCreatePlayerModalClose();
+
+    if (errors) {
+      ErrorLogger(errors);
+    }
+
+    setIsLoading(false);
   };
 
   const {
@@ -198,16 +230,16 @@ const Match: NextPageWithLayout = () => {
             </Center>
           )}
 
-          {!isLoading && players.length === 0 && (
+          {!isLoading && allPlayers.length === 0 && (
             <Center>No players are available</Center>
           )}
 
-          {!isLoading && players.length > 0 && (
+          {!isLoading && allPlayers.length > 0 && (
             <CustomTable
-              data={players}
+              data={allPlayers}
               columns={columns}
               search
-              searchPlaceholder="Search for League"
+              searchPlaceholder="Search for Player"
             />
           )}
         </Box>
@@ -332,8 +364,8 @@ const Match: NextPageWithLayout = () => {
   );
 };
 
-Match.getLayout = function getLayout(page: ReactElement) {
+Players.getLayout = function getLayout(page: ReactElement) {
   return <AuthLayout>{page}</AuthLayout>;
 };
 
-export default Match;
+export default Players;
