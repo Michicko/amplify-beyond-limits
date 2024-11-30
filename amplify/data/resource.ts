@@ -15,7 +15,7 @@ const schema = a.schema({
     })
     .authorization((allow) => [allow.owner(), allow.publicApiKey()]),
 
-    Match: a
+  Match: a
     .model({
       result_info: a.string(),
       name: a.string(),
@@ -30,11 +30,26 @@ const schema = a.schema({
 
   Team: a
     .model({
-      name: a.string(),
+      name: a.string().required(),
       type: a.string(),
       image_path: a.string(),
       venue_id: a.string(),
       last_played_at: a.datetime(),
+    })
+    .authorization((allow) => [allow.owner(), allow.publicApiKey()]),
+
+  Player: a
+    .model({
+      first_name: a.string().required(),
+      last_name: a.string().required(),
+      number: a.integer().required(),
+      goals: a.integer(),
+      position: a.customType({
+        label: a.string().required(),
+        value: a.string().required(),
+      }),
+      appearance: a.integer(),
+      image: a.string()
     })
     .authorization((allow) => [allow.owner(), allow.publicApiKey()]),
 });

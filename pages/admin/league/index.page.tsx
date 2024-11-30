@@ -49,7 +49,7 @@ const Match: NextPageWithLayout = () => {
     setIsLoading(true);
     client.models.League.observeQuery().subscribe({
       next: (data) => {
-        console.log("Leagues", data.items);
+        // console.log("Leagues", data.items);
         setLeagues([...data.items]);
         setIsLoading(false);
       },

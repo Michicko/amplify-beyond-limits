@@ -16,7 +16,7 @@ import {
   ModalOverlay,
   HStack,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import React, { ReactElement, useMemo } from "react";
 import { NextPageWithLayout } from "@/pages/_app.page";
 import AuthLayout from "@/components/AuthLayout/AuthLayout";
@@ -27,152 +27,134 @@ import { AddIcon } from "@chakra-ui/icons";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import CustomSelect from "@/components/CustomSelect/CustomSelect";
 import { Column } from "react-table";
-import ErrorLogger from "@/helpers/errorLogger";
-import * as Yup from "yup";
-import CustomInput from "@/components/CustomInput/CustomInput";
-import { DownloadExcel } from "@/components/donwloadData";
-import {
-  useCreatePlayerMutation,
-  useGetOnePlayerQuery,
-  useGetPlayerQuery,
-  useUpdatePlayerMutation
-} from "@/store/api/player.api";
-import CustomTable from "@/components/CustomTable";
-import { LiaDownloadSolid } from "react-icons/lia";
-import { useRouter } from "next/router";
-import { ITeam, IGetAllTeamsResponse, IPlayer } from "@/types/auth";
 
+import CustomInput from "@/components/CustomInput/CustomInput";
+
+import CustomTable from "@/components/CustomTable";
+
+import { IPlayer } from "@/types/auth";
+
+import { generateClient } from "aws-amplify/data";
+import type { Schema } from "@/amplify/data/resource";
+
+const client = generateClient<Schema>();
 
 const Match: NextPageWithLayout = () => {
-  const {
-    data,
-    isLoading: isLoadingTeam,
-    refetch,
-  } = useGetPlayerQuery();
-  const router = useRouter();
-
   const positionList = [
     {
       value: "gk",
-      label: "Goalkeeper"
+      label: "Goalkeeper",
     },
-     {
+    {
       value: "df",
-      label: "Defender"
+      label: "Defender",
     },
-     {
+    {
       value: "cdm",
-      label: "Central Defensive Midfielder"
+      label: "Central Defensive Midfielder",
     },
-      {
+    {
       value: "cm",
-      label: "Central Midfielder"
+      label: "Central Midfielder",
     },
-      {
+    {
       value: "cam",
-      label: "Central Attack Midfielder"
+      label: "Central Attack Midfielder",
     },
-      {
+    {
       value: "fw",
-      label: "Forward"
-    }
-  ]
+      label: "Forward",
+    },
+  ];
 
   const initialPlayer = {
-        first_name: "",
-        last_name: "",
-        position: "",
-        goals: "",
-        //team: "",
-        appearance: "",
-        image: "",
-        number: "",
-  }
+    first_name: "",
+    last_name: "",
+    position: "",
+    goals: "",
+    //team: "",
+    appearance: "",
+    image: "",
+    number: "",
+  };
 
-   const handleModalEdit = async(value: IPlayer) => {
-      const posData = await positionList.find(i => (i.value === value.position))
-      console.log(posData)
-      setEditId(value._id ? value._id : "")
-      setFieldValue("first_name", value.first_name)
-      setFieldValue("last_name", value.last_name)
-      setFieldValue("position", posData)
-      setFieldValue("goals", value.goals)
-      setFieldValue("image", value.image)
-      setFieldValue("number", value.number)
-      setFieldValue("appearance", value.number)
-      onEditModalOpen()
-  }
+  const [players, setPlayers] = useState<Array<Schema["Player"]["type"]>>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleEditModalClose = () => {
-      setEditId("")
-      setFieldValue("first_name", "")
-      setFieldValue("last_name", "")
-      setFieldValue("position", "")
-      setFieldValue("goals", 0)
-      setFieldValue("image", "")
-      setFieldValue("number", "")
-      setFieldValue("appearance", 0)
-      onEditTeamModalClose()
-  }
+  // function listPlayers() {
+  //   setIsLoading(true);
+  //   client.models.Player.observeQuery().subscribe({
+  //     next: (data) => {
+  //       console.log("Players", data.items);
+  //       setPlayers([...data.items]);
+  //       setIsLoading(false);
+  //     },
+  //   });
+  // }
+
+  // useEffect(() => {
+  //   listPlayers();
+  // }, []);
 
   const columns: Column<IPlayer>[] = useMemo(() => {
     return [
-      { Header: "Image", accessor: "image", Cell: (value) => (<img alt="img" width="40px" height="40px" src={value.row.original.image}/> ) },
-      { Header: "Name", accessor: "first_name", Cell: (value) => <>{value.row.original.first_name+" "+value.row.original.last_name}</> },
+      {
+        Header: "Image",
+        accessor: "image",
+        Cell: (value) => (
+          <img
+            alt="img"
+            width="40px"
+            height="40px"
+            src={value.row.original.image}
+          />
+        ),
+      },
+      {
+        Header: "Name",
+        accessor: "first_name",
+        Cell: (value) => (
+          <>
+            {value.row.original.first_name + " " + value.row.original.last_name}
+          </>
+        ),
+      },
       { Header: "Position", accessor: "position" },
       { Header: "Appearance", accessor: "appearance" },
       { Header: "Goals", accessor: "goals" },
-      { Header: "Action", accessor: "_id", Cell: (value) => <Button onClick={() => handleModalEdit(value.row.original)}>Edit</Button> },
     ];
   }, []);
 
-  const [createPlayer, { isLoading, isError }] = useCreatePlayerMutation();
-  const [editPlayer, { isLoading: isLoadingEdit, isError: isErrorEdit }] = useUpdatePlayerMutation();
-  const [editId, setEditId] = useState("")
   const {
     isOpen: isCreatePlayerModalOpen,
     onOpen: onPlayerModalOpen,
-    onClose: onCreatePlayerModalClose
-  } = useDisclosure();
-  const {
-    isOpen: isEditPlayerModalOpen,
-    onOpen: onEditModalOpen,
-    onClose: onEditTeamModalClose,
+    onClose: onCreatePlayerModalClose,
   } = useDisclosure();
 
-  const handleCreatePlayer = async (
+  const handleCreatePlayer = (
     values: IPlayer,
     actions: FormikHelpers<IPlayer>
   ) => {
-    try {
-         if(isEditPlayerModalOpen && editId){
-      const res = await editPlayer({...values, _id: editId, position: values.position.value}).unwrap();
-      if (res.code === 200) {
-        handleEditModalClose();
-        refetch();
-      }
-      }else{
-       const res = await createPlayer({...values, position: values.position.value}).unwrap();
-      if (res.code === 200) {
-        onCreatePlayerModalClose();
-        refetch();
-      }
-    } 
-    } catch (error) {
-      ErrorLogger(error as string);
-    }
+    console.log("PLYER", values);
   };
 
-  const { values, errors, touched, handleChange, handleBlur, handleSubmit, setFieldValue } =
-    useFormik({
-      initialValues: initialPlayer,
-      onSubmit: handleCreatePlayer,
-    });
+  const {
+    values,
+    errors,
+    touched,
+    handleChange,
+    handleBlur,
+    handleSubmit,
+    setFieldValue,
+  } = useFormik({
+    initialValues: initialPlayer,
+    onSubmit: handleCreatePlayer,
+  });
 
   return (
     <>
-      <Box w='full' h='full' pt={[6, 8]}></Box>
-      <Box w='full' h='full' py={[4, 6, 8]}>
+      <Box w="full" h="full" pt={[6, 8]}></Box>
+      <Box w="full" h="full" py={[4, 6, 8]}>
         <Flex
           align={["flex-start", "center"]}
           justify={["space-between"]}
@@ -180,17 +162,17 @@ const Match: NextPageWithLayout = () => {
           gap={[2, 0]}
           pb={[4, 6]}
         >
-          <Link href='/admin/settings'>
-            <Flex gap={[1]} align='center'>
+          <Link href="/admin/settings">
+            <Flex gap={[1]} align="center">
               <Icon
                 as={IoIosArrowRoundBack}
-                color='iconColor'
+                color="iconColor"
                 fontSize={["24px"]}
               />
             </Flex>
           </Link>
         </Flex>
-              <Flex
+        <Flex
           align="center"
           justify={["space-between"]}
           direction={["column", "row"]}
@@ -198,47 +180,53 @@ const Match: NextPageWithLayout = () => {
           pb={[4, 6]}
         >
           <Heading>Players</Heading>
-              <CustomButton
-                  onClick={onPlayerModalOpen}
-                  height={"48px"}
-                  minW={["full", "50px"]}
-                  mt='50px'
-                >
-                  <AddIcon mr='2' fontSize={"12px"} fontWeight={"500"} />
-                  Add Player
-                </CustomButton>
-          
+          <CustomButton
+            onClick={onPlayerModalOpen}
+            height={"48px"}
+            minW={["full", "50px"]}
+            mt="50px"
+          >
+            <AddIcon mr="2" fontSize={"12px"} fontWeight={"500"} />
+            Add Player
+          </CustomButton>
         </Flex>
-        
-        <Box h='full' pt={[6, 8]} borderBottomColor='neutral.50'>
-      {!data?.data || isLoadingTeam ? (
+
+        <Box h="full" pt={[6, 8]} borderBottomColor="neutral.50">
+          {isLoading && (
             <Center>
               <Spinner />
             </Center>
-          ) : (
-            <>
-              <CustomTable
-                data={data?.data ?? []}
-                columns={columns}
-                search
-                searchPlaceholder='Search for Team'
-              />
-            </>
+          )}
+
+          {!isLoading && players.length === 0 && (
+            <Center>No players are available</Center>
+          )}
+
+          {!isLoading && players.length > 0 && (
+            <CustomTable
+              data={players}
+              columns={columns}
+              search
+              searchPlaceholder="Search for League"
+            />
           )}
         </Box>
       </Box>
 
-      <Modal isOpen={isCreatePlayerModalOpen} onClose={onCreatePlayerModalClose}>
+      <Modal
+        isOpen={isCreatePlayerModalOpen}
+        onClose={onCreatePlayerModalClose}
+      >
         <ModalOverlay />
         <form onSubmit={handleSubmit}>
           <ModalContent>
             <ModalHeader>Create a Player</ModalHeader>
             <ModalCloseButton />
             <ModalBody>
-             <CustomInput
+              <CustomInput
                 label="Player's First Name"
-                placeholder='first_name'
-                id='first_name'
+                placeholder="first_name"
+                id="first_name"
                 inputProps={{
                   onChange: handleChange,
                   onBlur: handleBlur("first_name"),
@@ -250,10 +238,10 @@ const Match: NextPageWithLayout = () => {
                     : null
                 }
               />
-                <CustomInput
+              <CustomInput
                 label="Player's Last Name"
-                placeholder='last_name'
-                id='last_name'
+                placeholder="last_name"
+                id="last_name"
                 inputProps={{
                   onChange: handleChange,
                   onBlur: handleBlur("last_name"),
@@ -265,46 +253,40 @@ const Match: NextPageWithLayout = () => {
                     : null
                 }
               />
-               <CustomInput
+              <CustomInput
                 label="Player's Number"
-                placeholder='player_number'
-                id='number'
+                placeholder="player_number"
+                id="number"
                 inputProps={{
                   onChange: handleChange,
                   onBlur: handleBlur("number"),
-                  type: "number"
+                  type: "number",
                 }}
                 mt={6}
                 errorText={
-                  errors.number && touched.number
-                    ? errors.number
-                    : null
+                  errors.number && touched.number ? errors.number : null
                 }
               />
-               <CustomInput
+              <CustomInput
                 label="Player Goals"
-                placeholder='player_goals'
-                id='goals'
+                placeholder="player_goals"
+                id="goals"
                 inputProps={{
                   onChange: handleChange,
                   onBlur: handleBlur("goals"),
-                  type: "number"
+                  type: "number",
                 }}
                 mt={6}
-                errorText={
-                  errors.goals && touched.goals
-                    ? errors.goals
-                    : null
-                }
+                errorText={errors.goals && touched.goals ? errors.goals : null}
               />
-               <CustomInput
+              <CustomInput
                 label="Player's Appearance"
-                placeholder='appearance'
-                id='appearance'
+                placeholder="appearance"
+                id="appearance"
                 inputProps={{
                   onChange: handleChange,
                   onBlur: handleBlur("appearance"),
-                  type: "number"
+                  type: "number",
                 }}
                 mt={6}
                 errorText={
@@ -313,179 +295,34 @@ const Match: NextPageWithLayout = () => {
                     : null
                 }
               />
-               <CustomSelect
-               mt="20px"
-                      label='Select Position'
-                      placeholder='position'
-                      selectOptions={positionList.map((i) => ({
-                        label: i.label,
-                        value: i.value,
-                      }))}
-                      selectProps={{
-                        onChange: (e) => setFieldValue("position", e),
-                      }}
-                    />
+              <CustomSelect
+                mt="20px"
+                label="Select Position"
+                placeholder="position"
+                selectOptions={positionList.map((i) => ({
+                  label: i.label,
+                  value: i.value,
+                }))}
+                selectProps={{
+                  onChange: (e) => setFieldValue("position", e),
+                }}
+              />
               <CustomInput
                 label="Player's Image Url"
                 placeholder="Player's Image Url"
-                id='image'
+                id="image"
                 inputProps={{
                   onChange: handleChange,
                   onBlur: handleBlur("image"),
                 }}
                 mt={6}
-                errorText={
-                  errors.image && touched.image
-                    ? errors.image
-                    : null
-                }
+                errorText={errors.image && touched.image ? errors.image : null}
               />
             </ModalBody>
 
             <ModalFooter>
-              <CustomButton
-                type='submit'
-                isLoading={isLoading}
-                isError={isError}
-                w='100%'
-              >
+              <CustomButton type="submit" isLoading={isLoading} w="100%">
                 Create
-              </CustomButton>
-            </ModalFooter>
-          </ModalContent>
-        </form>
-      </Modal>
-
-
-         <Modal isOpen={isEditPlayerModalOpen} onClose={handleEditModalClose}>
-        <ModalOverlay />
-        <form onSubmit={handleSubmit}>
-          <ModalContent>
-            <ModalHeader>Edit a Player</ModalHeader>
-            <ModalCloseButton />
-            <ModalBody>
-             <CustomInput
-                label="Player's First Name"
-                placeholder='first_name'
-                id='first_name'
-                inputProps={{
-                  onChange: handleChange,
-                  onBlur: handleBlur("first_name"),
-                  value: values.first_name
-                }}
-                mt={6}
-                errorText={
-                  errors.first_name && touched.first_name
-                    ? errors.first_name
-                    : null
-                }
-              />
-                <CustomInput
-                label="Player's Last Name"
-                placeholder='last_name'
-                id='last_name'
-                inputProps={{
-                  onChange: handleChange,
-                  onBlur: handleBlur("last_name"),
-                  value: values.last_name
-                }}
-                mt={6}
-                errorText={
-                  errors.last_name && touched.last_name
-                    ? errors.last_name
-                    : null
-                }
-              />
-               <CustomInput
-                label="Player's Number"
-                placeholder='player_number'
-                id='number'
-                inputProps={{
-                  onChange: handleChange,
-                  onBlur: handleBlur("number"),
-                  type: "number",
-                  value: values.number
-                }}
-                mt={6}
-                errorText={
-                  errors.number && touched.number
-                    ? errors.number
-                    : null
-                }
-              />
-               <CustomInput
-                label="Player Goals"
-                placeholder='player_goals'
-                id='goals'
-                inputProps={{
-                  onChange: handleChange,
-                  onBlur: handleBlur("goals"),
-                  type: "number",
-                  value: values.goals
-                }}
-                mt={6}
-                errorText={
-                  errors.goals && touched.goals
-                    ? errors.goals
-                    : null
-                }
-              />
-               <CustomInput
-                label="Player's Appearance"
-                placeholder='appearance'
-                id='appearance'
-                inputProps={{
-                  onChange: handleChange,
-                  onBlur: handleBlur("appearance"),
-                  type: "number",
-                  value: values.appearance
-                }}
-                mt={6}
-                errorText={
-                  errors.appearance && touched.appearance
-                    ? errors.appearance
-                    : null
-                }
-              />
-               <CustomSelect
-               mt="20px"
-                      label='Select Position'
-                      placeholder='position'
-                      selectOptions={positionList.map((i) => ({
-                        label: i.label,
-                        value: i.value,
-                      }))}
-                      selectProps={{
-                        value: values.position,
-                        onChange: (e) => setFieldValue("position", e),
-                      }}
-                    />
-              <CustomInput
-                label="Player's Image Url"
-                placeholder="Player's Image Url"
-                id='image'
-                inputProps={{
-                  onChange: handleChange,
-                  onBlur: handleBlur("image"),
-                  value: values.image
-                }}
-                mt={6}
-                errorText={
-                  errors.image && touched.image
-                    ? errors.image
-                    : null
-                }
-              />
-            </ModalBody>
-
-            <ModalFooter>
-              <CustomButton
-                type='submit'
-                isLoading={isLoadingEdit}
-                isError={isError}
-                w='100%'
-              >
-                Update
               </CustomButton>
             </ModalFooter>
           </ModalContent>
