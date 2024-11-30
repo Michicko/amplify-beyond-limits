@@ -16,7 +16,7 @@ import {
   ModalOverlay,
   Button,
 } from "@chakra-ui/react";
-import React, { ReactElement, useMemo, useState } from "react";
+import React, { ReactElement, useEffect, useMemo, useState } from "react";
 import { NextPageWithLayout } from "@/pages/_app.page";
 import AuthLayout from "@/components/AuthLayout/AuthLayout";
 import { Link } from "@chakra-ui/react";
@@ -28,8 +28,8 @@ import { Column } from "react-table";
 import ErrorLogger from "@/helpers/errorLogger";
 
 import CustomInput from "@/components/CustomInput/CustomInput";
-// import CustomTable from "@/components/CustomTable";
-import { ITeam, IGetAllTeamsResponse, ILeague } from "@/types/auth";
+import CustomTable from "@/components/CustomTable";
+import { ITeam, ILeague } from "@/types/auth";
 
 import { generateClient } from "aws-amplify/data";
 import type { Schema } from "@/amplify/data/resource";
@@ -43,20 +43,22 @@ const Match: NextPageWithLayout = () => {
   };
 
   const [leagues, setLeagues] = useState<Array<Schema["League"]["type"]>>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleModalEdit = (value: ILeague) => {
-    setEditId(value._id ? value._id : "");
-    setFieldValue("logo", value.logo);
-    setFieldValue("name", value.name);
-    onEditModalOpen();
-  };
+  function listLeagues() {
+    setIsLoading(true);
+    client.models.League.observeQuery().subscribe({
+      next: (data) => {
+        console.log("Leagues", data.items);
+        setLeagues([...data.items]);
+        setIsLoading(false);
+      },
+    });
+  }
 
-  const handleEditModalClose = () => {
-    setEditId("");
-    setFieldValue("logo", "");
-    setFieldValue("name", "");
-    onEditTeamModalClose();
-  };
+  useEffect(() => {
+    listLeagues();
+  }, []);
 
   const columns: Column<ILeague>[] = useMemo(() => {
     return [
@@ -70,19 +72,8 @@ const Match: NextPageWithLayout = () => {
         ),
       },
       { Header: "League's name", accessor: "name" },
-      {
-        Header: "Action",
-        accessor: "_id",
-        Cell: (value) => (
-          <Button onClick={() => handleModalEdit(value.row.original)}>
-            Edit
-          </Button>
-        ),
-      },
     ];
   }, []);
-
-  const [editId, setEditId] = useState("");
 
   const {
     isOpen: isCreateTeamModalOpen,
@@ -90,24 +81,29 @@ const Match: NextPageWithLayout = () => {
     onClose: onCreateTeamModalClose,
   } = useDisclosure();
 
-  const {
-    isOpen: isEditTeamModalOpen,
-    onOpen: onEditModalOpen,
-    onClose: onEditTeamModalClose,
-  } = useDisclosure();
-
   const handleCreateChairman = async (
     values: ITeam,
     actions: FormikHelpers<ITeam>
   ) => {
-    try {
-      await client.models.League.create({
-        name: "",
-      });
-      // onCreateTeamModalClose();
-    } catch (error) {
-      ErrorLogger(error as string);
+    // console.log("Values", values);
+
+    if (!values.name || !values.logo) return;
+
+    setIsLoading(true);
+
+    const { data, errors } = await client.models.League.create({
+      name: values.name,
+      imagePath: values.logo,
+      competition: "National",
+    });
+
+    if (data) onCreateTeamModalClose();
+
+    if (errors) {
+      ErrorLogger(errors);
     }
+
+    setIsLoading(false);
   };
 
   const {
@@ -164,20 +160,23 @@ const Match: NextPageWithLayout = () => {
         </Flex>
 
         <Box h="full" pt={[6, 8]} borderBottomColor="neutral.50">
-          {!(leagues.length > 0) ? (
+          {isLoading && (
             <Center>
               <Spinner />
             </Center>
-          ) : (
-            <>
-              {/* <CustomTable
-                data={data?.data ?? []}
-                columns={columns}
-                search
-                searchPlaceholder="Search for League"
-              /> */}
-              <div>leagues are available</div>
-            </>
+          )}
+
+          {!isLoading && leagues.length === 0 && (
+            <Center>No leagues are available</Center>
+          )}
+
+          {!isLoading && leagues.length > 0 && (
+            <CustomTable
+              data={leagues}
+              columns={columns}
+              search
+              searchPlaceholder="Search for League"
+            />
           )}
         </Box>
       </Box>
@@ -216,58 +215,11 @@ const Match: NextPageWithLayout = () => {
             <ModalFooter>
               <CustomButton
                 type="submit"
-                // isLoading={isLoading}
-                // isError={isError}
+                isLoading={isLoading}
                 w="100%"
+                // disabled={errors.name || errors.logo ? true : false}
               >
                 Create
-              </CustomButton>
-            </ModalFooter>
-          </ModalContent>
-        </form>
-      </Modal>
-
-      <Modal isOpen={isEditTeamModalOpen} onClose={handleEditModalClose}>
-        <ModalOverlay />
-        <form onSubmit={handleSubmit}>
-          <ModalContent>
-            <ModalHeader>Edit a League</ModalHeader>
-            <ModalCloseButton />
-            <ModalBody>
-              <CustomInput
-                label="League's Name"
-                placeholder="name"
-                id="name"
-                inputProps={{
-                  onChange: handleChange,
-                  onBlur: handleBlur("name"),
-                  value: values.name,
-                }}
-                mt={6}
-                errorText={errors.name && touched.name ? errors.name : null}
-              />
-              <CustomInput
-                label="League's Logo Url"
-                placeholder="League's logo"
-                id="logo"
-                inputProps={{
-                  onChange: handleChange,
-                  onBlur: handleBlur("logo"),
-                  value: values.logo,
-                }}
-                mt={6}
-                errorText={errors.logo && touched.logo ? errors.logo : null}
-              />
-            </ModalBody>
-
-            <ModalFooter>
-              <CustomButton
-                type="submit"
-                // isLoading={isLoadingEdit}
-                // isError={isErrorEdit}
-                w="100%"
-              >
-                Update
               </CustomButton>
             </ModalFooter>
           </ModalContent>

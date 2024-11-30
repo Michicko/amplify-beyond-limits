@@ -104,7 +104,7 @@ const IndeterminateCheckbox = React.forwardRef((props: CheckboxProps, ref) => {
 
   return (
     // @ts-ignore
-    <input type='checkbox' ref={resolvedRef} {...props} />
+    <input type="checkbox" ref={resolvedRef} {...props} />
   );
 });
 
@@ -142,7 +142,7 @@ const CustomTable = ({
   filterList,
   filterRevenuehead,
   onFilterRevenuehead,
-  filterRevenueheadList
+  filterRevenueheadList,
 }: Props) => {
   const {
     getTableProps,
@@ -225,151 +225,33 @@ const CustomTable = ({
 
   return (
     <>
-      {/* HEADERS */}
-      {search ? (
-        <Flex
-          direction={["column", null, "row"]}
-          align={["flex-start", null, "center"]}
-          justify={["space-between"]}
-          mb={[6, null, 8]}
-          gap={[4, null, 0]}
-        >
-          <Flex
-            direction={["column", "row"]}
-            align={["flex-start", "center"]}
-            gap={[4]}
-            w={["full", "auto"]}
-          >
-            {search ? (
-              <InputGroup>
-                <Input
-                  type='search'
-                  placeholder={searchPlaceholder}
-                  size='lg'
-                  _placeholder={{
-                    color: "neutral.300",
-                  }}
-                  value={searchVal || ""}
-                  onChange={(e) => {
-                    setSearchVal(e.target.value);
-                    onChangeSearch(e.target.value);
-                  }}
-                  _focus={{ borderColor: "primary.500" }}
-                  fontSize='14px'
-                  borderWidth={"1px"}
-                  borderColor={"neutral.50"}
-                  borderRadius='3px'
-                  bg={"white"}
-                  pl={8}
-                  color='text'
-                  minW={["full", "210px"]}
-                  w='full'
-                  fontFamily='body'
-                  id={"search"}
-                  _hover={{
-                    borderColor: "primary.500",
-                  }}
-                  height='48px'
-                />
-                <InputLeftElement height='full'>
-                  <SearchIcon color='neutral.300' fontSize={"12px"} />
-                </InputLeftElement>
-              </InputGroup>
-            ) : null}
-            {filterList && filterText ? (
-              <CustomSelect
-                id='filter'
-                selectProps={{
-                  onChange: onFilter,
-                  placeholder: filterText,
-                  icon: (
-                    <Icon as={BsFilter} color='primary.500' fontSize={"20px"} />
-                  ),
-                }}
-                minW={["full", "210px"]}
-                height='58px'
-                list={filterList}
-              />
-            ) : null}
-          </Flex>
-          {downloadFileTitle && downloadButtonTitle && (
-            <DownloadExcel
-              data={
-                downloadExcelData && downloadFileTitle.length
-                  ? downloadExcelData
-                  : rows.map((i) => i.original)
-              }
-              name={downloadFileTitle}
-              buttonText={downloadButtonTitle}
-            />
-          )}
-        </Flex>
-      ) : null}
-
-        <>
-          <Flex align='end' w='50%' gap={2} alignItems="center">
-            {filterDate && inputIdStart && (
-              <CustomInput
-                label='Start Date'
-                id={inputIdStart}
-                w="33.3%"
-                inputProps={{ type: "date", onChange: handleSetFromDate }}
-              />
-            )}
-            {filterDate && inputIdEnd && (
-              <CustomInput
-                label='End Date'
-                id={inputIdEnd}
-                w="33.3%"
-                inputProps={{ type: "date", onChange: handleSetToDate }}
-              />
-            )}
-            {
-              filterRevenuehead && (
-                <CustomSelect
-                label="Revenue Head"  
-                id='filter'
-                selectProps={{
-                  onChange:onFilterRevenuehead,
-                  placeholder: filterText,
-                  icon: (
-                    <Icon as={BsFilter} color='primary.500' fontSize={"20px"} />
-                  ),
-                }}
-                w="33.3%"
-                list={filterRevenueheadList}/>
-              )
-            }
-          </Flex>
-        </>
-
-
+      
       <Box mt={title ? [6, 8, 10] : search ? 3 : 0}>
         {/* TABLE */}
-        <Box overflowX='scroll' className={styles.container} bg='white'>
+        <Box overflowX="scroll" className={styles.container} bg="white">
           {isLoading ? (
-            <Center py='8'>
-              <Spinner size='lg' color='primary.500' />
+            <Center py="8">
+              <Spinner size="lg" color="primary.500" />
             </Center>
           ) : isSmallScreen ? (
-            <VStack w='full' spacing={4} bg='white'>
+            <VStack w="full" spacing={4} bg="white">
               {page.map((row) => {
                 prepareRow(row);
                 return (
                   <Flex
                     key={row.id}
-                    border='1px solid red'
+                    border="1px solid red"
                     borderColor={"neutral.100"}
-                    p='4'
-                    wrap='wrap'
-                    gap='4'
-                    mb='2'
-                    w='full'
+                    p="4"
+                    wrap="wrap"
+                    gap="4"
+                    mb="2"
+                    w="full"
                     borderRadius={"4px"}
                   >
                     {row.cells.map((cell) => (
                       <Box key={cell.column.id}>
-                        <Text color='textTwo' fontWeight='600'>
+                        <Text color="textTwo" fontWeight="600">
                           {cell.column.Header as string}
                         </Text>
                         <Text
@@ -386,18 +268,18 @@ const CustomTable = ({
           ) : (
             <Table
               {...getTableProps()}
-              fontFamily='body'
-              variant='unstyled'
-              position='relative'
-              bg='white'
+              fontFamily="body"
+              variant="unstyled"
+              position="relative"
+              bg="white"
             >
               <Thead>
                 {headerGroups.map((headerGroup) => (
                   <Tr
                     {...headerGroup.getHeaderGroupProps()}
                     key={Math.random()}
-                    borderBottom='1px solid #f2f2f2'
-                    borderColor='lineColor'
+                    borderBottom="1px solid #f2f2f2"
+                    borderColor="lineColor"
                   >
                     {headerGroup.headers.map((column, index) => {
                       if (excelFormat && index <= excelFormatIndex) {
@@ -407,20 +289,20 @@ const CustomTable = ({
                               column.getSortByToggleProps()
                             )}
                             key={Math.random()}
-                            color='textTwo'
-                            fontWeight='600'
+                            color="textTwo"
+                            fontWeight="600"
                             fontSize={["0.875rem", "1rem"]}
-                            textTransform='capitalize'
-                            fontFamily='body'
+                            textTransform="capitalize"
+                            fontFamily="body"
                             py={[4]}
-                            position='sticky'
+                            position="sticky"
                             left={index ? excelFormatIndex * 100 : 0}
                             className={
                               index === excelFormatIndex
                                 ? "table-excel-border"
                                 : ""
                             }
-                            bg='white'
+                            bg="white"
                           >
                             {column.render("Header")}
                             <span>
@@ -440,11 +322,11 @@ const CustomTable = ({
                               column.getSortByToggleProps()
                             )}
                             key={Math.random()}
-                            color='textTwo'
-                            fontWeight='600'
+                            color="textTwo"
+                            fontWeight="600"
                             fontSize={["0.875rem", "1rem"]}
-                            textTransform='capitalize'
-                            fontFamily='body'
+                            textTransform="capitalize"
+                            fontFamily="body"
                             py={[4]}
                           >
                             {column.render("Header")}
@@ -474,7 +356,7 @@ const CustomTable = ({
                         background:
                           colorMode === "dark" ? "#1B1B1D" : "#fbfbfb",
                       }}
-                      cursor='pointer'
+                      cursor="pointer"
                       // onClick={rowClickAction ? () => rowClickAction(row.original) : () => null}
                       // onClick={() => {
                       //   if (canSelectRows) return;
@@ -482,8 +364,8 @@ const CustomTable = ({
                       //     rowClickAction(row.original);
                       //   }
                       // }}
-                      borderBottom='1px solid #f2f2f2'
-                      borderColor='lineColor'
+                      borderBottom="1px solid #f2f2f2"
+                      borderColor="lineColor"
                     >
                       {row.cells.map((cell, index) => {
                         if (excelFormat && index <= excelFormatIndex) {
@@ -494,19 +376,19 @@ const CustomTable = ({
                               color={
                                 colorMode === "dark" ? "#A9A9B0" : "#686873"
                               }
-                              fontWeight='400'
+                              fontWeight="400"
                               fontSize={["0.75rem", "0.875rem"]}
-                              fontFamily='body'
+                              fontFamily="body"
                               py={[1, 4]}
-                              minWidth='100px'
-                              position='sticky'
+                              minWidth="100px"
+                              position="sticky"
                               left={index ? excelFormatIndex * 100 : 0}
                               className={
                                 index === excelFormatIndex
                                   ? "table-excel-border"
                                   : ""
                               }
-                              bg='white'
+                              bg="white"
                               onClick={() => {
                                 if (
                                   canSelectRows &&
@@ -530,11 +412,11 @@ const CustomTable = ({
                               color={
                                 colorMode === "dark" ? "#A9A9B0" : "#686873"
                               }
-                              fontWeight='500'
+                              fontWeight="500"
                               fontSize={["0.75rem", "0.875rem"]}
-                              fontFamily='body'
+                              fontFamily="body"
                               py={[1, 4]}
-                              minWidth='100px'
+                              minWidth="100px"
                               onClick={() => {
                                 if (
                                   canSelectRows &&
@@ -560,57 +442,7 @@ const CustomTable = ({
           )}
         </Box>
 
-        {/* PAGINATION */}
-        <Flex mt={[4, 6]} justify={["center", "flex-end"]} align='center'>
-          <Flex gap='2' align='center'>
-            <Text color='textTwo' fontSize={["0.75rem", "0.875rem"]}>
-              Rows per page:
-            </Text>
-            <Flex align='center' gap='0.5' cursor='pointer'>
-              <Select
-                icon={<AiFillCaretDown fontSize='0.75rem' />}
-                color={colorMode === "dark" ? "textTwo" : "#251446"}
-                fontSize={["0.75rem", "0.875rem"]}
-                defaultValue={pageSize}
-                onChange={(e) => setPageSize(Number(e.target.value))}
-                value={pageSize}
-              >
-                {Array.from({ length: rows.length }, (_, i) => i + 1).map(
-                  (val) => (
-                    <option key={val} value={val}>
-                      {val}
-                    </option>
-                  )
-                )}
-              </Select>
-            </Flex>
-          </Flex>
-          <Text color='textTwo' fontSize={["0.75rem", "0.875rem"]} ml={[6, 10]}>
-            {startNum}-{endNum} of {rows.length}
-          </Text>
-          <Flex ml={[4, 6]}>
-            <IconButton
-              aria-label='previous page'
-              icon={
-                <Icon as={FiChevronLeft} fontSize='1.25rem' color='textTwo' />
-              }
-              bg='transparent'
-              size='sm'
-              onClick={() => previousPage()}
-              disabled={!canPreviousPage}
-            />
-            <IconButton
-              aria-label='next page'
-              icon={
-                <Icon as={FiChevronRight} fontSize='1.25rem' color='textTwo' />
-              }
-              bg='transparent'
-              size='sm'
-              onClick={() => nextPage()}
-              disabled={!canNextPage}
-            />
-          </Flex>
-        </Flex>
+    
       </Box>
     </>
   );

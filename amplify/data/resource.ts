@@ -9,9 +9,32 @@ specifies that any user authenticated via an API key can "create", "read",
 const schema = a.schema({
   League: a
     .model({
-      name: a.string(),
+      name: a.string().required(),
       imagePath: a.string(),
       competition: a.string(),
+    })
+    .authorization((allow) => [allow.owner(), allow.publicApiKey()]),
+
+    Match: a
+    .model({
+      result_info: a.string(),
+      name: a.string(),
+      starting_at: a.datetime(),
+      //
+      league_id: a.integer(),
+      venue_id: a.integer(),
+      details: a.string(),
+    })
+
+    .authorization((allow) => [allow.owner(), allow.publicApiKey()]),
+
+  Team: a
+    .model({
+      name: a.string(),
+      type: a.string(),
+      image_path: a.string(),
+      venue_id: a.string(),
+      last_played_at: a.datetime(),
     })
     .authorization((allow) => [allow.owner(), allow.publicApiKey()]),
 });

@@ -12,7 +12,7 @@ export interface ITeam{
   name: string;
   logo: string;
   _id?: string;
-  own: boolean;
+  own?: boolean;
 }
 
 export interface IPlayer{
