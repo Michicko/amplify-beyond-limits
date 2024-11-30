@@ -40,8 +40,8 @@ const schema = a.schema({
 
   Player: a
     .model({
-      first_name: a.string().required(),
-      last_name: a.string().required(),
+      firstName: a.string().required(),
+      lastName: a.string().required(),
       number: a.integer().required(),
       goals: a.integer(),
       position: a.customType({
