@@ -13,6 +13,8 @@ const schema = a.schema({
       imagePath: a.string(),
       competition: a.enum(["NATIONAL", "INTERNATIONAL"]),
       seasonId: a.id(),
+      season: a.belongsTo('Season', 'seasonId')
+
     })
     .authorization((allow) => [allow.owner(), allow.publicApiKey()]),
 
