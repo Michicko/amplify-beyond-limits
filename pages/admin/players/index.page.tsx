@@ -87,19 +87,13 @@ const Players: NextPageWithLayout = () => {
   function listPlayers() {
     setIsLoading(true);
 
-    try {
-      client.models.Player.observeQuery().subscribe({
+      const {} = client.models.Player.observeQuery().subscribe({
         next: (data) => {
-          // console.log("Players", data.items);
-          setPlayers([...data.items]);
+          console.log("Players", data.items);
+          // setPlayers([...data.items]);
           setIsLoading(false);
         },
       });
-    } catch (error) {
-      ErrorLogger(error);
-      setIsLoading(false);
-
-    }
   }
 
   useEffect(() => {

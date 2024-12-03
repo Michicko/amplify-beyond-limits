@@ -11,9 +11,18 @@ const schema = a.schema({
     .model({
       name: a.string().required(),
       imagePath: a.string(),
-      competition: a.string(),
+      competition: a.enum(["NATIONAL", "INTERNATIONAL"]),
+      seasonId: a.id(),
     })
     .authorization((allow) => [allow.owner(), allow.publicApiKey()]),
+
+  Season: a
+    .model({
+      name: a.string().required(),
+      leagues: a.hasMany("League", "seasonId"),
+    })
+    .authorization((allow) => [allow.owner(), allow.publicApiKey()]),
+
   Match: a
     .model({
       result_info: a.string(),
@@ -26,7 +35,7 @@ const schema = a.schema({
     })
     .authorization((allow) => [allow.owner(), allow.publicApiKey()]),
 
-    Player: a
+  Player: a
     .model({
       firstName: a.string().required(),
       lastName: a.string().required(),
@@ -37,10 +46,10 @@ const schema = a.schema({
       //   value: a.string().required(),
       // }),
       appearance: a.integer(),
-      image: a.string()
+      image: a.string(),
     })
     .authorization((allow) => [allow.owner(), allow.publicApiKey()]),
-    
+
   Team: a
     .model({
       name: a.string().required(),
@@ -50,7 +59,6 @@ const schema = a.schema({
       last_played_at: a.datetime(),
     })
     .authorization((allow) => [allow.owner(), allow.publicApiKey()]),
-  
 });
 
 export type Schema = ClientSchema<typeof schema>;
