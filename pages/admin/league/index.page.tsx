@@ -43,7 +43,7 @@ const Match: NextPageWithLayout = () => {
   const initialLeague = {
     name: "",
     logo: "",
-    competition: "",
+    competition: "NATIONAL",
   };
 
   const [leagues, setLeagues] = useState<Array<Schema["League"]["type"]>>([]);
@@ -85,24 +85,26 @@ const Match: NextPageWithLayout = () => {
     onClose: onCreateLeagueModalClose,
   } = useDisclosure();
 
-  const handleCreateLeague = (
+  const handleCreateLeague = async (
     values: ILeague,
     actions: FormikHelpers<ILeague>
   ) => {
-    console.log("Values", values);
+    if (!values.name) return;
+
+    setIsLoading(true);
+
+    const { data, errors } = await client.models.League.create({
+      name: values.name,
+      logo: values.logo,
+      competition: values.competition,
+    });
+
+    if (data) onCreateLeagueModalClose();
+    if (errors) {
+      ErrorLogger(errors);
+    }
     
-    // if (!values.name || !values.logo) return;
-    // setIsLoading(true);
-    // const { data, errors } = await client.models.League.create({
-    //   name: values.name,
-    //   logo: values.logo,
-    //   competition: values.competition,
-    // });
-    // if (data) onCreateLeagueModalClose();
-    // if (errors) {
-    //   ErrorLogger(errors);
-    // }
-    // setIsLoading(false);
+    setIsLoading(false);
   };
 
   const {

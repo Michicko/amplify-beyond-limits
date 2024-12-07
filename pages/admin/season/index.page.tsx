@@ -15,6 +15,11 @@ import {
   ModalFooter,
   ModalOverlay,
   Button,
+  Menu,
+  MenuItem,
+  MenuList,
+  Stack,
+  Checkbox,
 } from "@chakra-ui/react";
 import React, { ReactElement, useEffect, useMemo, useState } from "react";
 import { NextPageWithLayout } from "@/pages/_app.page";
@@ -57,12 +62,12 @@ const Match: NextPageWithLayout = () => {
   }, []);
 
   const {
-    isOpen: isCreateTeamModalOpen,
-    onOpen: onChairmanModalOpen,
-    onClose: onCreateTeamModalClose,
+    isOpen: isCreateSeasonModalOpen,
+    onOpen: onSeasonModalOpen,
+    onClose: onCreateSeasonModalClose,
   } = useDisclosure();
 
-  const handleCreateChairman = async (
+  const handleCreateSeason = async (
     values: ISeason,
     actions: FormikHelpers<ISeason>
   ) => {
@@ -112,7 +117,7 @@ const Match: NextPageWithLayout = () => {
         >
           <Heading>Season</Heading>
           <CustomButton
-            onClick={onChairmanModalOpen}
+            onClick={onSeasonModalOpen}
             height={"48px"}
             minW={["full", "50px"]}
             mt="50px"
@@ -144,15 +149,32 @@ const Match: NextPageWithLayout = () => {
         </Box>
       </Box>
 
-      <Modal isOpen={isCreateTeamModalOpen} onClose={onCreateTeamModalClose}>
+      <Modal
+        size="full"
+        isOpen={isCreateSeasonModalOpen}
+        onClose={onCreateSeasonModalClose}
+      >
         <ModalOverlay />
         <form onSubmit={handleSubmit}>
           <ModalContent>
-            <ModalHeader>Create a Season</ModalHeader>
+            <ModalHeader>
+              <Flex
+              // align="center"
+              // justify={["space-between"]}
+              // direction={["column", "row"]}
+              // gap={[2, 0]}
+              // pb={[4, 6]}
+              >
+                <Text color="" fontWeight={"800"} fontSize={["20px", "32px"]}>
+                  Season
+                </Text>
+              </Flex>
+            </ModalHeader>
             <ModalCloseButton />
+
             <ModalBody>
               <CustomInput
-                label="Season Name"
+                label="Create a Season"
                 placeholder="name"
                 id="name"
                 inputProps={{
@@ -162,24 +184,57 @@ const Match: NextPageWithLayout = () => {
                 mt={6}
                 errorText={errors.name && touched.name ? errors.name : null}
               />
-              {/* <CustomInput
-                label="League's Logo Url"
-                placeholder="League's logo"
-                id="logo"
-                inputProps={{
-                  onChange: handleChange,
-                  onBlur: handleBlur("logo"),
-                }}
+
+              <Text
+                color=""
                 mt={6}
-                errorText={errors.logo && touched.logo ? errors.logo : null}
-              /> */}
+                // fontWeight={"800"}
+                // fontSize={["28px", "32px"]}
+              >
+                2024/2025 Season
+              </Text>
+              <Text
+                color=""
+                // fontWeight={"800"}
+                fontSize={["28px", "12px"]}
+              >
+                Add Leagues you’ll participate in this season
+              </Text>
+
+              <Box mt={12}>
+                <Text fontSize={["28px", "16px"]} fontWeight={600}>
+                  National Competitions
+                </Text>
+
+                <Stack mt={8} spacing={5} direction="row">
+                  <Checkbox
+                    bg={"gray.400"}
+                    px={"24px"}
+                    py={"5"}
+                    borderRadius={8}
+                    defaultChecked
+                  >
+                    The Creative Championship League (TCCL)
+                  </Checkbox>
+                  <Checkbox
+                    bg={"gray.400"}
+                    px={"24px"}
+                    py={"5"}
+                    borderRadius={8}
+                    defaultChecked
+                  >
+                    The Creative Championship League (TCCL)
+                  </Checkbox>
+                </Stack>
+              </Box>
             </ModalBody>
 
-            <ModalFooter>
+            <ModalFooter paddingRight={"80%"} textAlign={"left"}>
               <CustomButton
                 type="submit"
                 isLoading={isLoading}
-                w="100%"
+
+
                 // disabled={errors.name || errors.logo ? true : false}
               >
                 Create
