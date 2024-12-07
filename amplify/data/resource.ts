@@ -11,7 +11,7 @@ const schema = a.schema({
     .model({
       name: a.string().required(),
       logo: a.string(),
-      competition: a.enum(["NATIONAL", "INTERNATIONAL"]),
+      competition: a.string(),
       seasonId: a.id(),
       season: a.belongsTo('Season', 'seasonId')
 
