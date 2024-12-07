@@ -15,6 +15,7 @@ import {
   ModalFooter,
   ModalOverlay,
   Button,
+  Select,
 } from "@chakra-ui/react";
 import React, { ReactElement, useEffect, useMemo, useState } from "react";
 import { NextPageWithLayout } from "@/pages/_app.page";
@@ -29,7 +30,9 @@ import ErrorLogger from "@/helpers/errorLogger";
 
 import CustomInput from "@/components/CustomInput/CustomInput";
 import CustomTable from "@/components/CustomTable";
-import { ITeam, ILeague } from "@/types/auth";
+import { ILeague } from "@/types/auth";
+import { FileUploader } from "@aws-amplify/ui-react-storage";
+import "@aws-amplify/ui-react/styles.css";
 
 import { generateClient } from "aws-amplify/data";
 import type { Schema } from "@/amplify/data/resource";
@@ -37,9 +40,10 @@ import type { Schema } from "@/amplify/data/resource";
 const client = generateClient<Schema>();
 
 const Match: NextPageWithLayout = () => {
-  const initialTeam = {
+  const initialLeague = {
     name: "",
     logo: "",
+    competition: "",
   };
 
   const [leagues, setLeagues] = useState<Array<Schema["League"]["type"]>>([]);
@@ -57,7 +61,7 @@ const Match: NextPageWithLayout = () => {
   }
 
   useEffect(() => {
-    listLeagues();
+    // listLeagues();
   }, []);
 
   const columns: Column<ILeague>[] = useMemo(() => {
@@ -67,7 +71,7 @@ const Match: NextPageWithLayout = () => {
         accessor: "logo",
         Cell: ({ value }) => (
           <>
-            <img src={value} alt="img" width="40px" height="40px" />
+            <img src={value} alt="img" width="40" />
           </>
         ),
       },
@@ -76,34 +80,29 @@ const Match: NextPageWithLayout = () => {
   }, []);
 
   const {
-    isOpen: isCreateTeamModalOpen,
-    onOpen: onChairmanModalOpen,
-    onClose: onCreateTeamModalClose,
+    isOpen: isCreateLeagueModalOpen,
+    onOpen: onLeagueModalOpen,
+    onClose: onCreateLeagueModalClose,
   } = useDisclosure();
 
-  const handleCreateChairman = async (
-    values: ITeam,
-    actions: FormikHelpers<ITeam>
+  const handleCreateLeague = (
+    values: ILeague,
+    actions: FormikHelpers<ILeague>
   ) => {
-    // console.log("Values", values);
-
-    if (!values.name || !values.logo) return;
-
-    setIsLoading(true);
-
-    const { data, errors } = await client.models.League.create({
-      name: values.name,
-      imagePath: values.logo,
-      competition: "National",
-    });
-
-    if (data) onCreateTeamModalClose();
-
-    if (errors) {
-      ErrorLogger(errors);
-    }
-
-    setIsLoading(false);
+    console.log("Values", values);
+    
+    // if (!values.name || !values.logo) return;
+    // setIsLoading(true);
+    // const { data, errors } = await client.models.League.create({
+    //   name: values.name,
+    //   logo: values.logo,
+    //   competition: values.competition,
+    // });
+    // if (data) onCreateLeagueModalClose();
+    // if (errors) {
+    //   ErrorLogger(errors);
+    // }
+    // setIsLoading(false);
   };
 
   const {
@@ -115,8 +114,8 @@ const Match: NextPageWithLayout = () => {
     handleSubmit,
     setFieldValue,
   } = useFormik({
-    initialValues: initialTeam,
-    onSubmit: handleCreateChairman,
+    initialValues: initialLeague,
+    onSubmit: handleCreateLeague,
   });
 
   return (
@@ -149,7 +148,7 @@ const Match: NextPageWithLayout = () => {
         >
           <Heading>Leagues</Heading>
           <CustomButton
-            onClick={onChairmanModalOpen}
+            onClick={onLeagueModalOpen}
             height={"48px"}
             minW={["full", "50px"]}
             mt="50px"
@@ -181,13 +180,27 @@ const Match: NextPageWithLayout = () => {
         </Box>
       </Box>
 
-      <Modal isOpen={isCreateTeamModalOpen} onClose={onCreateTeamModalClose}>
+      <Modal
+        isOpen={isCreateLeagueModalOpen}
+        onClose={onCreateLeagueModalClose}
+      >
         <ModalOverlay />
         <form onSubmit={handleSubmit}>
           <ModalContent>
             <ModalHeader>Create a League</ModalHeader>
             <ModalCloseButton />
             <ModalBody>
+              <FileUploader
+                acceptedFileTypes={["image/*"]}
+                path="public/"
+                maxFileCount={1}
+                isResumable
+                autoUpload={false}
+                onUploadSuccess={(file) => {
+                  console.log(file);
+                }}
+              />
+
               <CustomInput
                 label="League's Name"
                 placeholder="name"
@@ -199,17 +212,32 @@ const Match: NextPageWithLayout = () => {
                 mt={6}
                 errorText={errors.name && touched.name ? errors.name : null}
               />
-              <CustomInput
-                label="League's Logo Url"
-                placeholder="League's logo"
-                id="logo"
-                inputProps={{
-                  onChange: handleChange,
-                  onBlur: handleBlur("logo"),
-                }}
-                mt={6}
-                errorText={errors.logo && touched.logo ? errors.logo : null}
-              />
+
+              <Box pt={[6, 8]}>
+                <Select
+                  placeholder="Select Competition"
+                  // borderWidth={"1px"}
+                  // borderColor={errorText ? "inputErrorBorder" : "neutral.50"}
+                  // borderRadius='3px'
+                  bg={"white"}
+                  // color="text"
+                  // w="full"
+                  fontSize="14px"
+                  fontFamily="body"
+                  // _focus={{
+                  //   border: "primary.500",
+                  // }}
+                  id="competition"
+                  // _hover={{
+                  //   borderColor: errorText ? "inputErrorBorder" : "primary.500",
+                  // }}
+                  // {...selectProps}
+                  onChange={handleChange}
+                >
+                  <option value={"NATIONAL"}>NATIONAL</option>
+                  <option value={"INTERNATIONAL"}>INTERNATIONAL</option>
+                </Select>
+              </Box>
             </ModalBody>
 
             <ModalFooter>

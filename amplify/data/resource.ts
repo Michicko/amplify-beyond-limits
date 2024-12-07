@@ -10,7 +10,7 @@ const schema = a.schema({
   League: a
     .model({
       name: a.string().required(),
-      imagePath: a.string(),
+      logo: a.string(),
       competition: a.enum(["NATIONAL", "INTERNATIONAL"]),
       seasonId: a.id(),
       season: a.belongsTo('Season', 'seasonId')

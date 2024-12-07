@@ -34,6 +34,7 @@ export interface IPlayer {
 export interface ILeague {
   name: string;
   logo: string;
+  competition: string;
   _id?: string;
 }
 
