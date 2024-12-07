@@ -31,12 +31,15 @@ import { AddIcon } from "@chakra-ui/icons";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import { Column } from "react-table";
 import ErrorLogger from "@/helpers/errorLogger";
+// import { useAuthenticator } from "@aws-amplify/ui-react";
 
 import CustomInput from "@/components/CustomInput/CustomInput";
 import CustomTable from "@/components/CustomTable";
 import { ISeason } from "@/types/auth";
 
 const Match: NextPageWithLayout = () => {
+
+  // const {signOut} = useAuthenticator()
   const initialSeason = {
     name: "",
     leagues: [],
@@ -59,6 +62,13 @@ const Match: NextPageWithLayout = () => {
       },
       // { Header: "League's name", accessor: "name" },
     ];
+  }, []);
+
+
+  useEffect(() => {
+    // listLeagues();
+
+    // signOut()
   }, []);
 
   const {

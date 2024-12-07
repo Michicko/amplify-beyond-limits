@@ -95,7 +95,6 @@ const Match: NextPageWithLayout = () => {
 
     const { data, errors } = await client.models.League.create({
       name: values.name,
-      logo: values.logo,
       competition: values.competition,
     });
 
@@ -103,7 +102,7 @@ const Match: NextPageWithLayout = () => {
     if (errors) {
       ErrorLogger(errors);
     }
-    
+
     setIsLoading(false);
   };
 

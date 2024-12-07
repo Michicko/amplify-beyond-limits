@@ -9,7 +9,6 @@ import GuestLayout from "@/components/GuestLayout/GuestLayout";
 import { NextPageWithLayout } from "../_app.page";
 
 import { Authenticator } from "@aws-amplify/ui-react";
-import "@aws-amplify/ui-react/styles.css";
 
 
 const LoginPage: NextPageWithLayout = () => {

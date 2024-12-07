@@ -15,6 +15,7 @@ import {
 } from "@/config/constants";
 import { API_URL } from "@/config/constants";
 import { ChakraProvider } from "@chakra-ui/react";
+import { Authenticator } from "@aws-amplify/ui-react";
 import theme from "@/config/theme";
 
 const AuthLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
@@ -68,6 +69,7 @@ const AuthLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
   //   );
 
   return (
+    <Authenticator.Provider>
     <ChakraProvider theme={theme}>
     <Box w='100vw' minH='100vh' h='full' bg={"white"}>
       <Box w='full' h='full' minH='100vh' margin='auto' pt={[0, null, null, 2]}>
@@ -84,6 +86,7 @@ const AuthLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
       </Box>
     </Box>
     </ChakraProvider>
+    </Authenticator.Provider>
   );
 };
 
