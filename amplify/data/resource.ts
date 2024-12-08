@@ -13,7 +13,6 @@ const schema = a.schema({
       logo: a.string(),
       competition: a.string(),
       seasonId: a.id(),
-      season: a.belongsTo('Season', 'seasonId')
 
     })
     .authorization((allow) => [allow.owner(), allow.publicApiKey()]),

@@ -61,7 +61,7 @@ const Match: NextPageWithLayout = () => {
   }
 
   useEffect(() => {
-    // listLeagues();
+    listLeagues();
   }, []);
 
   const columns: Column<ILeague>[] = useMemo(() => {
@@ -76,6 +76,9 @@ const Match: NextPageWithLayout = () => {
         ),
       },
       { Header: "League's name", accessor: "name" },
+      { Header: "Competition", accessor: "competition" },
+
+      { Header: "Date Created", accessor: "createdAt" },
     ];
   }, []);
 

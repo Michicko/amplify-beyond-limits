@@ -17,6 +17,7 @@ export interface ITeam {
 export interface ISeason {
   name: string;
   leagues?: ILeague[];
+  createdAt?: string
 }
 
 export interface IPlayer {
@@ -36,6 +37,7 @@ export interface ILeague {
   logo: string;
   competition: string;
   _id?: string;
+  createdAt?: string
 }
 
 export interface INews {

@@ -77,6 +77,8 @@ type Props = {
   filterList?: Array<IList>;
   onFilterRevenuehead?: (value: any) => void;
   filterRevenueheadList?: Array<IList>;
+  initiateEditSeason?: (id:string, name:string) => void;
+
 };
 
 interface CheckboxProps extends TableToggleRowsSelectedProps {
@@ -143,6 +145,7 @@ const CustomTable = ({
   filterRevenuehead,
   onFilterRevenuehead,
   filterRevenueheadList,
+  initiateEditSeason
 }: Props) => {
   const {
     getTableProps,
@@ -200,6 +203,7 @@ const CustomTable = ({
       ]);
     }
   );
+
   const [searchVal, setSearchVal] = useState(globalFilter);
   const { colorMode } = useColorMode();
 
@@ -225,7 +229,6 @@ const CustomTable = ({
 
   return (
     <>
-      
       <Box mt={title ? [6, 8, 10] : search ? 3 : 0}>
         {/* TABLE */}
         <Box overflowX="scroll" className={styles.container} bg="white">
@@ -357,6 +360,7 @@ const CustomTable = ({
                           colorMode === "dark" ? "#1B1B1D" : "#fbfbfb",
                       }}
                       cursor="pointer"
+                      onClick={() =>initiateEditSeason && initiateEditSeason(row?.original.id, row?.original.name)}
                       // onClick={rowClickAction ? () => rowClickAction(row.original) : () => null}
                       // onClick={() => {
                       //   if (canSelectRows) return;
@@ -441,8 +445,6 @@ const CustomTable = ({
             </Table>
           )}
         </Box>
-
-    
       </Box>
     </>
   );
