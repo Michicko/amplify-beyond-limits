@@ -43,6 +43,7 @@ import CustomButton from "../CustomButton/CustomButton";
 import CustomInput from "../CustomInput/CustomInput";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import CustomSelect, { IList } from "../CustomInput/CustomSelect";
+import type { Schema } from "@/amplify/data/resource";
 
 type Props = {
   data: any[];
@@ -77,7 +78,7 @@ type Props = {
   filterList?: Array<IList>;
   onFilterRevenuehead?: (value: any) => void;
   filterRevenueheadList?: Array<IList>;
-  initiateEditSeason?: (id:string, name:string) => void;
+  initiateEditSeason?: (season: any) => void;
 
 };
 
@@ -360,7 +361,7 @@ const CustomTable = ({
                           colorMode === "dark" ? "#1B1B1D" : "#fbfbfb",
                       }}
                       cursor="pointer"
-                      onClick={() =>initiateEditSeason && initiateEditSeason(row?.original.id, row?.original.name)}
+                      onClick={() =>initiateEditSeason && initiateEditSeason(row.original)}
                       // onClick={rowClickAction ? () => rowClickAction(row.original) : () => null}
                       // onClick={() => {
                       //   if (canSelectRows) return;

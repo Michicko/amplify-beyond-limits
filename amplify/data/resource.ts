@@ -12,15 +12,13 @@ const schema = a.schema({
       name: a.string().required(),
       logo: a.string(),
       competition: a.string(),
-      seasonId: a.id(),
-
     })
     .authorization((allow) => [allow.owner(), allow.publicApiKey()]),
 
   Season: a
     .model({
       name: a.string().required(),
-      leagues: a.hasMany("League", "seasonId"),
+      leagues: a.string().array()
     })
     .authorization((allow) => [allow.owner(), allow.publicApiKey()]),
 

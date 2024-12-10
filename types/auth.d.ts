@@ -16,7 +16,7 @@ export interface ITeam {
 
 export interface ISeason {
   name: string;
-  leagues?: ILeague[];
+  leagues: string[];
   createdAt?: string
 }
 

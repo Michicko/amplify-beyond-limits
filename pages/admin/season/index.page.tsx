@@ -42,7 +42,7 @@ import type { Schema } from "@/amplify/data/resource";
 const client = generateClient<Schema>();
 
 const Match: NextPageWithLayout = () => {
-  const initialSeason = {
+  const initialSeason: ISeason = {
     name: "",
     leagues: [],
   };
@@ -51,8 +51,7 @@ const Match: NextPageWithLayout = () => {
   const [leagues, setLeagues] = useState<Array<Schema["League"]["type"]>>([]);
 
   const [isLoading, setIsLoading] = useState(false);
-  const [editId, setEditId] = useState("");
-  const [editName, setEditName] = useState("");
+  const [editSeason, setEditSeason] = useState<Schema["Season"]["type"]>();
 
   const columns: Column<ISeason>[] = useMemo(() => {
     return [
@@ -71,12 +70,26 @@ const Match: NextPageWithLayout = () => {
     ];
   }, []);
 
-  async function listLeagues() {
+  const {
+    values,
+    errors,
+    touched,
+    handleChange,
+    handleBlur,
+    handleSubmit,
+    setFieldValue,
+  } = useFormik({
+    initialValues: initialSeason,
+    onSubmit: (values: ISeason) =>
+      editSeason ? handleEditSeason(values) : handleCreateSeason(values),
+  });
+
+  async function listLeagues(curSeason?: any) {
+    if (curSeason) setFieldValue("leagues", curSeason.leagues);
+
     setIsLoading(true);
     const { data } = await client.models.League.list();
-
     setLeagues([...data]);
-    // console.log('LLL', data)
     setIsLoading(false);
   }
 
@@ -84,7 +97,6 @@ const Match: NextPageWithLayout = () => {
     setIsLoading(true);
     client.models.Season.observeQuery().subscribe({
       next: (data) => {
-        // console.log("Leagues", data.items);
         setSeasons([...data.items]);
         setIsLoading(false);
       },
@@ -97,7 +109,7 @@ const Match: NextPageWithLayout = () => {
 
   const handleCreateSeason = async (
     values: ISeason
-    // actions: FormikHelpers<ISeason>F
+    // actions: FormikHelpers<ISeason>
   ) => {
     if (!values.name) return;
 
@@ -105,13 +117,11 @@ const Match: NextPageWithLayout = () => {
 
     const { data, errors } = await client.models.Season.create({
       name: values.name,
-      // competition: values.competition,
+      leagues: [],
     });
 
     if (data) {
       onCreateSeasonModalClose();
-      setEditId("");
-      setEditName("");
     }
     if (errors) {
       ErrorLogger(errors);
@@ -124,40 +134,30 @@ const Match: NextPageWithLayout = () => {
     values: ISeason
     // actions: FormikHelpers<ISeason>F
   ) => {
-    if (!values.name) return;
+    if (editSeason) {
+      setIsLoading(true);
 
-    setIsLoading(true);
+      const { data, errors } = await client.models.Season.update({
+        id: editSeason.id,
+        leagues: values.leagues,
+      });
 
-    // const { data, errors } = await client.models.Season.update({
-    //   leagues: [
-    //     {
-    //         id: "c65d669a-3879-4089-a22d-42859c7f1a82",
-    //         competition: "NATIONAL",
-    //         name: "The Creative Championship League "
-    //     }
-    // ],
-      
+      if (data) {
+        setEditSeason(undefined);
+        onCreateSeasonModalClose();
+      }
+      if (errors) {
+        ErrorLogger(errors);
+      }
 
-    // });
-
-    if (data) {
-      onCreateSeasonModalClose();
-      setEditId("");
-      setEditName("");
-      
+      setIsLoading(false);
     }
-    if (errors) {
-      ErrorLogger(errors);
-    }
-
-    setIsLoading(false);
   };
 
-  const initiateEditSeason = (id: string, name: string) => {
-    setEditId(id);
-    setEditName(name)
+  const initiateEditSeason = async (curSeason: any) => {
+    setEditSeason(curSeason);
     onSeasonModalOpen();
-    listLeagues();
+    listLeagues(curSeason);
   };
 
   const {
@@ -166,18 +166,19 @@ const Match: NextPageWithLayout = () => {
     onClose: onCreateSeasonModalClose,
   } = useDisclosure();
 
-  const {
-    values,
-    errors,
-    touched,
-    handleChange,
-    handleBlur,
-    handleSubmit,
-    setFieldValue,
-  } = useFormik({
-    initialValues: initialSeason,
-    onSubmit: handleCreateSeason,
-  });
+  const handleCheckboxChange = (id: string) => {
+    console.log("ONCHANGE CALLED");
+    const { leagues: selectedLeagues } = values;
+
+    if (selectedLeagues.includes(id)) {
+      setFieldValue(
+        "leagues",
+        selectedLeagues.filter((leagueId) => leagueId !== id)
+      );
+    } else {
+      setFieldValue("leagues", [...selectedLeagues, id]);
+    }
+  };
 
   return (
     <>
@@ -243,7 +244,7 @@ const Match: NextPageWithLayout = () => {
       </Box>
 
       <Modal
-        size={editId ? "full" : "lg"}
+        size={editSeason ? "full" : "lg"}
         isOpen={isCreateSeasonModalOpen}
         onClose={onCreateSeasonModalClose}
       >
@@ -266,7 +267,7 @@ const Match: NextPageWithLayout = () => {
             <ModalCloseButton />
 
             <ModalBody>
-              {!editId && (
+              {!editSeason && (
                 <CustomInput
                   label="Create a Season"
                   placeholder="name"
@@ -280,7 +281,7 @@ const Match: NextPageWithLayout = () => {
                 />
               )}
 
-              {editId && (
+              {editSeason && (
                 <>
                   <Text
                     color=""
@@ -288,7 +289,7 @@ const Match: NextPageWithLayout = () => {
                     // fontWeight={"800"}
                     // fontSize={["28px", "32px"]}
                   >
-                    {editName}
+                    {editSeason.name}
                   </Text>
                   <Text fontSize={["28px", "12px"]}>
                     Add Leagues you’ll participate in this season
@@ -303,15 +304,17 @@ const Match: NextPageWithLayout = () => {
                       {leagues.length > 0 &&
                         leagues
                           .filter((item) => item.competition === "NATIONAL")
-                          .map(() => (
+                          .map((league) => (
                             <Checkbox
+                              key={league.id}
                               bg={"gray.400"}
                               px={"24px"}
                               py={"5"}
                               borderRadius={8}
-                              
+                              isChecked={values.leagues.includes(league.id)}
+                              onChange={() => handleCheckboxChange(league.id)}
                             >
-                              The Creative Championship League (TCCL)
+                              {league.name}
                             </Checkbox>
                           ))}
                     </Stack>
@@ -328,15 +331,17 @@ const Match: NextPageWithLayout = () => {
                           .filter(
                             (item) => item.competition === "INTERNATIONAL"
                           )
-                          .map(() => (
+                          .map((league) => (
                             <Checkbox
+                              key={league.id}
                               bg={"gray.400"}
                               px={"24px"}
                               py={"5"}
                               borderRadius={8}
-                              
+                              isChecked={values.leagues.includes(league.id)}
+                              onChange={() => handleCheckboxChange(league.id)}
                             >
-                              The Creative Championship League (TCCL)
+                              {league.name}
                             </Checkbox>
                           ))}
                     </Stack>
@@ -345,7 +350,7 @@ const Match: NextPageWithLayout = () => {
               )}
             </ModalBody>
 
-            <ModalFooter paddingRight={editId ? "80%" : "55%"}>
+            <ModalFooter paddingRight={editSeason ? "80%" : "55%"}>
               <CustomButton
                 type="submit"
                 isLoading={isLoading}
