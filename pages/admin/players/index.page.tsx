@@ -15,6 +15,7 @@ import {
   ModalFooter,
   ModalOverlay,
   HStack,
+  Select,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import React, { ReactElement, useMemo } from "react";
@@ -41,6 +42,17 @@ import ErrorLogger from "@/helpers/errorLogger";
 const client = generateClient<Schema>();
 
 const Players: NextPageWithLayout = () => {
+  const dominantFootlist = [
+    {
+      value: "Left",
+      label: "Left",
+    },
+    {
+      value: "Right",
+      label: "Right",
+    },
+  ];
+
   const positionList = [
     {
       value: "gk",
@@ -69,31 +81,44 @@ const Players: NextPageWithLayout = () => {
   ];
 
   const initialPlayer = {
-    first_name: "",
-    last_name: "",
-    position: "",
-    goals: "",
-    //team: "",
-    appearance: "",
-    image: "",
-    number: "",
+    firstName: "",
+    lastName: "",
+    teamId: "",
+    position: undefined,
+    playerNumber: undefined,
+    dob: "",
+    dominantFoot: "",
+    height: "",
+    weight: "",
+    photo: undefined,
   };
 
   const [allPlayers, setPlayers] = useState<Array<Schema["Player"]["type"]>>(
     []
   );
+  const [allTeams, setAllTeams] = useState<Array<Schema["Team"]["type"]>>([]);
+
   const [isLoading, setIsLoading] = useState(false);
+  const [editPlayer, setEditPlayer] = useState<Schema["Player"]["type"]>();
 
   function listPlayers() {
     setIsLoading(true);
+    client.models.Player.observeQuery().subscribe({
+      next: (data) => {
+        setPlayers([...data.items]);
+        setIsLoading(false);
+      },
+    });
+  }
 
-      const {} = client.models.Player.observeQuery().subscribe({
-        next: (data) => {
-          console.log("Players", data.items);
-          // setPlayers([...data.items]);
-          setIsLoading(false);
-        },
-      });
+  function listTeams() {
+    setIsLoading(true);
+    client.models.Team.observeQuery().subscribe({
+      next: (data) => {
+        setAllTeams([...data.items]);
+        setIsLoading(false);
+      },
+    });
   }
 
   useEffect(() => {
@@ -103,29 +128,18 @@ const Players: NextPageWithLayout = () => {
   const columns: Column<IPlayer>[] = useMemo(() => {
     return [
       {
-        Header: "Image",
-        accessor: "image",
-        Cell: (value) => (
-          <img
-            alt="img"
-            width="40px"
-            height="40px"
-            src={value.row.original.image}
-          />
-        ),
-      },
-      {
-        Header: "Name",
-        accessor: "first_name",
+        Header: "Fullname",
+        accessor: "firstName",
         Cell: (value) => (
           <>
-            {value.row.original.first_name + " " + value.row.original.last_name}
+            {value.row.original.firstName + " " + value.row.original.lastName}
           </>
         ),
       },
-      { Header: "Position", accessor: "position" },
-      { Header: "Appearance", accessor: "appearance" },
-      { Header: "Goals", accessor: "goals" },
+      { Header: "Date of birth", accessor: "dob" },
+      { Header: "Player Number", accessor: "playerNumber" },
+      { Header: "Height", accessor: "height" },
+      { Header: "Weight", accessor: "weight" },
     ];
   }, []);
 
@@ -136,31 +150,30 @@ const Players: NextPageWithLayout = () => {
   } = useDisclosure();
 
   const handleCreatePlayer = async (
-    values: IPlayer,
-    actions: FormikHelpers<IPlayer>
+    values: IPlayer
+    // actions: FormikHelpers<IPlayer>
   ) => {
-    // console.log("PLYER", values);
-
-    if (!values.first_name || !values.last_name || !values.number) return;
-
+    // console.log("PLAYER", values);
+    if (!values.firstName || !values.lastName || !values.playerNumber) return;
+    
     setIsLoading(true);
-
     const { data, errors } = await client.models.Player.create({
-      firstName: values.first_name,
-      lastName: values.last_name,
-      number: Number(values.number),
+      firstName: values.firstName,
+      lastName: values.lastName,
+      teamId: values.teamId,
       position: values.position,
-      goals: Number(values.goals),
-      appearance: Number(values.appearance),
-      image: values.goals,
+      playerNumber: values.playerNumber,
+      dob: values.dob,
+      dominantFoot: values.dominantFoot,
+      height: values.height,
+      weight: values.weight,
+      photo: values.photo,
     });
 
     if (data) onCreatePlayerModalClose();
-
     if (errors) {
       ErrorLogger(errors);
     }
-
     setIsLoading(false);
   };
 
@@ -207,7 +220,10 @@ const Players: NextPageWithLayout = () => {
         >
           <Heading>Players</Heading>
           <CustomButton
-            onClick={onPlayerModalOpen}
+            onClick={() => {
+              onPlayerModalOpen();
+              listTeams();
+            }}
             height={"48px"}
             minW={["full", "50px"]}
             mt="50px"
@@ -228,14 +244,14 @@ const Players: NextPageWithLayout = () => {
             <Center>No players are available</Center>
           )}
 
-          {/* {!isLoading && allPlayers.length > 0 && (
+          {!isLoading && allPlayers.length > 0 && (
             <CustomTable
               data={allPlayers}
               columns={columns}
               search
               searchPlaceholder="Search for Player"
             />
-          )} */}
+          )}
         </Box>
       </Box>
 
@@ -246,81 +262,54 @@ const Players: NextPageWithLayout = () => {
         <ModalOverlay />
         <form onSubmit={handleSubmit}>
           <ModalContent>
-            <ModalHeader>Create a Player</ModalHeader>
+            <ModalHeader>
+              {editPlayer ? "Edit Player" : "Create Player"}
+            </ModalHeader>
             <ModalCloseButton />
             <ModalBody>
               <CustomInput
                 label="Player's First Name"
-                placeholder="first_name"
-                id="first_name"
+                placeholder="firstName"
+                id="firstName"
                 inputProps={{
                   onChange: handleChange,
-                  onBlur: handleBlur("first_name"),
+                  onBlur: handleBlur("firstName"),
                 }}
                 mt={6}
                 errorText={
-                  errors.first_name && touched.first_name
-                    ? errors.first_name
+                  errors.firstName && touched.firstName
+                    ? errors.firstName
                     : null
                 }
               />
               <CustomInput
                 label="Player's Last Name"
-                placeholder="last_name"
-                id="last_name"
+                placeholder="lastName"
+                id="lastName"
                 inputProps={{
                   onChange: handleChange,
-                  onBlur: handleBlur("last_name"),
+                  onBlur: handleBlur("lastName"),
                 }}
                 mt={6}
                 errorText={
-                  errors.last_name && touched.last_name
-                    ? errors.last_name
-                    : null
+                  errors.lastName && touched.lastName ? errors.lastName : null
                 }
               />
-              <CustomInput
-                label="Player's Number"
-                placeholder="player_number"
-                id="number"
-                inputProps={{
-                  onChange: handleChange,
-                  onBlur: handleBlur("number"),
-                  type: "number",
-                }}
-                mt={6}
-                errorText={
-                  errors.number && touched.number ? errors.number : null
-                }
-              />
-              <CustomInput
-                label="Player Goals"
-                placeholder="player_goals"
-                id="goals"
-                inputProps={{
-                  onChange: handleChange,
-                  onBlur: handleBlur("goals"),
-                  type: "number",
-                }}
-                mt={6}
-                errorText={errors.goals && touched.goals ? errors.goals : null}
-              />
-              <CustomInput
-                label="Player's Appearance"
-                placeholder="appearance"
-                id="appearance"
-                inputProps={{
-                  onChange: handleChange,
-                  onBlur: handleBlur("appearance"),
-                  type: "number",
-                }}
-                mt={6}
-                errorText={
-                  errors.appearance && touched.appearance
-                    ? errors.appearance
-                    : null
-                }
-              />
+
+              <Select
+                mt="20px"
+                placeholder="Select Team"
+                id="teamId"
+                onChange={handleChange}
+              >
+                {allTeams.length > 0 &&
+                  allTeams.map((item) => (
+                    <option key={item.id} value={item.id}>
+                      {item.name}
+                    </option>
+                  ))}
+              </Select>
+
               <CustomSelect
                 mt="20px"
                 label="Select Position"
@@ -333,22 +322,82 @@ const Players: NextPageWithLayout = () => {
                   onChange: (e) => setFieldValue("position", e),
                 }}
               />
+
               <CustomInput
-                label="Player's Image Url"
-                placeholder="Player's Image Url"
-                id="image"
+                label="Player's Number"
+                placeholder="player number"
+                id="playerNumber"
                 inputProps={{
                   onChange: handleChange,
-                  onBlur: handleBlur("image"),
+                  onBlur: handleBlur("playerNumber"),
+                  type: "number",
                 }}
                 mt={6}
-                errorText={errors.image && touched.image ? errors.image : null}
+                errorText={
+                  errors.playerNumber && touched.playerNumber
+                    ? errors.playerNumber
+                    : null
+                }
+              />
+
+              <CustomInput
+                label="Date of Birth"
+                placeholder="date of birth"
+                id="dob"
+                inputProps={{
+                  onChange: handleChange,
+                  onBlur: handleBlur("dob"),
+                  type: "date",
+                }}
+                mt={6}
+                errorText={errors.dob && touched.dob ? errors.dob : null}
+              />
+
+              <CustomSelect
+                mt="20px"
+                label="Dominant Foot"
+                placeholder="Dominant Foot"
+                selectOptions={dominantFootlist.map((foot) => ({
+                  label: foot.label,
+                  value: foot.value,
+                }))}
+                selectProps={{
+                  onChange: (e: any) => setFieldValue("dominantFoot", e.value),
+                }}
+              />
+
+              <CustomInput
+                label="Player's Height"
+                placeholder="Player's Height"
+                id="height"
+                inputProps={{
+                  onChange: handleChange,
+                  onBlur: handleBlur("height"),
+                }}
+                mt={6}
+                errorText={
+                  errors.height && touched.height ? errors.height : null
+                }
+              />
+
+              <CustomInput
+                label="Player's Weight"
+                placeholder="Player's Weight"
+                id="weight"
+                inputProps={{
+                  onChange: handleChange,
+                  onBlur: handleBlur("weight"),
+                }}
+                mt={6}
+                errorText={
+                  errors.weight && touched.weight ? errors.weight : null
+                }
               />
             </ModalBody>
 
             <ModalFooter>
               <CustomButton type="submit" isLoading={isLoading} w="100%">
-                Create
+                Save Changes
               </CustomButton>
             </ModalFooter>
           </ModalContent>

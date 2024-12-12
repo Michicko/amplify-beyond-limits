@@ -9,27 +9,30 @@ export interface IBaseResponse {
 
 export interface ITeam {
   name: string;
-  logo: string;
-  _id?: string;
-  own?: boolean;
+  logo?: string;
+  stadium?: string;
 }
 
 export interface ISeason {
   name: string;
   leagues: string[];
-  createdAt?: string
+  createdAt?: string;
 }
 
 export interface IPlayer {
-  first_name: string;
-  last_name: string;
-  position: any;
-  goals: string;
-  //team: string;
-  appearance: string;
-  image: string;
-  number: string;
-  _id?: string;
+  firstName: string;
+  lastName: string;
+  position?: {
+    value: string;
+    label: string;
+  };
+  teamId?: string;
+  playerNumber?: number;
+  dob?: string;
+  dominantFoot?: string;
+  height?: string;
+  weight?: string;
+  photo?: string;
 }
 
 export interface ILeague {
@@ -37,7 +40,7 @@ export interface ILeague {
   logo: string;
   competition: string;
   _id?: string;
-  createdAt?: string
+  createdAt?: string;
 }
 
 export interface INews {

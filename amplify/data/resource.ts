@@ -18,44 +18,47 @@ const schema = a.schema({
   Season: a
     .model({
       name: a.string().required(),
-      leagues: a.string().array()
+      leagues: a.string().array(),
     })
     .authorization((allow) => [allow.owner(), allow.publicApiKey()]),
 
-  Match: a
-    .model({
-      result_info: a.string(),
-      name: a.string(),
-      starting_at: a.datetime(),
-      //
-      league_id: a.integer(),
-      venue_id: a.integer(),
-      details: a.string(),
-    })
-    .authorization((allow) => [allow.owner(), allow.publicApiKey()]),
+  // Match: a
+  //   .model({
+  //     result_info: a.string(),
+  //     name: a.string(),
+  //     starting_at: a.datetime(),
+  //     //
+  //     league_id: a.integer(),
+  //     venue_id: a.integer(),
+  //     details: a.string(),
+  //   })
+  //   .authorization((allow) => [allow.owner(), allow.publicApiKey()]),
 
   Player: a
     .model({
       firstName: a.string().required(),
       lastName: a.string().required(),
-      number: a.integer().required(),
-      goals: a.integer(),
-      // position: a.customType({
-      //   label: a.string().required(),
-      //   value: a.string().required(),
-      // }),
-      appearance: a.integer(),
-      image: a.string(),
+      teamId: a.id(),
+      team: a.belongsTo("Team", "teamId"),
+      position: a.customType({
+        label: a.string(),
+        value: a.string(),
+      }),
+      playerNumber: a.integer(),
+      dob: a.string(),
+      dominantFoot: a.string(),
+      height: a.string(),
+      weight: a.string(),
+      photo: a.string(),
     })
     .authorization((allow) => [allow.owner(), allow.publicApiKey()]),
 
   Team: a
     .model({
       name: a.string().required(),
-      type: a.string(),
-      image_path: a.string(),
-      venue_id: a.string(),
-      last_played_at: a.datetime(),
+      logo: a.string(),
+      stadium: a.string(),
+      players: a.hasMany("Player", "teamId"),
     })
     .authorization((allow) => [allow.owner(), allow.publicApiKey()]),
 });

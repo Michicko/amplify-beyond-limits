@@ -246,7 +246,10 @@ const Match: NextPageWithLayout = () => {
       <Modal
         size={editSeason ? "full" : "lg"}
         isOpen={isCreateSeasonModalOpen}
-        onClose={onCreateSeasonModalClose}
+        onClose={() => {
+          setEditSeason(undefined);
+          onCreateSeasonModalClose();
+        }}
       >
         <ModalOverlay />
         <form onSubmit={handleSubmit}>
@@ -260,7 +263,7 @@ const Match: NextPageWithLayout = () => {
               // pb={[4, 6]}
               >
                 <Text color="" fontWeight={"800"} fontSize={["20px", "32px"]}>
-                  Season
+                  {editSeason ? "Edit Season" : "Season"}
                 </Text>
               </Flex>
             </ModalHeader>

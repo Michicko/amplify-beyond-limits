@@ -29,7 +29,6 @@ import ErrorLogger from "@/helpers/errorLogger";
 
 import CustomInput from "@/components/CustomInput/CustomInput";
 
-
 import CustomTable from "@/components/CustomTable";
 
 import { ITeam } from "@/types/auth";
@@ -43,6 +42,7 @@ const Match: NextPageWithLayout = () => {
   const initialTeam = {
     name: "",
     logo: "",
+    stadium: "",
   };
 
   const [teams, setTeams] = useState<Array<Schema["Team"]["type"]>>([]);
@@ -65,6 +65,7 @@ const Match: NextPageWithLayout = () => {
 
   const columns: Column<ITeam>[] = useMemo(() => {
     return [
+      { Header: "Team's name", accessor: "name" },
       {
         Header: "Logo",
         accessor: "logo",
@@ -74,10 +75,9 @@ const Match: NextPageWithLayout = () => {
           </>
         ),
       },
-      { Header: "Team's name", accessor: "name" },
+      { Header: "Stadium", accessor: "stadium" },
     ];
   }, []);
-
 
   const {
     isOpen: isCreateTeamModalOpen,
@@ -85,28 +85,21 @@ const Match: NextPageWithLayout = () => {
     onClose: onCreateTeamModalClose,
   } = useDisclosure();
 
-  const handleCreateChairman = async (
-    values: ITeam,
-    actions: FormikHelpers<ITeam>
+  const handleCreateTeam = async (
+    values: ITeam
+    // actions: FormikHelpers<ITeam>
   ) => {
-    if (!values.name || !values.logo) return;
-
+    // console.log("Team", values);
+    if (!values.name) return;
     setIsLoading(true);
-
     const { data, errors } = await client.models.Team.create({
       name: values.name,
-      type: "",
-      image_path: "",
-      venue_id: "",
-      last_played_at: "",
+      stadium: values.stadium,
     });
-
     if (data) onCreateTeamModalClose();
-
     if (errors) {
       ErrorLogger(errors);
     }
-
     setIsLoading(false);
   };
 
@@ -120,7 +113,7 @@ const Match: NextPageWithLayout = () => {
     setFieldValue,
   } = useFormik({
     initialValues: initialTeam,
-    onSubmit: handleCreateChairman,
+    onSubmit: handleCreateTeam,
   });
 
   return (
@@ -204,25 +197,22 @@ const Match: NextPageWithLayout = () => {
                 errorText={errors.name && touched.name ? errors.name : null}
               />
               <CustomInput
-                label="Team's Logo Url"
-                placeholder="Team's logo"
-                id="logo"
+                label="Team Stadium"
+                placeholder="Team"
+                id="stadium"
                 inputProps={{
                   onChange: handleChange,
-                  onBlur: handleBlur("logo"),
+                  onBlur: handleBlur("stadium"),
                 }}
                 mt={6}
-                errorText={errors.logo && touched.logo ? errors.logo : null}
+                errorText={
+                  errors.stadium && touched.stadium ? errors.stadium : null
+                }
               />
             </ModalBody>
 
             <ModalFooter>
-              <CustomButton
-                type="submit"
-                isLoading={isLoading}
-
-                w="100%"
-              >
+              <CustomButton type="submit" isLoading={isLoading} w="100%">
                 Create
               </CustomButton>
             </ModalFooter>
