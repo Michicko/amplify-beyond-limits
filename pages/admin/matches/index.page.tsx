@@ -404,9 +404,10 @@ const Match: NextPageWithLayout = () => {
                   selectProps={{
                     onChange: (e: any) =>
                       setFieldValue("home", {
+                        ...values.home,
                         name: e.value,
                         id: e.id,
-                        goals: "",
+
                       }),
                   }}
                 />
@@ -444,9 +445,10 @@ const Match: NextPageWithLayout = () => {
                   selectProps={{
                     onChange: (e: any) =>
                       setFieldValue("away", {
+                        ...values.away,
                         name: e.value,
                         id: e.id,
-                        goals: "",
+
                       }),
                   }}
                 />

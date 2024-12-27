@@ -33,7 +33,7 @@ import CustomInput from "@/components/CustomInput/CustomInput";
 
 import CustomTable from "@/components/CustomTable";
 
-import { IPlayer } from "@/types/auth";
+import { IPlayer, ITeam } from "@/types/auth";
 
 import { generateClient } from "aws-amplify/data";
 import type { Schema } from "@/amplify/data/resource";
@@ -155,7 +155,7 @@ const Players: NextPageWithLayout = () => {
   ) => {
     // console.log("PLAYER", values);
     if (!values.firstName || !values.lastName || !values.playerNumber) return;
-    
+
     setIsLoading(true);
     const { data, errors } = await client.models.Player.create({
       firstName: values.firstName,
@@ -303,11 +303,15 @@ const Players: NextPageWithLayout = () => {
                 onChange={handleChange}
               >
                 {allTeams.length > 0 &&
-                  allTeams.map((item) => (
-                    <option key={item.id} value={item.id}>
-                      {item.name}
-                    </option>
-                  ))}
+                  allTeams
+                    .filter((team: any) =>
+                      team.name.toLowerCase().includes("beyond")
+                    )
+                    .map((item) => (
+                      <option key={item.id} value={item.id}>
+                        {item.name}
+                      </option>
+                    ))}
               </Select>
 
               <CustomSelect
