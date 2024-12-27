@@ -20,9 +20,12 @@ import {
   TabList,
   TabPanel,
   TabPanels,
-  Tabs
+  Tabs,
+  Textarea,
+  Select,
+  Checkbox,
 } from "@chakra-ui/react";
-import React, { ReactElement, useMemo, useState } from "react";
+import React, { ReactElement, useEffect, useMemo, useState } from "react";
 import { NextPageWithLayout } from "@/pages/_app.page";
 import AuthLayout from "@/components/AuthLayout/AuthLayout";
 import { Link } from "@chakra-ui/react";
@@ -32,217 +35,258 @@ import { IoIosArrowRoundBack } from "react-icons/io";
 import { Column } from "react-table";
 import ErrorLogger from "@/helpers/errorLogger";
 import CustomSelect from "@/components/CustomSelect/CustomSelect";
-import { useGetTeamsQuery } from "@/store/api/team.api";
-import { useGetLeagueQuery } from "@/store/api/league.api";
-import * as Yup from "yup";
+
 import CustomInput from "@/components/CustomInput/CustomInput";
 import { DownloadExcel } from "@/components/donwloadData";
 import {
   useCreateMatchMutation,
   useGetMatchesQuery,
-  useGetOneMatchDetailMutation
+  useGetOneMatchDetailMutation,
 } from "@/store/api/match.api";
 import CustomTable from "@/components/CustomTable";
 import { LiaDownloadSolid } from "react-icons/lia";
 import { useRouter } from "next/router";
-import { IMatchRequest, IMatchResponse, IGoal, IEvent, IStat, IGetOneMatchDetails, IPlayer } from "@/types/auth";
-import UpdateMatch from "@/components/Page/Match";
-import Stat from "@/components/Page/Stat";
-import moment from "moment";
-import { useGetPlayerQuery } from "@/store/api/player.api";
-import Goal from "@/components/Page/Goal";
+// import moment from "moment";
+import { FieldArray, useFormik } from "formik";
 
-export interface ISelectType {
-    label: string;
-    value: string;
-    name?: boolean;
-}
-export const seasons = [
-{
-    label: "2020/2021",
-    value: "2020/2021"
-},
-{
-    label: "2021/2022",
-    value: "2021/2022"
-},
-{
-    label: "2022/2023",
-    value: "2022/2023"
-},
-{
-    label: "2023/2024",
-    value: "2023/2024"
-},
-{
-    label: "2024/2025",
-    value: "2024/2025"
-},
-{
-    label: "2025/2026",
-    value: "2025/2026"
-}
-]
+import { generateClient } from "aws-amplify/data";
+import type { Schema } from "@/amplify/data/resource";
+
+const client = generateClient<Schema>();
 
 const Match: NextPageWithLayout = () => {
-  const {
-    data,
-    isLoading: isLoadingMatch,
-    refetch
-  } = useGetMatchesQuery();
-   const {
-    data: teams,
-    isLoading: isLoadingTeam,
-  } = useGetTeamsQuery();
-   const {
-    data: leagues,
-    isLoading: isLoadingLeague,
-  } = useGetLeagueQuery();
-  const [ getOneMatchDetail, {isLoading: isLoadingGetUpdate, data: updateData} ] = useGetOneMatchDetailMutation()
-    const {
-    data: players,
-    isLoading: isLoadingPlayers
-  } = useGetPlayerQuery();
-
-
-   const [goal, set_goal] = useState<IGoal[]>([])
-      const [event, set_event] = useState<IEvent>({
-          player: "",
-          time: "",
-          favoured_team: "",
-          unnfavoured_team: "",
-          match: "",
-          event_type: "foul",
-          event_award: "none",
-    })
-       const [home_team, set_home_team] = useState<ISelectType>({label: "", value: ""})
-     const [own_place, set_own_place] = useState<ISelectType>({label: "", value: ""})
-    const [away_team, set_away_team] = useState<ISelectType>({label: "", value: ""})
-    const [loading, setLoading] = useState(false)
-    const [date, set_date] = useState<any>("")
-    const [league, set_league] = useState<ISelectType>({label: "", value: ""})
-    const [selected_match, set_selected_match] = useState("")
-    const [selected_team, set_selected_team] = useState("")
-    const [season, set_season] = useState<ISelectType>({label: "", value: ""})
-    const [selected_players, set_selected_players] = useState<ISelectType[]>([])
-     const [match, set_match] = useState<any>({
-    date: "",
-    home_team: {
-         name: "",
-      logo: "",
-      _id: ""
-    },
-    away_team: {
-         name: "",
-      logo: "",
-      _id: ""
-    },
-    league: {
-       name: "",
-      logo: "",
-      _id: ""
-    },
+  const initialMatch = {
     season: "",
-    stat: "",
-    is_played: false,
-    _id: ""
-    })
+    home: {
+      name: "",
+      id: "",
+      goals: "",
+      lineup: ["", "", "", "", "", "", "", "", "", "", ""],
+      substitutes: ["", "", "", "", "", "", "", ""],
+      stats: {
+        passes: "",
+        corners: "",
+        shots: "",
+        yellows: "",
+        reds: "",
+        penalty: "",
+      },
+    },
 
-   const handleModalEdit = async (id: string) => {
-     setLoading(true)
-     const response: any  = await getOneMatchDetail({id})
-     if(response?.data?.code === 200){
-      await set_selected_match(id)
-      await set_away_team({value: response?.data?.data?.match?.away_team?._id, label: response?.data?.data?.match?.away_team?.name, name: response?.data?.data?.match?.away_team?.own})
-      await set_home_team({value: response?.data?.data?.match?.home_team?._id, label: response?.data?.data?.match?.home_team?.name, name: response?.data?.data?.match?.home_team?.own})
-      await set_league({value: response?.data?.data?.match?.league?._id, label: response?.data?.data?.match?.league?.name})
-      await set_date(response?.data?.data?.match?.date)
-      await set_season({value: response?.data?.data?.match?.season, label: response?.data?.data?.match?.season})
-      await set_selected_players(response?.data?.data?.stats?.map(i => ({value: i?.player?._id, label: i?.player?.first_name+" "+i?.player?.last_name})))
-      await set_goal(response?.data?.data?.goals)
-      if(response?.data?.data?.match?.away_team?.own){
-        set_selected_team(response?.data?.data?.match?.away_team?._id)
-      }else {
-        set_selected_team(response?.data?.data?.match?.home_team?._id)
-      }
-      await onMatchModalUpdateOpen()
-     }
-     await setLoading(false)
+    away: {
+      name: "",
+      id: "",
+      goals: "",
+      lineup: ["", "", "", "", "", "", "", "", "", "", ""],
+      substitutes: ["", "", "", "", "", "", "", ""],
+      stats: {
+        passes: "",
+        corners: "",
+        shots: "",
+        yellows: "",
+        reds: "",
+        penalty: "",
+      },
+    },
+
+    date: "",
+    time: "",
+    league: {
+      name: "",
+      id: "",
+    },
+    venue: "",
+    isPlayed: false,
+    preview: {
+      context: "",
+      keyPlayer: "",
+      aboutKeyPlayer: "",
+    },
+
+    report: {
+      context: "",
+      // scorers: a.json().array(),
+      scorers: [
+        {
+          name: "",
+          time: "",
+        },
+      ],
+      manOfMatch: "",
+      aboutManOfMatch: "",
+    },
+  };
+
+  // const columns: Column<IMatchResponse>[] = useMemo(() => {
+  //   return [
+  //     {
+  //       Header: "Home Team",
+  //       accessor: "home_team",
+  //       Cell: ({ value }) => (
+  //         <HStack>
+  //           <img alt="img" width="40px" height="40px" src={value.logo} />
+  //           <Text>{value.name}</Text>
+  //         </HStack>
+  //       ),
+  //     },
+  //     {
+  //       Header: "Away Team",
+  //       accessor: "away_team",
+  //       Cell: ({ value }) => (
+  //         <HStack>
+  //           <img src={value.logo} alt="img" width="40px" height="40px" />
+  //           <Text>{value.name}</Text>
+  //         </HStack>
+  //       ),
+  //     },
+  //     { Header: "Season", accessor: "season" },
+  //     {
+  //       Header: "League",
+  //       accessor: "league",
+  //       Cell: ({ value }) => <>{value.name}</>,
+  //     },
+  //     {
+  //       Header: "Date",
+  //       accessor: "date",
+  //       Cell: ({ value }) => <>{moment(value).format("DD-MMMM-YYYY hh:mma")}</>,
+  //     },
+  //     {
+  //       Header: "Action",
+  //       accessor: "_id",
+  //       Cell: ({ value }) => (
+  //         <CustomButton
+  //           isLoading={isLoadingGetUpdate}
+  //           isDisabled={isLoadingGetUpdate}
+  //           onClick={() => handleModalEdit(value)}
+  //         >
+  //           Update
+  //         </CustomButton>
+  //       ),
+  //     },
+  //   ];
+  // }, []);
+
+  const [allPlayers, setPlayers] = useState<Array<Schema["Player"]["type"]>>(
+    []
+  );
+  const [seasons, setSeasons] = useState<Array<Schema["Season"]["type"]>>([]);
+
+  const [allTeams, setAllTeams] = useState<Array<Schema["Team"]["type"]>>([]);
+  const [allMatches, setAllMatches] = useState<Array<Schema["Match"]["type"]>>(
+    []
+  );
+  const [leagues, setLeagues] = useState<Array<Schema["League"]["type"]>>([]);
+
+  const [isLoading, setIsLoading] = useState(false);
+
+  // Initial Match Values
+  const [initMatch, setInitMatch] = useState({ ...initialMatch });
+
+  const handleCreateMatch = async (values: any) =>
+    // actions: FormikHelpers<ISeason>)
+    {
+      console.table("MATCH", values);
+      // setIsLoading(true);
+      // const { data, errors } = await client.models.Match.create({
+      //   ...values,
+      // });
+      // if (data) {
+      //   onMatchModalClose();
+      // }
+      // if (errors) {
+      //   ErrorLogger(errors);
+      // }
+      // setIsLoading(false);
+    };
+
+  const {
+    values,
+    errors,
+    touched,
+    handleChange,
+    handleBlur,
+    handleSubmit,
+    setFieldValue,
+  } = useFormik({
+    enableReinitialize: true,
+    initialValues: initMatch,
+    onSubmit: handleCreateMatch,
+  });
+
+  function listMatches() {
+    setIsLoading(true);
+    client.models.Match.observeQuery().subscribe({
+      next: (data) => {
+        setAllMatches([...data.items]);
+        setIsLoading(false);
+      },
+    });
   }
 
+  async function listLeagues() {
+    setIsLoading(true);
+    const { data } = await client.models.League.list();
+    setLeagues([...data]);
+    setIsLoading(false);
+  }
 
-  const columns: Column<IMatchResponse>[] = useMemo(() => {
-    return [
-      { Header: "Home Team", accessor: "home_team", Cell: ({ value }) =>(<HStack><img alt="img" width="40px" height="40px" src={value.logo}/><Text>{value.name}</Text></HStack>)},
-      { Header: "Away Team", accessor: "away_team", Cell: ({ value }) =>(<HStack><img src={value.logo} alt="img" width="40px" height="40px"/><Text>{value.name}</Text></HStack>)},
-      { Header: "Season", accessor: "season" },
-      { Header: "League", accessor: "league", Cell: ({ value }) => <>{value.name}</>},
-      { Header: "Date", accessor: "date", Cell: ({value}) => <>{moment(value).format("DD-MMMM-YYYY hh:mma")}</> },
-      { Header: "Action", accessor: "_id", Cell: ({value}) => <CustomButton isLoading={isLoadingGetUpdate} isDisabled={isLoadingGetUpdate} onClick={() => handleModalEdit(value)}>Update</CustomButton> },
-    ];
+  async function listPlayers() {
+    setIsLoading(true);
+    const { data } = await client.models.Player.list();
+
+    setPlayers([...data]);
+    setIsLoading(false);
+  }
+
+  async function listTeams() {
+    setIsLoading(true);
+    const { data } = await client.models.Team.list();
+
+    setAllTeams([...data]);
+    setIsLoading(false);
+  }
+
+  async function listSeasons() {
+    setIsLoading(true);
+    const { data } = await client.models.Season.list();
+    setSeasons([...data]);
+    setIsLoading(false);
+  }
+
+  useEffect(() => {
+    // listMatches();
+    // listPlayers();
   }, []);
 
-   
+  const handleSaveLineup = (data: any) => {
+    if (values.home.name.toLowerCase().includes("beyond")) {
+      setFieldValue("home.lineup", data.lineup);
+      setFieldValue("home.substitutes", data.substitutes);
+    } else if (values.away.name.toLowerCase().includes("beyond")) {
+      setFieldValue("home.lineup", data.lineup);
+      setFieldValue("home.substitutes", data.substitutes);
+    }
+  };
 
-  const [createMatch, { isLoading, isError }] = useCreateMatchMutation();
+  const handleSaveStats = (data: typeof initialMatch.home.stats) => {
+    if (values.home.name.toLowerCase().includes("beyond")) {
+      setFieldValue("home.stats", data);
+    } else if (values.away.name.toLowerCase().includes("beyond")) {
+      setFieldValue("home.stats", data);
+    }
+  };
+
   const {
     isOpen: isMatchModalOpen,
     onOpen: onMatchModalOpen,
     onClose: onMatchModalClose,
   } = useDisclosure();
 
-  const {
-    isOpen: isMatchModalUpdateOpen,
-    onOpen: onMatchModalUpdateOpen,
-    onClose: onMatchModalUpdateClose,
-  } = useDisclosure();
-
-  const handleCreateMatch = async (e) => {
-    try {
-        e.preventDefault()
-      const res = await createMatch({
-        home_team: home_team.value,
-        away_team: away_team.value,
-        date, 
-        league: league.value,
-        season: season.value,
-        own_position: own_place.value
-      }).unwrap();
-      if (res.code === 200) {
-        onMatchModalClose();
-        refetch();
-      }
-    } catch (error) {
-      ErrorLogger(error as string);
-    }
-  };
-
-    const handleUpdateMatch = async (e) => {
-    try {
-        e.preventDefault()
-      const res = await createMatch({
-        home_team: home_team.value,
-        away_team: away_team.value,
-        date, 
-        league: league.value,
-        season: season.value,
-        own_position: own_place.value
-      }).unwrap();
-      if (res.code === 200) {
-        onMatchModalClose();
-        refetch();
-      }
-    } catch (error) {
-      ErrorLogger(error as string);
-    }
-  };
-
-
   return (
     <>
-      <Box w='full' h='full' pt={[6, 8]}></Box>
-      <Box w='full' h='full' py={[4, 6, 8]}>
-      <Flex
+      <Box w="full" h="full" pt={[6, 8]}></Box>
+      <Box w="full" h="full" py={[4, 6, 8]}>
+        <Flex
           align="center"
           justify={["space-between"]}
           direction={["column", "row"]}
@@ -250,199 +294,430 @@ const Match: NextPageWithLayout = () => {
           pb={[4, 6]}
         >
           <Heading>Matches</Heading>
-              <CustomButton
-                  onClick={onMatchModalOpen}
-                  height={"48px"}
-                  minW={["full", "50px"]}
-                  mt='50px'
-                >
-                  <AddIcon mr='2' fontSize={"12px"} fontWeight={"500"} />
-                  Create Match
-                </CustomButton>
-          
+          <CustomButton
+            onClick={() => {
+              onMatchModalOpen();
+              listSeasons();
+              listTeams();
+              listLeagues();
+              listPlayers();
+            }}
+            height={"48px"}
+            minW={["full", "50px"]}
+            mt="50px"
+          >
+            <AddIcon mr="2" fontSize={"12px"} fontWeight={"500"} />
+            Create Match
+          </CustomButton>
         </Flex>
-        <Box h='full' pt={[6, 8]} borderBottomColor='neutral.50'>
-    {!data?.data || isLoadingMatch ? (
+
+        <Box h="full" pt={[6, 8]} borderBottomColor="neutral.50">
+          {isLoading && (
             <Center>
               <Spinner />
             </Center>
-          ) : (
-            <>
-              <CustomTable
-                data={data?.data ?? []}
-                columns={columns}
-                search
-                isLoading={isLoadingMatch}
-                searchPlaceholder='Search for team'
-                //filterText='Filter by location'
-                topRightEl={
-                  <DownloadExcel
-                    data={data?.data}
-                    name='Matches'
-                    buttonText='Download Matches'
-                  />
-                }
-              />
-            </>
           )}
+
+          {!isLoading && allMatches.length === 0 && (
+            <Center>No matches yet</Center>
+          )}
+
+          {/* {!isLoading && allMatches.length > 0 && (
+            <CustomTable
+              data={allMatches}
+              columns={columns}
+              search
+              searchPlaceholder="Search for Match"
+              topRightEl={
+                <DownloadExcel
+                  data={data?.data}
+                  name="Matches"
+                  buttonText="Download Matches"
+                />
+              }
+            />
+          )} */}
         </Box>
       </Box>
 
-      {!isLoadingLeague && !isLoadingTeam && <Modal isOpen={isMatchModalOpen} onClose={onMatchModalClose}>
+      <Modal size="5xl" isOpen={isMatchModalOpen} onClose={onMatchModalClose}>
         <ModalOverlay />
-        <form onSubmit={handleCreateMatch}>
+        <form onSubmit={handleSubmit}>
           <ModalContent>
             <ModalHeader>Create a Match</ModalHeader>
             <ModalCloseButton />
             <ModalBody>
+              <Flex
+                align="center"
+                justify={["space-between"]}
+                alignItems={"center"}
+                direction={["column", "row"]}
+                // gap={[2, 0]}
+                // pb={[4, 6]}
+              >
+                <Select
+                  mt="20px"
+                  placeholder="Select Season"
+                  id="season"
+                  width={"50%"}
+                  onChange={handleChange}
+                >
+                  {seasons.length > 0 &&
+                    seasons.map((seas) => (
+                      <option key={seas.id} value={seas.name}>
+                        {seas.name}
+                      </option>
+                    ))}
+                </Select>
+
+                <Checkbox
+                  bg={"gray.800"}
+                  borderRadius={8}
+                  px={"10px"}
+                  py={"2"}
+                  name="isPlayed"
+                  isChecked={values.isPlayed}
+                  onChange={handleChange}
+                >
+                  Is Played
+                </Checkbox>
+              </Flex>
+
+              <Flex
+                align="center"
+                justify={["space-between"]}
+                alignItems={"center"}
+                direction={["column", "row"]}
+                // gap={[2, 0]}
+                // pb={[4, 6]}
+              >
                 <CustomSelect
-               mt="20px"
-                      label="Beyond Limit's Half"
-                      placeholder=''
-                      selectOptions={[{label: "Home", value: "home"}, {label: "Away", value: "away"}]}
-                      selectProps={{
-                        onChange: (e: ISelectType) => set_own_place(e)
-                      }}
-                    />
-                {own_place.value === "away" && <CustomSelect
-               mt="20px"
-                      label='Home Team'
-                      placeholder=''
-                      selectOptions={teams.data.map((i) => ({
-                        label: i.name,
-                        value: i._id,
-                      }))}
-                      selectProps={{
-                        onChange: (e: ISelectType) => set_home_team(e)
-                      }}
-                    />}
-                {own_place.value === "home" && <CustomSelect
-               mt="20px"
-                      label='Away Team'
-                      placeholder=''
-                      selectOptions={teams.data.map((i) => ({
-                        label: i.name,
-                        value: i._id,
-                      }))}
-                      selectProps={{
-                        onChange: (e: ISelectType) => set_away_team(e)
-                      }}
-                    />}
-                        <CustomSelect
-                mt="20px"
-                      label='League'
-                      placeholder='Select League'
-                      selectOptions={leagues.data.map((i) => ({
-                        label: i.name,
-                        value: i._id,
-                      }))}
-                      selectProps={{
-                        onChange: (e: ISelectType) => set_league(e)
-                      }}
-                    />
-                      <CustomSelect
-               mt="20px"
-                      label="Season"
-                      placeholder=''
-                      selectOptions={seasons.map(i => ({value: i.value, label: i.label}))}
-                      selectProps={{
-                        onChange: (e: ISelectType) => set_season(e)
-                      }}
-                    />
-                  <CustomInput
-                label="Date"
-                placeholder='appearance'
-                id='appearance'
-                inputProps={{
-                  onChange: (e) => set_date(e.target.value),
-                  type: "datetime-local",
-                }}
+                  mt="20px"
+                  id="home"
+                  label="Home Team"
+                  selectOptions={allTeams.map((team) => ({
+                    label: team.name,
+                    value: team.name,
+                    id: team.id,
+                    goals: "",
+                  }))}
+                  selectProps={{
+                    onChange: (e: any) =>
+                      setFieldValue("home", {
+                        name: e.value,
+                        id: e.id,
+                        goals: "",
+                      }),
+                  }}
+                />
+                <CustomInput
+                  label="goal"
+                  id="home.goals"
+                  w={"40px"}
+                  inputProps={{
+                    onChange: handleChange,
+                    // onBlur: handleBlur("date"),
+                    type: "number",
+                  }}
+                />
+                <CustomInput
+                  label="goal"
+                  id="away.goals"
+                  w={"40px"}
+                  inputProps={{
+                    onChange: handleChange,
+                    // onBlur: handleBlur("date"),
+                    type: "number",
+                  }}
+                />
+
+                <CustomSelect
+                  mt="20px"
+                  id="away"
+                  label="Away Team"
+                  selectOptions={allTeams.map((team) => ({
+                    label: team.name,
+                    value: team.name,
+                    id: team.id,
+                    goals: "",
+                  }))}
+                  selectProps={{
+                    onChange: (e: any) =>
+                      setFieldValue("away", {
+                        name: e.value,
+                        id: e.id,
+                        goals: "",
+                      }),
+                  }}
+                />
+              </Flex>
+
+              <Flex
+                align="center"
+                justify={["space-between"]}
+                direction={["column", "row"]}
+                // gap={[2, 0]}
+                // pb={[4, 6]}
                 mt={6}
+              >
+                <CustomInput
+                  label="Match Date"
+                  id="date"
+                  inputProps={{
+                    onChange: handleChange,
+                    onBlur: handleBlur("date"),
+                    type: "date",
+                  }}
+                />
+
+                <CustomInput
+                  label="Match Time"
+                  id="time"
+                  inputProps={{
+                    onChange: handleChange,
+                    onBlur: handleBlur("time"),
+                    type: "time",
+                  }}
+                />
+              </Flex>
+
+              <Flex
+                align="center"
+                justify={["space-between"]}
+                direction={["column", "row"]}
+                // gap={[2, 0]}
+                // pb={[4, 6]}
+                mt={6}
+              >
+                <CustomSelect
+                  id="league"
+                  label="Select League"
+                  selectOptions={leagues.map((league) => ({
+                    label: league.name,
+                    value: league.name,
+                    id: league.id,
+                  }))}
+                  selectProps={{
+                    onChange: (e: any) =>
+                      setFieldValue("league", {
+                        name: e.value,
+                        id: e.id,
+                      }),
+                  }}
+                />
+
+                <CustomSelect
+                  label="Venue"
+                  id="venue"
+                  selectOptions={[
+                    {
+                      label: "B Limit Stadium",
+                      value: "B Limit Stadium",
+                    },
+                  ]}
+                  selectProps={{
+                    onChange: (e: any) => setFieldValue("venue", e.value),
+                  }}
+                />
+              </Flex>
+
+              <Box w="full" pt={6}>
+                <Text mt={6} mb={4}>
+                  Preview
+                </Text>
+                <Textarea
+                  id=""
+                  placeholder="Context"
+                  size="sm"
+                  onChange={(e: any) =>
+                    setFieldValue("preview.context", e.target.value)
+                  }
+                />
+
+                <CustomSelect
+                  my="20px"
+                  width={"50%"}
+                  // placeholder="Key Player"
+                  label="Key Player"
+                  selectOptions={allPlayers.map((playr) => ({
+                    label: `${playr.firstName} ${playr.lastName}`,
+                    value: `${playr.firstName} ${playr.lastName}`,
+                  }))}
+                  selectProps={{
+                    onChange: (e: any) =>
+                      setFieldValue("preview.keyPlayer", e.value),
+                  }}
+                  // selectProps={{
+                  //   onChange: (e: ISelectType) => set_season(e),
+                  // }}
+                />
+
+                <Textarea
+                  placeholder="About Key Player"
+                  size="sm"
+                  onChange={(e: any) =>
+                    setFieldValue("preview.aboutKeyPlayer", e.target.value)
+                  }
+                />
+              </Box>
+
+              <Box w="full" pt={6}>
+                <Text mt={6} mb={4}>
+                  Report
+                </Text>
+
+                <Text size={"sm"} mb={4}>
+                  Goal Scorers
+                </Text>
+
+                {values.report.scorers.length > 0 &&
+                  values.report.scorers.map((_, index) => (
+                    // <div key={Math.random() + (index + 1)}>
+                    <Flex
+                      key={index}
+                      align="center"
+                      justify={["space-between"]}
+                      direction={["column", "row"]}
+                      // gap={[2, 0]}
+                      // pb={[4, 6]}
+                      mt={6}
+                    >
+                      <CustomSelect
+                        label="Goal scorer"
+                        selectOptions={allPlayers.map((playr) => ({
+                          label: `${playr.firstName} ${playr.lastName}`,
+                          value: `${playr.firstName} ${playr.lastName}`,
+                        }))}
+                        selectProps={{
+                          onChange: (e: any) =>
+                            setFieldValue(
+                              `report.scorers[${index}].name`,
+                              e.value
+                            ),
+                        }}
+                      />
+
+                      <CustomInput
+                        label="Time of goal"
+                        id={`report.scorers[${index}].time`}
+                        inputProps={{
+                          onChange: handleChange,
+                          // onBlur: handleBlur("time"),
+                          type: "number",
+                        }}
+                      />
+
+                      <Button
+                        size="sm"
+                        variant="unstyled"
+                        type="button"
+                        onClick={() => {
+                          const curVals = {
+                            ...values,
+                            report: {
+                              ...values.report,
+                              scorers: [
+                                ...values.report.scorers.slice(0, index),
+                                ...values.report.scorers.slice(
+                                  index + 1,
+                                  values.report.scorers.length
+                                ),
+                              ],
+                            },
+                          };
+                          setInitMatch(curVals);
+                        }}
+                      >
+                        Remove
+                      </Button>
+                    </Flex>
+                    // </div>
+                  ))}
+
+                <Center>
+                  <Button
+                    size="sm"
+                    my="8"
+                    variant="unstyled"
+                    type="button"
+                    onClick={() => {
+                      const curVals = {
+                        ...values,
+                        report: {
+                          ...values.report,
+                          scorers: [
+                            ...values.report.scorers,
+                            {
+                              name: "",
+                              time: "",
+                            },
+                          ],
+                        },
+                      };
+                      setInitMatch(curVals);
+                    }}
+                  >
+                    Add Scorer
+                  </Button>
+                </Center>
+
+                <Textarea
+                  id=""
+                  placeholder="Context"
+                  size="sm"
+                  mt={"20px"}
+                  onChange={(e: any) =>
+                    setFieldValue("report.context", e.target.value)
+                  }
+                />
+
+                <CustomSelect
+                  mt="40px"
+                  mb="20px"
+                  // placeholder="Key Player"
+                  label="Man of the match"
+                  width={"50%"}
+                  selectOptions={allPlayers.map((playr) => ({
+                    label: `${playr.firstName} ${playr.lastName}`,
+                    value: `${playr.firstName} ${playr.lastName}`,
+                  }))}
+                  selectProps={{
+                    onChange: (e: any) =>
+                      setFieldValue("report.manOfMatch", e.value),
+                  }}
+                  // selectProps={{
+                  //   onChange: (e: ISelectType) => set_season(e),
+                  // }}
+                />
+
+                <Textarea
+                  placeholder="About Man of the macth"
+                  size="sm"
+                  onChange={(e: any) =>
+                    setFieldValue("report.aboutManOfMatch", e.target.value)
+                  }
+                />
+              </Box>
+
+              <Lineups
+                handleSaveLineup={handleSaveLineup}
+                handleSaveStats={handleSaveStats}
               />
-           
             </ModalBody>
 
             <ModalFooter>
               <CustomButton
-                type='submit'
+                type="submit"
                 isLoading={isLoading}
-                isError={isError}
-                w='100%'
+                // isError={isError}
+                w="100%"
               >
-                Create
+                Save Changes
               </CustomButton>
             </ModalFooter>
           </ModalContent>
         </form>
-      </Modal>}
-
-
-  {
-    !isLoadingLeague && 
-    !isLoadingTeam && 
-    !isLoadingGetUpdate && 
-    <Modal 
-     size="4xl" 
-     isOpen={isMatchModalUpdateOpen} 
-    onClose={() => {onMatchModalUpdateClose(); set_selected_match(""); set_selected_team("")}}>
-        <ModalOverlay />
- 
-          <ModalContent>
-            <ModalHeader>Update Match</ModalHeader>
-            <ModalCloseButton color="#000"/>
-            <ModalBody>
-                <Tabs colorScheme="blue">
-              <TabList>
-                <Tab><Text>Match</Text></Tab>
-                <Tab><Text>Line Up</Text></Tab>
-                <Tab><Text>Goal</Text></Tab>
-                <Tab><Text>Event</Text></Tab>
-              </TabList>
-
-              <TabPanels>
-                <TabPanel>
-                  <UpdateMatch
-                  leagues={leagues}
-                  teams={teams}
-                  set_home_team={set_home_team}
-                  home_team={home_team}
-                  set_away_team={set_away_team}
-                  set_league={set_league}
-                  set_date={set_date}
-                  set_season={set_season}
-                  away_team={away_team}
-                  league={league}
-                  season={season}
-                  date={date}
-                  />
-                </TabPanel>
-                 <TabPanel>
-                <Stat
-                players={players}
-                selected_players={selected_players}
-                set_players={set_selected_players}
-                team={selected_team}
-                match={selected_match}
-                onModalClose={onMatchModalUpdateClose}
-                />
-                </TabPanel>
-                   <TabPanel>
-                  <Goal 
-                  goals={goal}
-                  players={players}
-                  teams={[home_team, away_team]}
-                  match={selected_match}
-                  onModalClose={onMatchModalUpdateClose}
-                  />
-                </TabPanel>
-                <TabPanel>
-                  <Text>Event</Text>
-                </TabPanel>
-              </TabPanels>
-            </Tabs>
-            </ModalBody>
-          </ModalContent>
-      </Modal>}
+      </Modal>
     </>
   );
 };
@@ -452,3 +727,266 @@ Match.getLayout = function getLayout(page: ReactElement) {
 };
 
 export default Match;
+
+interface LineupsProps {
+  handleSaveLineup: (a: any) => void;
+  handleSaveStats: (a: any) => void;
+}
+
+const Lineups: React.FC<LineupsProps> = ({
+  handleSaveLineup,
+  handleSaveStats,
+}) => {
+  const [lineupData, setLineupData] = useState({
+    lineup: Array(11).fill(""),
+    substitutes: Array(8).fill(""),
+  });
+
+  const [statsData, setStatsData] = useState({
+    passes: "",
+    offsides: "",
+    corners: "",
+    shots: "",
+    yellows: "",
+    reds: "",
+    penalty: "",
+  });
+
+  const [players, setPlayers] = useState([
+    "Aiyenugba Daniel",
+    "Emma Denis",
+    "Boma Akpo",
+    "Bea more",
+    "Anu Iwalu",
+    "Surey Puma",
+    "Oluyele Idow",
+    "Bami madnu",
+    "Tinu wa",
+    "Mke me",
+    "Nuw pu",
+    "Shi ding",
+    "Gun was",
+    "Play me",
+    "Chi den",
+    "Frn ku",
+    "Han ki",
+    "Mal le",
+    "Dus bun",
+    "Shi kra",
+    "Naw tun",
+    "Okpa kem",
+    "Shud dey",
+    "Small tin",
+    "Make me",
+  ]);
+
+  const handlePlayerToggle = (player: any) => {
+    const { lineup, substitutes } = lineupData;
+
+    if (lineup.includes(player)) {
+      // Remove player from lineup
+      setLineupData((prevMatch) => ({
+        ...prevMatch,
+        lineup: prevMatch.lineup.map((p, index) => (p === player ? "" : p)),
+      }));
+    } else if (substitutes.includes(player)) {
+      // Remove player from substitutes
+      setLineupData((prevMatch) => ({
+        ...prevMatch,
+        substitutes: prevMatch.substitutes.map((p, index) =>
+          p === player ? "" : p
+        ),
+      }));
+    } else {
+      // Add player to lineup or substitutes
+      if (lineup.includes("")) {
+        const firstEmptyIndex = lineup.findIndex((p) => p === "");
+        setLineupData((prevMatch) => ({
+          ...prevMatch,
+          lineup: prevMatch.lineup.map((p, index) =>
+            index === firstEmptyIndex ? player : p
+          ),
+        }));
+      } else if (substitutes.includes("")) {
+        const firstEmptyIndex = substitutes.findIndex((p) => p === "");
+        setLineupData((prevMatch) => ({
+          ...prevMatch,
+          substitutes: prevMatch.substitutes.map((p, index) =>
+            index === firstEmptyIndex ? player : p
+          ),
+        }));
+      }
+    }
+  };
+
+  const handleSetStatsData = (property: string, value: string) => {
+    setStatsData({
+      ...statsData,
+      [property]: value,
+    });
+  };
+
+  return (
+    <>
+      <Box w="full" pt={20}>
+        <Tabs>
+          <TabList>
+            <Tab>Lineup</Tab>
+            <Tab>Stats</Tab>
+          </TabList>
+
+          <TabPanels>
+            <TabPanel>
+              <Flex
+                wrap={"wrap"}
+                height="400px"
+                align="center"
+                justify={["space-between"]}
+                direction={["column", "row"]}
+                gap={4}
+              >
+                {players.map((player) => (
+                  <Checkbox
+                    key={player}
+                    bg={"gray.800"}
+                    px={"24px"}
+                    py={"5"}
+                    borderRadius={8}
+                    isChecked={
+                      lineupData.lineup.includes(player) ||
+                      lineupData.substitutes.includes(player)
+                    }
+                    onChange={() => handlePlayerToggle(player)}
+                  >
+                    {player}
+                  </Checkbox>
+                ))}
+              </Flex>
+
+              <Flex
+                wrap={"wrap"}
+                align="center"
+                justify={["space-between"]}
+                direction={["column", "row"]}
+                gap={4}
+                mt={12}
+              >
+                <div>
+                  <Text fontWeight={600}>Lineup</Text>
+                  <ul>
+                    {lineupData.lineup.map((player, index) => (
+                      <li key={index}>{player || "Empty"}</li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div>
+                  <Text fontWeight={600}>Substitutes</Text>
+
+                  <ul>
+                    {lineupData.substitutes.map((player, index) => (
+                      <li key={index}>{player || "Empty"}</li>
+                    ))}
+                  </ul>
+                </div>
+              </Flex>
+
+              <Center>
+                <Button
+                  size="sm"
+                  variant="unstyled"
+                  type="button"
+                  onClick={() => handleSaveLineup(lineupData)}
+                >
+                  Save Lineup
+                </Button>
+              </Center>
+            </TabPanel>
+            <TabPanel>
+              <Flex
+                align="center"
+                justify={["space-between"]}
+                direction={["column", "row"]}
+                gap={2}
+                // pb={[4, 6]}
+                mt={6}
+              >
+                <CustomInput
+                  label="Passes"
+                  id="passes"
+                  inputProps={{
+                    onChange: (e) =>
+                      handleSetStatsData("passes", e.target.value),
+                    // onBlur: handleBlur("date"),
+                    type: "number",
+                  }}
+                />
+                <CustomInput
+                  label="Corners"
+                  id="corners"
+                  inputProps={{
+                    onChange: (e) =>
+                      handleSetStatsData("corners", e.target.value),
+                    // onBlur: handleBlur("date"),
+                    type: "number",
+                  }}
+                />
+                <CustomInput
+                  label="Shots"
+                  id="shots"
+                  inputProps={{
+                    onChange: (e) =>
+                      handleSetStatsData("shots", e.target.value),
+                    // onBlur: handleBlur("date"),
+                    type: "number",
+                  }}
+                />
+                <CustomInput
+                  label="Yellows"
+                  id="yellows"
+                  inputProps={{
+                    onChange: (e) =>
+                      handleSetStatsData("yellows", e.target.value),
+                    // onBlur: handleBlur("date"),
+                    type: "number",
+                  }}
+                />
+                <CustomInput
+                  label="Reds"
+                  id="reds"
+                  inputProps={{
+                    onChange: (e) => handleSetStatsData("reds", e.target.value),
+                    // onBlur: handleBlur("date"),
+                    type: "number",
+                  }}
+                />
+                <CustomInput
+                  label="Penalty"
+                  id="penalty"
+                  inputProps={{
+                    onChange: (e) =>
+                      handleSetStatsData("penalty", e.target.value),
+                    // onBlur: handleBlur("date"),
+                    type: "number",
+                  }}
+                />
+              </Flex>
+
+              <Center>
+                <Button
+                  size="sm"
+                  variant="unstyled"
+                  mt={12}
+                  type="button"
+                  onClick={() => handleSaveStats(statsData)}
+                >
+                  Save Stats
+                </Button>
+              </Center>
+            </TabPanel>
+          </TabPanels>
+        </Tabs>
+      </Box>
+    </>
+  );
+};

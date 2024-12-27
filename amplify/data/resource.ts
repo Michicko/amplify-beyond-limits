@@ -22,17 +22,63 @@ const schema = a.schema({
     })
     .authorization((allow) => [allow.owner(), allow.publicApiKey()]),
 
-  // Match: a
-  //   .model({
-  //     result_info: a.string(),
-  //     name: a.string(),
-  //     starting_at: a.datetime(),
-  //     //
-  //     league_id: a.integer(),
-  //     venue_id: a.integer(),
-  //     details: a.string(),
-  //   })
-  //   .authorization((allow) => [allow.owner(), allow.publicApiKey()]),
+  Match: a
+    .model({
+      season: a.string(),
+      home: a.customType({
+        name: a.string(),
+        id: a.string(),
+        goals: a.string(),
+        lineup: a.string().array(),
+        substitutes: a.string().array(),
+        stats: a.customType({
+          passes: a.string(),
+          corners: a.string(),
+          shots: a.string(),
+          yellows: a.string(),
+          reds: a.string(),
+          penalty: a.string(),
+        }),
+      }),
+
+      away: a.customType({
+        name: a.string(),
+        id: a.string(),
+        goals: a.string(),
+        lineup: a.string().array(),
+        substitutes: a.string().array(),
+        stats: a.customType({
+          passes: a.string(),
+          corners: a.string(),
+          shots: a.string(),
+          yellows: a.string(),
+          reds: a.string(),
+          penalty: a.string(),
+        }),
+      }),
+
+      date: a.string(),
+      time: a.string(),
+      league: a.customType({
+        name: a.string(),
+        id: a.string(),
+      }),
+      venue: a.string(),
+      isPlayed: a.boolean(),
+      preview: a.customType({
+        context: a.string(),
+        keyPlayer: a.string(),
+        aboutKeyPlayer: a.string(),
+      }),
+
+      report: a.customType({
+        context: a.string(),
+        scorers: a.json().array(),
+        manOfMatch: a.string(),
+        aboutManOfMatch: a.string(),
+      }),
+    })
+    .authorization((allow) => [allow.owner(), allow.publicApiKey()]),
 
   Player: a
     .model({
@@ -57,7 +103,6 @@ const schema = a.schema({
     .model({
       name: a.string().required(),
       logo: a.string(),
-      stadium: a.string(),
       players: a.hasMany("Player", "teamId"),
     })
     .authorization((allow) => [allow.owner(), allow.publicApiKey()]),

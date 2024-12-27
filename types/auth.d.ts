@@ -11,6 +11,7 @@ export interface ITeam {
   name: string;
   logo?: string;
   stadium?: string;
+  id?: string;
 }
 
 export interface ISeason {

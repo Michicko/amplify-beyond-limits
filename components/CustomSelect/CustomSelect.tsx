@@ -11,6 +11,7 @@ import Select, { Props as SelectProps, SelectInstance } from "react-select";
 type SelectOptionType = {
   label?: string;
   value?: string;
+  id?: string;
 };
 
 interface CustomSelectProps extends FormControlProps {
@@ -43,8 +44,8 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
 }: CustomSelectProps) => {
   const formattedOptions = useMemo(() => {
     const options = selectOptions?.map((option) => ({
-      value: (option.value) as string,
-      label: (option.label) as string,
+      value: option.value as string,
+      label: option.label as string,
       ...option,
     }));
 
@@ -55,11 +56,11 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
     <FormControl {...rest}>
       <FormLabel
         htmlFor={id}
-        color='neutral.700'
+        color="neutral.700"
         fontSize={"14px"}
-        fontFamily='body'
-        fontWeight='400'
-        lineHeight='16px'
+        fontFamily="body"
+        fontWeight="400"
+        lineHeight="16px"
       >
         {label}
       </FormLabel>
@@ -70,8 +71,16 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
         isClearable
         isSearchable
         isMulti={isMulti}
+        styles={{
+          option: (styles, { data }) => {
+            return {
+              ...styles,
+              backgroundColor: '#000'
+            };
+          }
+        }}
         isLoading={selectLoading}
-        loadingMessage={() => <Spinner size='sm' color='primary.500' />}
+        loadingMessage={() => <Spinner size="sm" color="primary.500" />}
         noOptionsMessage={() => (
           <Text>{optionsText || "No options available"}</Text>
         )}
@@ -82,7 +91,7 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
       />
 
       {errorText ? (
-        <Text color='#FC8180' mt='1' fontSize={["0.875rem"]}>
+        <Text color="#FC8180" mt="1" fontSize={["0.875rem"]}>
           {errorText}
         </Text>
       ) : null}

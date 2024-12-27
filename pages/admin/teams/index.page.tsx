@@ -52,7 +52,7 @@ const Match: NextPageWithLayout = () => {
     setIsLoading(true);
     client.models.Team.observeQuery().subscribe({
       next: (data) => {
-        // console.log("Teams", data.items);
+
         setTeams([...data.items]);
         setIsLoading(false);
       },
@@ -89,12 +89,10 @@ const Match: NextPageWithLayout = () => {
     values: ITeam
     // actions: FormikHelpers<ITeam>
   ) => {
-    // console.log("Team", values);
     if (!values.name) return;
     setIsLoading(true);
     const { data, errors } = await client.models.Team.create({
-      name: values.name,
-      stadium: values.stadium,
+      name: values.name
     });
     if (data) onCreateTeamModalClose();
     if (errors) {
