@@ -47,7 +47,7 @@ import CustomTable from "@/components/CustomTable";
 import { LiaDownloadSolid } from "react-icons/lia";
 import { useRouter } from "next/router";
 // import moment from "moment";
-import { FieldArray, useFormik } from "formik";
+import { useFormik } from "formik";
 
 import { generateClient } from "aws-amplify/data";
 import type { Schema } from "@/amplify/data/resource";
@@ -185,18 +185,25 @@ const Match: NextPageWithLayout = () => {
   const handleCreateMatch = async (values: any) =>
     // actions: FormikHelpers<ISeason>)
     {
-      console.table("MATCH", values);
-      // setIsLoading(true);
-      // const { data, errors } = await client.models.Match.create({
-      //   ...values,
-      // });
-      // if (data) {
-      //   onMatchModalClose();
-      // }
-      // if (errors) {
-      //   ErrorLogger(errors);
-      // }
-      // setIsLoading(false);
+
+      setIsLoading(true);
+      const { data, errors } = await client.models.Match.create({
+        ...values,
+        report: {
+          ...values.report,
+          scorers: JSON.stringify([...values.report.scorers]),
+        },
+      });
+
+      if (data) {
+        onMatchModalClose();
+      }
+
+      if (errors) {
+        ErrorLogger(errors);
+      }
+
+      setIsLoading(false);
     };
 
   const {
@@ -407,7 +414,6 @@ const Match: NextPageWithLayout = () => {
                         ...values.home,
                         name: e.value,
                         id: e.id,
-
                       }),
                   }}
                 />
@@ -448,7 +454,6 @@ const Match: NextPageWithLayout = () => {
                         ...values.away,
                         name: e.value,
                         id: e.id,
-
                       }),
                   }}
                 />
@@ -665,7 +670,7 @@ const Match: NextPageWithLayout = () => {
 
                 <Textarea
                   id=""
-                  placeholder="Context"
+                  placeholder="Report Context"
                   size="sm"
                   mt={"20px"}
                   onChange={(e: any) =>
@@ -746,7 +751,6 @@ const Lineups: React.FC<LineupsProps> = ({
 
   const [statsData, setStatsData] = useState({
     passes: "",
-    offsides: "",
     corners: "",
     shots: "",
     yellows: "",
