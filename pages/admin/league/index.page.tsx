@@ -31,7 +31,7 @@ import ErrorLogger from "@/helpers/errorLogger";
 import CustomInput from "@/components/CustomInput/CustomInput";
 import CustomTable from "@/components/CustomTable";
 import { ILeague } from "@/types/auth";
-import { FileUploader } from "@aws-amplify/ui-react-storage";
+import { FileUploader, StorageImage } from "@aws-amplify/ui-react-storage";
 import "@aws-amplify/ui-react/styles.css";
 
 import { generateClient } from "aws-amplify/data";
@@ -71,7 +71,11 @@ const Match: NextPageWithLayout = () => {
         accessor: "logo",
         Cell: ({ value }) => (
           <>
-            <img src={value} alt="img" width="40" />
+            {value ? (
+              <StorageImage alt="logo" width={40} path={value} />
+            ) : (
+              <img src="" alt="logo" />
+            )}
           </>
         ),
       },
@@ -99,6 +103,7 @@ const Match: NextPageWithLayout = () => {
     const { data, errors } = await client.models.League.create({
       name: values.name,
       competition: values.competition,
+      logo: values.logo,
     });
 
     if (data) onCreateLeagueModalClose();
@@ -122,6 +127,9 @@ const Match: NextPageWithLayout = () => {
     onSubmit: handleCreateLeague,
   });
 
+  const handleUploadSuccess = (file: { key?: string }) => {
+    file?.key && setFieldValue("logo", file.key);
+  };
   return (
     <>
       <Box w="full" h="full" pt={[6, 8]}></Box>
@@ -196,13 +204,11 @@ const Match: NextPageWithLayout = () => {
             <ModalBody>
               <FileUploader
                 acceptedFileTypes={["image/*"]}
-                path="public/"
+                path="media/"
                 maxFileCount={1}
                 isResumable
-                autoUpload={false}
-                onUploadSuccess={(file) => {
-                  console.log(file);
-                }}
+                // autoUpload={false}
+                onUploadSuccess={handleUploadSuccess}
               />
 
               <CustomInput

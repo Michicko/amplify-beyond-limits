@@ -38,6 +38,7 @@ import { IPlayer, ITeam } from "@/types/auth";
 import { generateClient } from "aws-amplify/data";
 import type { Schema } from "@/amplify/data/resource";
 import ErrorLogger from "@/helpers/errorLogger";
+import { FileUploader, StorageImage } from "@aws-amplify/ui-react-storage";
 
 const client = generateClient<Schema>();
 
@@ -127,6 +128,19 @@ const Players: NextPageWithLayout = () => {
 
   const columns: Column<IPlayer>[] = useMemo(() => {
     return [
+       {
+              Header: "Photo",
+              accessor: "photo",
+              Cell: ({ value }) => (
+                <>
+                  {value ? (
+                    <StorageImage alt="photo" width={40} path={value} />
+                  ) : (
+                    <img src="" alt="photo" />
+                  )}
+                </>
+              ),
+            },
       {
         Header: "Fullname",
         accessor: "firstName",
@@ -189,6 +203,10 @@ const Players: NextPageWithLayout = () => {
     initialValues: initialPlayer,
     onSubmit: handleCreatePlayer,
   });
+
+  const handleUploadSuccess = (file: { key?: string }) => {
+    file?.key && setFieldValue("photo", file.key);
+  };
 
   return (
     <>
@@ -267,6 +285,14 @@ const Players: NextPageWithLayout = () => {
             </ModalHeader>
             <ModalCloseButton />
             <ModalBody>
+            <FileUploader
+                acceptedFileTypes={["image/*"]}
+                path="media/"
+                maxFileCount={1}
+                isResumable
+                // autoUpload={false}
+                onUploadSuccess={handleUploadSuccess}
+              />
               <CustomInput
                 label="Player's First Name"
                 placeholder="firstName"

@@ -35,6 +35,7 @@ import { ITeam } from "@/types/auth";
 
 import { generateClient } from "aws-amplify/data";
 import type { Schema } from "@/amplify/data/resource";
+import { FileUploader, StorageImage } from "@aws-amplify/ui-react-storage";
 
 const client = generateClient<Schema>();
 
@@ -42,7 +43,6 @@ const Match: NextPageWithLayout = () => {
   const initialTeam = {
     name: "",
     logo: "",
-    stadium: "",
   };
 
   const [teams, setTeams] = useState<Array<Schema["Team"]["type"]>>([]);
@@ -52,7 +52,6 @@ const Match: NextPageWithLayout = () => {
     setIsLoading(true);
     client.models.Team.observeQuery().subscribe({
       next: (data) => {
-
         setTeams([...data.items]);
         setIsLoading(false);
       },
@@ -71,11 +70,15 @@ const Match: NextPageWithLayout = () => {
         accessor: "logo",
         Cell: ({ value }) => (
           <>
-            <img src={value} alt="img" width="40px" height="40px" />
+            {value ? (
+              <StorageImage alt="logo" width={40} path={value} />
+            ) : (
+              <img src="" alt="logo" />
+            )}
           </>
         ),
       },
-      { Header: "Stadium", accessor: "stadium" },
+
     ];
   }, []);
 
@@ -92,7 +95,8 @@ const Match: NextPageWithLayout = () => {
     if (!values.name) return;
     setIsLoading(true);
     const { data, errors } = await client.models.Team.create({
-      name: values.name
+      name: values.name,
+      logo: values.logo,
     });
     if (data) onCreateTeamModalClose();
     if (errors) {
@@ -113,6 +117,10 @@ const Match: NextPageWithLayout = () => {
     initialValues: initialTeam,
     onSubmit: handleCreateTeam,
   });
+
+  const handleUploadSuccess = (file: { key?: string }) => {
+    file?.key && setFieldValue("logo", file.key);
+  };
 
   return (
     <>
@@ -183,6 +191,14 @@ const Match: NextPageWithLayout = () => {
             <ModalHeader>Create a Team</ModalHeader>
             <ModalCloseButton />
             <ModalBody>
+              <FileUploader
+                acceptedFileTypes={["image/*"]}
+                path="media/"
+                maxFileCount={1}
+                isResumable
+                // autoUpload={false}
+                onUploadSuccess={handleUploadSuccess}
+              />
               <CustomInput
                 label="Team's Name"
                 placeholder="name"
@@ -194,19 +210,7 @@ const Match: NextPageWithLayout = () => {
                 mt={6}
                 errorText={errors.name && touched.name ? errors.name : null}
               />
-              <CustomInput
-                label="Team Stadium"
-                placeholder="Team"
-                id="stadium"
-                inputProps={{
-                  onChange: handleChange,
-                  onBlur: handleBlur("stadium"),
-                }}
-                mt={6}
-                errorText={
-                  errors.stadium && touched.stadium ? errors.stadium : null
-                }
-              />
+             
             </ModalBody>
 
             <ModalFooter>
