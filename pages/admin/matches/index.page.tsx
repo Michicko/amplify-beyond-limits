@@ -60,6 +60,7 @@ const Match: NextPageWithLayout = () => {
     home: {
       name: "",
       id: "",
+      logo: "",
       goals: "",
       lineup: ["", "", "", "", "", "", "", "", "", "", ""],
       substitutes: ["", "", "", "", "", "", "", ""],
@@ -76,6 +77,7 @@ const Match: NextPageWithLayout = () => {
     away: {
       name: "",
       id: "",
+      logo: "",
       goals: "",
       lineup: ["", "", "", "", "", "", "", "", "", "", ""],
       substitutes: ["", "", "", "", "", "", "", ""],
@@ -93,6 +95,7 @@ const Match: NextPageWithLayout = () => {
     time: "",
     league: {
       name: "",
+      logo: "",
       id: "",
     },
     venue: "",
@@ -185,7 +188,6 @@ const Match: NextPageWithLayout = () => {
   const handleCreateMatch = async (values: any) =>
     // actions: FormikHelpers<ISeason>)
     {
-
       setIsLoading(true);
       const { data, errors } = await client.models.Match.create({
         ...values,
@@ -405,6 +407,7 @@ const Match: NextPageWithLayout = () => {
                   selectOptions={allTeams.map((team) => ({
                     label: team.name,
                     value: team.name,
+                    logo: team.logo,
                     id: team.id,
                     goals: "",
                   }))}
@@ -413,6 +416,7 @@ const Match: NextPageWithLayout = () => {
                       setFieldValue("home", {
                         ...values.home,
                         name: e.value,
+                        logo: e.logo,
                         id: e.id,
                       }),
                   }}
@@ -445,6 +449,7 @@ const Match: NextPageWithLayout = () => {
                   selectOptions={allTeams.map((team) => ({
                     label: team.name,
                     value: team.name,
+                    logo: team.logo,
                     id: team.id,
                     goals: "",
                   }))}
@@ -453,6 +458,7 @@ const Match: NextPageWithLayout = () => {
                       setFieldValue("away", {
                         ...values.away,
                         name: e.value,
+                        logo: e.logo,
                         id: e.id,
                       }),
                   }}
@@ -500,14 +506,16 @@ const Match: NextPageWithLayout = () => {
                   id="league"
                   label="Select League"
                   selectOptions={leagues.map((league) => ({
+                    id: league.id,
                     label: league.name,
                     value: league.name,
-                    id: league.id,
+                    logo: league.logo,
                   }))}
                   selectProps={{
                     onChange: (e: any) =>
                       setFieldValue("league", {
                         name: e.value,
+                        logo: e.logo,
                         id: e.id,
                       }),
                   }}

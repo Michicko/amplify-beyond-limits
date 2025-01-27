@@ -128,19 +128,19 @@ const Players: NextPageWithLayout = () => {
 
   const columns: Column<IPlayer>[] = useMemo(() => {
     return [
-       {
-              Header: "Photo",
-              accessor: "photo",
-              Cell: ({ value }) => (
-                <>
-                  {value ? (
-                    <StorageImage alt="photo" width={40} path={value} />
-                  ) : (
-                    <img src="" alt="photo" />
-                  )}
-                </>
-              ),
-            },
+      {
+        Header: "Photo",
+        accessor: "photo",
+        Cell: ({ value }) => (
+          <>
+            {value ? (
+              <StorageImage alt="photo" width={40} path={value} />
+            ) : (
+              <img src="" alt="photo" />
+            )}
+          </>
+        ),
+      },
       {
         Header: "Fullname",
         accessor: "firstName",
@@ -285,7 +285,7 @@ const Players: NextPageWithLayout = () => {
             </ModalHeader>
             <ModalCloseButton />
             <ModalBody>
-            <FileUploader
+              <FileUploader
                 acceptedFileTypes={["image/*"]}
                 path="media/"
                 maxFileCount={1}

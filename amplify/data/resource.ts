@@ -27,6 +27,7 @@ const schema = a.schema({
       season: a.string(),
       home: a.customType({
         name: a.string(),
+        logo: a.string(),
         id: a.string(),
         goals: a.string(),
         lineup: a.string().array(),
@@ -43,6 +44,7 @@ const schema = a.schema({
 
       away: a.customType({
         name: a.string(),
+        logo: a.string(),
         id: a.string(),
         goals: a.string(),
         lineup: a.string().array(),
@@ -61,6 +63,7 @@ const schema = a.schema({
       time: a.string(),
       league: a.customType({
         name: a.string(),
+        logo: a.string(),
         id: a.string(),
       }),
       venue: a.string(),
