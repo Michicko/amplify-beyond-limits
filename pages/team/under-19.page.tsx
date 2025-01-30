@@ -21,8 +21,8 @@ const Under19Team = () => {
   const getSignedImageUrl = async (key: string): Promise<string> => {
     const s3 = new S3Client({
       credentials: {
-        accessKeyId: process.env.NEXT_PUBLIC_AWS_ACCESS_KEY,
-        secretAccessKey: process.env.NEXT_PUBLIC_AWS_SECRET_KEY,
+        accessKeyId: "AKIA2NK3YLEW6XCPIL7X",
+        secretAccessKey: "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",
       },
       region: "us-east-2",
     });
