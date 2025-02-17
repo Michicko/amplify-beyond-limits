@@ -21,14 +21,14 @@ const Under19Team = () => {
   const getSignedImageUrl = async (key: string): Promise<string> => {
     const s3 = new S3Client({
       credentials: {
-        accessKeyId: "AKIA2NK3YLEW6XCPIL7X",
-        secretAccessKey: "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",
+        accessKeyId: process.env.ACCESS_KEY_ID,
+        secretAccessKey: process.env.SECRET_ACCESS_KEY,
       },
       region: "us-east-2",
     });
 
     const command = new GetObjectCommand({
-      Bucket: "amplify-amplifynextpagest-beyondlstorebucket51a4c0-drhbkhgztuad",
+      Bucket: process.env.BUCKET,
       Key: key,
     });
 
