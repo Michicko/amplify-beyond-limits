@@ -1,35 +1,61 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 export default function Slider() {
   const slides = [
-    { textLine1: "WELCOME TO", textLine2: "BEYOND LIMITS FA",image: "/images/tcc23.jpg" },
-    { textLine1: "WELCOME TO", textLine2: "BEYOND LIMITS FA", image: "/images/ysfon.jpg" },
+    {
+      textLine1: "WELCOME TO",
+      textLine2: "BEYOND LIMITS FA",
+      image: "/images/tcc23.jpg",
+    },
+    {
+      textLine1: "WELCOME TO",
+      textLine2: "BEYOND LIMITS FA",
+      image: "/images/ysfon.jpg",
+    },
   ];
 
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [index, setIndex] = useState(0);
+  const currentSlide = slides[index];
 
   const nextSlide = () => {
-    setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
+    setIndex((prevIndex) =>
+      prevIndex === slides.length - 1 ? 0 : prevIndex + 1
+    );
   };
 
   const prevSlide = () => {
-    setCurrentSlide((prevSlide) => (prevSlide === 0 ? slides.length - 1 : prevSlide - 1));
+    setIndex((prevIndex) =>
+      prevIndex === 0 ? slides.length - 1 : prevIndex - 1
+    );
   };
+
+  useEffect(() => {
+    const intervalId = setInterval(nextSlide, 5000);
+
+    return () => clearInterval(intervalId);
+  }, [slides.length]);
 
   return (
     <div className="slider">
       <div
         className="slider-background"
-        style={{ backgroundImage: `linear-gradient(0deg, rgba(4, 48, 91, 54%), rgba(64, 84, 102, 27%)), url(${slides[currentSlide].image})` }}>
+        style={{
+          backgroundImage: `linear-gradient(0deg, rgba(4, 48, 91, 54%), rgba(64, 84, 102, 27%)), url(${currentSlide.image})`,
+        }}
+      >
         <div className="slider-text">
-          <h1 className="line1">{slides[currentSlide].textLine1}</h1>
-          <h2 className="line2">{slides[currentSlide].textLine2}</h2>
+          <h1 className="line1">{currentSlide.textLine1}</h1>
+          <h2 className="line2">{currentSlide.textLine2}</h2>
         </div>
       </div>
 
       {/* Add navigation controls */}
-      <button className="prev-slide" onClick={prevSlide}>❮</button>
-      <button className="next-slide" onClick={nextSlide}>❯</button>
+      <button className="prev-slide" onClick={prevSlide}>
+        ❮
+      </button>
+      <button className="next-slide" onClick={nextSlide}>
+        ❯
+      </button>
     </div>
   );
 }

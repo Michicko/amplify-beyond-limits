@@ -1,7 +1,7 @@
-import React from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import styles from './VideoCard.module.css'; // Assuming CSS module is in the same folder
+import React from "react";
+import Image from "next/image";
+import Link from "next/link";
+import styles from "./VideoCard.module.css"; // Assuming CSS module is in the same folder
 
 const videoData = [
   {
@@ -33,19 +33,23 @@ const VideoCard = () => {
             <Image
               src={video.thumbnail}
               alt={video.title}
-              layout="responsive" 
+              layout="responsive"
               width={100}
               height={150}
-              unoptimized     
+              unoptimized
               className={styles.thumbnail}
             />
-          <div className={styles.buttonContainer}>
-          <Link href={video.videoUrl} legacyBehavior>
-            <a className={styles.watchButton} target="_blank" rel="noopener noreferrer">
-              {video.title}
-            </a>
-          </Link>
-          </div>
+            <div className={styles.buttonContainer}>
+              <Link href={video.videoUrl} legacyBehavior>
+                <a
+                  className={styles.watchButton}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {video.title}
+                </a>
+              </Link>
+            </div>
           </div>
         </div>
       ))}
