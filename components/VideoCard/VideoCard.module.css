@@ -1,15 +1,8 @@
-.videoList {
-  display: grid;
-grid-template-columns: repeat(3, 1fr);
-  justify-content: space-between;
-  gap: 16px;
-  padding: 5px;
-}
-
 .videoCard {
   transition: transform 0.2s ease-in-out;
   width: 100%;
   height: auto;
+  position: relative;
 }
 
 .videoCard:hover {
@@ -22,8 +15,8 @@ grid-template-columns: repeat(3, 1fr);
   height: auto;
 }
 
-.thumbnailWrapper img{ 
-    height: 100px;
+.thumbnailWrapper img {
+  height: 100px;
 }
 
 .thumbnail {
@@ -66,12 +59,25 @@ grid-template-columns: repeat(3, 1fr);
 .watchButton:hover {
   cursor: pointer;
 }
-.buttonContainer{
-    text-align: center;
-    padding-top: 20px;
+.buttonContainer {
+  text-align: center;
+  padding-top: 20px;
 }
-@media (max-width: 600px) {
-   .videoList {
-grid-template-columns: repeat(2, 1fr);
+
+.play-icon {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  z-index: 4000;
+  transform: translate(-50%, -50%);
+  height: 2.5rem;
+  width: 2.5rem;
+  fill: #ffd700;
 }
+
+@media (min-width: 48rem) {
+  .play-icon {
+    height: 4rem;
+    width: 4rem;
+  }
 }

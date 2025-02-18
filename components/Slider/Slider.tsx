@@ -1,31 +1,19 @@
+import { welcome_slides } from "@/lib/placeholder-data";
 import { useState, useEffect } from "react";
 
 export default function Slider() {
-  const slides = [
-    {
-      textLine1: "WELCOME TO",
-      textLine2: "BEYOND LIMITS FA",
-      image: "/images/tcc23.jpg",
-    },
-    {
-      textLine1: "WELCOME TO",
-      textLine2: "BEYOND LIMITS FA",
-      image: "/images/ysfon.jpg",
-    },
-  ];
-
   const [index, setIndex] = useState(0);
-  const currentSlide = slides[index];
+  const currentSlide = welcome_slides[index];
 
   const nextSlide = () => {
     setIndex((prevIndex) =>
-      prevIndex === slides.length - 1 ? 0 : prevIndex + 1
+      prevIndex === welcome_slides.length - 1 ? 0 : prevIndex + 1
     );
   };
 
   const prevSlide = () => {
     setIndex((prevIndex) =>
-      prevIndex === 0 ? slides.length - 1 : prevIndex - 1
+      prevIndex === 0 ? welcome_slides.length - 1 : prevIndex - 1
     );
   };
 
@@ -33,7 +21,7 @@ export default function Slider() {
     const intervalId = setInterval(nextSlide, 5000);
 
     return () => clearInterval(intervalId);
-  }, [slides.length]);
+  }, [welcome_slides.length]);
 
   return (
     <div className="slider">

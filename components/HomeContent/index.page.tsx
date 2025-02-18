@@ -8,11 +8,11 @@ import { useGetHomeDataQuery } from "@/store/api/match.api";
 import moment from "moment";
 import HomeNews from "./homeNews";
 import Players from "./Players";
+import { match_highlights } from "@/lib/placeholder-data";
+import { IHighlight } from "@/lib/definitions";
 
 const Home = () => {
   const { data, isLoading } = useGetHomeDataQuery();
-
-  console.log("Hello world!");
 
   return (
     <div>
@@ -115,9 +115,14 @@ const Home = () => {
         </p>
       </section>
 
-      <section className="">
+      <section className="highlight">
         <div className="videos">
-          <VideoCard />
+          {/* highlights /> */}
+          <div className={"video-list"}>
+            {match_highlights.map((highlight) => {
+              return <VideoCard highlight={highlight} key={highlight.id} />;
+            })}
+          </div>
         </div>
       </section>
     </div>
