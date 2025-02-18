@@ -1,44 +1,42 @@
 /* Widescreens */
 @media (max-width: 1500px) {
-
 }
 
 /* A bit bigger if you need some adjustments around here */
 @media (max-width: 1100px) {
-
 }
 
 /* Desktop screen or landscape tablet */
 @media (max-width: 900px) {
-.match-updates{
-  display: grid;
-  grid-template-columns: 50% 50%; /* Two columns with 50% width each */
-  grid-template-rows: auto auto; /* Two rows: let the height adjust based on content */
-  gap: 10px;
-}
-.previous-match{
-     grid-column: 1; /* First column */
-  grid-row: 1; /* First row */
-}
-.next-match{
-     grid-column: 2; /* Second column */
-  grid-row: 1; /* First row */
-}
-.standings{
+  .match-updates {
+    display: grid;
+    grid-template-columns: 50% 50%; /* Two columns with 50% width each */
+    grid-template-rows: auto auto; /* Two rows: let the height adjust based on content */
+    gap: 10px;
+  }
+  .previous-match {
+    grid-column: 1; /* First column */
+    grid-row: 1; /* First row */
+  }
+  .next-match {
+    grid-column: 2; /* Second column */
+    grid-row: 1; /* First row */
+  }
+  .standings {
     grid-column: 1 / span 2; /* Span across both columns */
-  grid-row: 2; /* Second row */
-}
-.upcoming-updates{
+    grid-row: 2; /* Second row */
+  }
+  .upcoming-updates {
     width: 100%;
-}
+  }
 }
 
 /* Perhaps bigger tablets */
 @media (max-width: 768px) {
-.upcoming-updates-container {
+  .upcoming-updates-container {
     grid-template-columns: repeat(2, 1fr);
-}
- .videoList {
+  }
+  .videoList {
     flex-direction: row;
     align-items: center;
   }
@@ -46,44 +44,33 @@
 
 /* Starting into tablets somewhere in here */
 @media (max-width: 600px) {
-  .line1 {
-    font-size: 2rem;
-  }
-  .line2 {
-    font-size: 4rem;
-  }
-  .interlude{
+  .interlude {
     width: 100%;
     padding: 3rem 0;
   }
-
 }
 
 @media (max-width: 500px) {
-.upcoming-updates-container {
+  .upcoming-updates-container {
     grid-template-columns: repeat(1, 1fr);
-}
-.interlude p{
+  }
+  .interlude p {
     width: 90%;
   }
- .match-updates{
-  display: block;
-}
-.standings-table th, .standings-table td { 
-    padding-left: .4rem;
+  .match-updates {
+    display: block;
+  }
+  .standings-table th,
+  .standings-table td {
+    padding-left: 0.4rem;
     text-align: left;
-}
-
+  }
 }
 
 /* You might do landscape phones here if your content seems to need it */
 @media (max-width: 460px) {
-
 }
-
 
 /* Smartphones start somewhere around here */
 @media (max-width: 300px) {
-   
-   
 }

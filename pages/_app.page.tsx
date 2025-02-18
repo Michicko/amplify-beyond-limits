@@ -9,6 +9,7 @@ import { Provider } from "react-redux";
 import store from "@/store/store";
 import { ReactElement, ReactNode, useEffect, useState } from "react";
 import { NextPage } from "next";
+import NextTopLoader from "nextjs-toploader";
 // import '../public/service-worker'
 
 import { Amplify } from "aws-amplify";
@@ -93,7 +94,7 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
           />
           <link rel="manifest" href="/manifest.json" />
         </Head>
-
+        {/* <NextTopLoader /> */}
         {getLayout(<Component {...pageProps} />)}
       </div>
     </Provider>

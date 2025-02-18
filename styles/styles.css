@@ -169,7 +169,7 @@ Section {
 .slider {
   position: relative;
   width: 100%;
-  height: 75vh;
+  height: 50vh;
   overflow: hidden;
   border-radius: 27px;
   margin-top: 2rem;
@@ -201,22 +201,25 @@ Section {
   padding-top: 10rem;
   animation: fadeInText 1s forwards ease-in-out; /* Fade-in animation */
 }
-/* First line with a specific font */
-.line1 {
+
+.line1,
+.line2 {
   font-family: "formula_condensedbold", roboto; /* First font style */
-  font-size: 4rem; /* Adjust size as needed */
-  font-weight: normal;
   margin: 0;
   letter-spacing: 3px;
+}
+
+/* First line with a specific font */
+.line1 {
+  font-size: 1.5rem; /* Adjust size as needed */
+  font-weight: normal;
 }
 
 /* Second line with a different font */
 .line2 {
   font-family: "formula_condensedbold", roboto; /* Second font style */
-  font-size: 6rem; /* Larger size for the second line */
+  font-size: 2rem; /* Larger size for the second line */
   color: #ffd700;
-  margin: 0;
-  letter-spacing: 3px;
 }
 
 @keyframes fadeInText {
@@ -489,10 +492,30 @@ td {
   .video-list {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .slider {
+    height: 60vh;
+  }
+
+  .line1 {
+    font-size: 2.5rem;
+  }
+
+  .line2 {
+    font-size: 3.5rem;
+  }
 }
 
 @media (min-width: 48rem) {
   .video-list {
     grid-template-columns: repeat(3, 1fr);
+  }
+
+  .slider {
+    height: 75vh;
+  }
+
+  .line2 {
+    font-size: 4rem;
   }
 }

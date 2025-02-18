@@ -1,9 +1,8 @@
 .tabsContainer {
-
 }
 
 .tabs {
-   gap: 10px;
+  gap: 10px;
   margin: 0 auto;
   text-align: center;
   display: flex;
@@ -21,14 +20,14 @@
   background-color: none;
   margin: 5px;
   font-size: 18px;
-   letter-spacing: 1px;
-  font-family: 'formula_condensedregular', roboto;
+  letter-spacing: 1px;
+  font-family: "formula_condensedregular", roboto;
   text-transform: uppercase;
-   transition: color 0.2s;
+  transition: color 0.2s;
 }
 
 .tabs button.active {
-  color: #D0002F;
+  color: #d0002f;
 }
 .tabs::-webkit-scrollbar {
   display: none;
@@ -45,18 +44,19 @@
 
   margin: 0 auto;
   border-collapse: collapse;
-  background-color: #1A6DBB;
+  background-color: #1a6dbb;
   color: white;
 }
 
-.table th, .table td {
+.table th,
+.table td {
   padding: 10px;
-  border-bottom: .2px solid #79BEFF;
+  border-bottom: 0.2px solid #79beff;
   font-size: 20px;
 }
 
 .table th {
-  background-color: #1A6DBB;
+  background-color: #1a6dbb;
   text-transform: uppercase;
 }
 
@@ -67,7 +67,7 @@
 .club {
   display: flex;
   align-items: center;
-  justify-content: start;
+  justify-content: flex-start;
 }
 
 .clubLogo {
@@ -84,4 +84,3 @@
 /* .table tbody tr:hover {
   background-color: #00509e;
 } */
- 
