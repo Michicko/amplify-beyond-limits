@@ -5,10 +5,7 @@ import { setToken, setUser } from "@/store/slice/auth.slice";
 import { Box, Center, Spinner } from "@chakra-ui/react";
 import axios from "axios";
 import { useRouter } from "next/router";
-import {
-  API_URL,
-  TOKEN_STORAGE_KEY,
-} from "@/config/constants";
+import { API_URL, TOKEN_STORAGE_KEY } from "@/config/constants";
 import React, { ReactNode, useEffect, useState } from "react";
 import Header from "../Header/Header";
 import Footer from "../Footer/footer";
@@ -67,27 +64,28 @@ const GuestLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
 
   if (isLoading)
     return (
-      <Center w='100vw' h='100vh' bg='white'>
-        <Spinner color='primary.500' size='lg' />
+      <Center w="100vw" h="100vh" bg="white">
+        <Spinner color="primary.500" size="lg" />
       </Center>
     );
   return (
-       <div 
-       style={{
-        backgroundImage: 'url(/images/bg.svg)', 
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundAttachment: 'fixed',
-        width: '100%', 
-        display: 'flex',
-        justifyContent: 'center',
-        padding: '0px',
-      }}>
-        <div className="container">
-          <Header />
-          <main className="flex-grow ">{children}</main>
-          <Footer />
-        </div>
+    <div
+      style={{
+        backgroundImage: "url(/images/bg.svg)",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundAttachment: "fixed",
+        width: "100%",
+        display: "flex",
+        justifyContent: "center",
+        padding: "0px",
+      }}
+    >
+      <div className="container">
+        <Header />
+        <main className="flex-grow ">{children}</main>
+        <Footer />
+      </div>
     </div>
   );
 };

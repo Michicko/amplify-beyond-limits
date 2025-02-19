@@ -26,6 +26,7 @@ const Article = ({
           className={styles["article__img"]}
           style={{ objectFit: "cover" }}
           loader={loaderProp}
+          unoptimized
         />
       </div>
       <div className={styles.content}>

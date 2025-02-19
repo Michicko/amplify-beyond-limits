@@ -80,26 +80,29 @@ export const articles = [
   },
 ];
 
-// const tvNews = [
-//   {
-//     id: "1",
-//     title: "TCC 24|25 MD1 : BEYOND LIMITS FA VS IGANMU TIGERS",
-//     date: "2024-09-29",
-//     videoUrl: "https://www.youtube.com/watch?v=oVy2zUmq1DA",
-//     thumbnail: "/images/trials.png",
-//   },
-//   {
-//     id: "2",
-//     title: "TV Post 2",
-//     date: "2024-09-27",
-//     videoUrl: "https://www.youtube.com/watch?v=oVy2zUmq1DA",
-//     thumbnail: "/images/keep.png",
-//   },
-//   {
-//     id: "3",
-//     title: "TV Post 3",
-//     date: "2024-09-27",
-//     videoUrl: "https://www.youtube.com/watch?v=oVy2zUmq1DA",
-//     thumbnail: "/images/ongame.png",
-//   },
-// ];
+export const socials = [
+  {
+    id: 21,
+    link: "https://x.com/beyond_limitsfa?s=11&t=a_AA_bkBcHWDpD2WBldopQ",
+    icon: "/images/pajamas_twitter.svg",
+    name: "Twitter",
+  },
+  {
+    id: 22,
+    link: "https://www.instagram.com/beyondlimits_fa?igsh=MXdiM3gwaTBkNGd5Yg==",
+    icon: "/images/bi_instagram.svg",
+    name: "Twitter",
+  },
+  {
+    id: 23,
+    link: "https://x.com/beyond_limitsfa?s=11&t=a_AA_bkBcHWDpD2WBldopQ",
+    icon: "/images/ph_tiktok-logo.svg",
+    name: "Tiktok",
+  },
+  {
+    id: 24,
+    link: "https://youtube.com/@beyondlimitsfootballacadem7276?si=UrDiLOAy9c6j8jDM",
+    icon: "/images/ant-design_youtube-outlined.svg",
+    name: "Youtube",
+  },
+];

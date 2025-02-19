@@ -94,7 +94,7 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
           />
           <link rel="manifest" href="/manifest.json" />
         </Head>
-        {/* <NextTopLoader /> */}
+        <NextTopLoader />
         {getLayout(<Component {...pageProps} />)}
       </div>
     </Provider>

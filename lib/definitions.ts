@@ -12,3 +12,10 @@ export interface IArticle {
   createdAt: string;
   image: string;
 }
+
+export interface ISocial {
+  id: number;
+  link: string;
+  icon: string;
+  name: string;
+}

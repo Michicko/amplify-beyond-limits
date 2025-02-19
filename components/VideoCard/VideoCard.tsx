@@ -3,6 +3,7 @@ import Image from "next/image";
 import styles from "./VideoCard.module.css"; // Assuming CSS module is in the same folder
 import { IHighlight } from "@/lib/definitions";
 import { FaPlay } from "react-icons/fa";
+import loaderProp from "@/lib/imageLoader";
 
 const VideoCard = ({ highlight }: { highlight: IHighlight }) => {
   return (
@@ -11,11 +12,11 @@ const VideoCard = ({ highlight }: { highlight: IHighlight }) => {
         <Image
           src={highlight.thumbnail}
           alt={highlight.title}
-          layout="responsive"
-          width={100}
-          height={150}
+          fill={true}
           unoptimized
+          loader={loaderProp}
           className={styles.thumbnail}
+          style={{ objectFit: "cover" }}
         />
         <div className={styles.buttonContainer}>
           <h4 className={styles.watchButton}>{highlight.title}</h4>
