@@ -64,12 +64,16 @@
   padding-top: 20px;
 }
 
-.play-icon {
+.video-card__link {
   position: absolute;
   top: 40%;
   left: 50%;
   z-index: 4000;
   transform: translate(-50%, -50%);
+  cursor: pointer;
+}
+
+.play-icon {
   height: 2.5rem;
   width: 2.5rem;
   fill: #ffd700;

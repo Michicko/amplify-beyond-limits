@@ -1,5 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+}
+
 html,
 body,
 div,
@@ -475,8 +485,8 @@ td {
 /* Video Card */
 
 /* Main Container  */
-.mainContainer {
-  margin-top: 10%;
+.main-container {
+  margin-top: 2rem;
 }
 
 .video-list {
@@ -486,6 +496,45 @@ td {
   gap: 1.5rem;
   grid-auto-rows: 1fr;
   min-height: 25rem;
+}
+
+.news {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  padding-top: 20px;
+}
+
+.articles,
+.highlights {
+  width: 100%;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+.title__container {
+  width: 100%;
+  text-align: center;
+  margin: 4rem 0;
+}
+
+.title__container h2 {
+  color: white;
+  border: none;
+  font-size: 2rem;
+  font-family: "formula_condensedregular", roboto;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-radius: 13px;
+  transition: background-color 0.3s ease-in-out;
+  background-color: #d7002c;
+  display: inline;
+  padding: 0.5rem 2rem;
 }
 
 @media (min-width: 36rem) {

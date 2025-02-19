@@ -1,9 +1,14 @@
 export interface IHighlight {
-  highlight: {
-    id: number;
-    title: string;
-    date: string;
-    thumbnail: string;
-    videoUrl: string;
-  };
+  id: number;
+  title: string;
+  date: string;
+  thumbnail: string;
+  videoUrl: string;
+}
+
+export interface IArticle {
+  id: string;
+  title: string;
+  createdAt: string;
+  image: string;
 }

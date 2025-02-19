@@ -8,8 +8,8 @@ import { useGetHomeDataQuery } from "@/store/api/match.api";
 import moment from "moment";
 import HomeNews from "./homeNews";
 import Players from "./Players";
-import { match_highlights } from "@/lib/placeholder-data";
-import { IHighlight } from "@/lib/definitions";
+import { articles, match_highlights } from "@/lib/placeholder-data";
+import Article from "../Article/Article";
 
 const Home = () => {
   const { data, isLoading } = useGetHomeDataQuery();
@@ -66,13 +66,17 @@ const Home = () => {
         </div>
       </section> */}
 
-      {/* <section className="Latest-News">
+      <section className="Latest-News">
         <div className="Latest-News-Top">
           <h2>LATEST NEWS</h2>
-          <Link href="/news">VIEW EVERYTHING →</Link>
+          <Link href="/news">VIEW MORE ARTICLES →</Link>
         </div>
-        <HomeNews news={data.data.news} />
-      </section> */}
+        <div className={"news"}>
+          {articles.map((article) => {
+            return <Article article={article} key={article.id} />;
+          })}
+        </div>
+      </section>
 
       {/* <section className="Latest-News">
         <div className="Latest-News-Top">

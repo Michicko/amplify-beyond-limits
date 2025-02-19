@@ -4,15 +4,10 @@ import styles from "./VideoCard.module.css"; // Assuming CSS module is in the sa
 import { IHighlight } from "@/lib/definitions";
 import { FaPlay } from "react-icons/fa";
 
-const VideoCard = ({ highlight }: IHighlight) => {
+const VideoCard = ({ highlight }: { highlight: IHighlight }) => {
   return (
     <div className={styles.videoCard}>
-      <a
-        className={styles.thumbnailWrapper}
-        target="_blank"
-        rel="noopener noreferrer"
-        href={highlight.videoUrl}
-      >
+      <div className={styles.thumbnailWrapper}>
         <Image
           src={highlight.thumbnail}
           alt={highlight.title}
@@ -25,8 +20,15 @@ const VideoCard = ({ highlight }: IHighlight) => {
         <div className={styles.buttonContainer}>
           <h4 className={styles.watchButton}>{highlight.title}</h4>
         </div>
+      </div>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href={highlight.videoUrl}
+        className={styles["video-card__link"]}
+      >
+        <FaPlay className={styles["play-icon"]} />
       </a>
-      <FaPlay className={styles["play-icon"]} />
     </div>
   );
 };
