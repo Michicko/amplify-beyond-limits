@@ -94,7 +94,7 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
           />
           <link rel="manifest" href="/manifest.json" />
         </Head>
-        <NextTopLoader />
+        <NextTopLoader color="#ffd700" height={4} />
         {getLayout(<Component {...pageProps} />)}
       </div>
     </Provider>

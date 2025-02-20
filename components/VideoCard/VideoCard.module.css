@@ -12,19 +12,21 @@
 .thumbnailWrapper {
   position: relative;
   width: 100%;
+  min-height: 5rem;
+  max-width: 100%;
   height: auto;
 }
 
-.thumbnailWrapper img {
-  height: 100px;
+.thumbnailWrapper::before {
+  content: "";
+  padding-top: 150%;
+  display: block;
 }
 
 .thumbnail {
   border-radius: 12px;
-  overflow: hidden;
-  height: 100%;
-
-  object-fit: cover;
+  max-width: 100%;
+  height: auto;
 }
 
 .videoInfo {
@@ -68,7 +70,7 @@
   position: absolute;
   top: 40%;
   left: 50%;
-  z-index: 4000;
+  z-index: 500;
   transform: translate(-50%, -50%);
   cursor: pointer;
 }

@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import styles from "./Header.module.css";
 import Menu from "../Menu/Menu";
+import HeaderLink from "./HeaderLink";
 
 export default function Header() {
   const [scrollingUp, setScrollingUp] = useState(true); // Track scrolling direction
@@ -41,13 +42,15 @@ export default function Header() {
 
   // Close menu if clicked outside
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
+    const handleClickOutside = (event: Event) => {
+      const target = event.target as HTMLDivElement;
+      if (menuRef.current && !menuRef.current.contains(target)) {
         setMenuOpen(false);
       }
     };
 
     document.addEventListener("mousedown", handleClickOutside);
+
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
@@ -70,10 +73,10 @@ export default function Header() {
         <div className={`${styles.topheader}`}>
           <div className={styles.lefthead}>
             <div className={`${styles.navlinks} ${styles.odd}`}>
-              <Link href="/gallery">GALLERY</Link>
+              <HeaderLink link={{ href: "/gallery", name: "Gallery" }} />
             </div>
             <div className={`${styles.navlinks} ${styles.odd}`}>
-              <Link href="/fixtures">FIXTURES</Link>
+              <HeaderLink link={{ href: "/fixtures", name: "FIXTURES" }} />
             </div>
           </div>
           <div className={styles.middlehead}>
@@ -81,7 +84,7 @@ export default function Header() {
           </div>
           <div className={styles.righthead}>
             <div className={styles.navlinks}>
-              <Link href="/contact">CONTACT US</Link>
+              <HeaderLink link={{ href: "/contact", name: "CONTACT US" }} />
             </div>
           </div>
         </div>

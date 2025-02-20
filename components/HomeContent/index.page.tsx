@@ -6,13 +6,12 @@ import Slider from "@/components/Slider/Slider";
 import Link from "next/link";
 import { useGetHomeDataQuery } from "@/store/api/match.api";
 import moment from "moment";
-import HomeNews from "./homeNews";
 import Players from "./Players";
 import { articles, match_highlights } from "@/lib/placeholder-data";
 import Article from "../Article/Article";
 
 const Home = () => {
-  const { data, isLoading } = useGetHomeDataQuery();
+  // const { data, isLoading } = useGetHomeDataQuery();
 
   return (
     <div>
@@ -66,8 +65,8 @@ const Home = () => {
         </div>
       </section> */}
 
-      <section className="Latest-News">
-        <div className="Latest-News-Top">
+      <section className="section__news">
+        <div className="news-header">
           <h2>LATEST NEWS</h2>
           <Link href="/news">VIEW MORE ARTICLES →</Link>
         </div>
@@ -123,7 +122,7 @@ const Home = () => {
         <div className="videos">
           {/* highlights /> */}
           <div className={"video-list"}>
-            {match_highlights.map((highlight) => {
+            {match_highlights.slice(0, 3).map((highlight) => {
               return <VideoCard highlight={highlight} key={highlight.id} />;
             })}
           </div>

@@ -7,7 +7,7 @@ const PageHeader = ({
 }: {
   image: string;
   title: string;
-  lead: string;
+  lead?: string;
 }) => {
   return (
     <div
@@ -19,7 +19,7 @@ const PageHeader = ({
       }}
     >
       <h1>{title}</h1>
-      <p>{lead}</p>
+      {lead && <p>{lead}</p>}
     </div>
   );
 };

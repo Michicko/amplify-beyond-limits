@@ -2,12 +2,11 @@ import { useState } from "react";
 import Image from "next/image";
 import styles from "./Menu.module.css";
 import Link from "next/link";
-import { socials } from "@/lib/placeholder-data";
-import Social from "../Social/Social";
 import MenuLinks from "./MenuLinks";
 import MenuBtn from "./MenuBtn";
 import CloseBtn from "./CloseBtn";
 import { useRouter } from "next/router";
+import Socials from "../Social/Socials";
 
 export default function Menu({ closeMenu }: { closeMenu: () => void }) {
   const [activeTab, setActiveTab] = useState(0);
@@ -99,12 +98,7 @@ export default function Menu({ closeMenu }: { closeMenu: () => void }) {
           </div>
           <div className={styles.menuTextBottom}>
             {/* socials */}
-            <div className={styles.socials}>
-              {socials.map((social) => {
-                return <Social social={social} key={social.id} />;
-              })}
-            </div>
-
+            <Socials />
             {/* Copyright */}
             <div className={styles.menuCopyright}>
               <p>Beyond Limits FA © 2024 All rights reserved</p>

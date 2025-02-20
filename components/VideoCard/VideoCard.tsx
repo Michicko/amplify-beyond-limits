@@ -18,9 +18,9 @@ const VideoCard = ({ highlight }: { highlight: IHighlight }) => {
           className={styles.thumbnail}
           style={{ objectFit: "cover" }}
         />
-        <div className={styles.buttonContainer}>
-          <h4 className={styles.watchButton}>{highlight.title}</h4>
-        </div>
+      </div>
+      <div className={styles.buttonContainer}>
+        <h4 className={styles.watchButton}>{highlight.title}</h4>
       </div>
       <a
         target="_blank"

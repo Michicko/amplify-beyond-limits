@@ -11,7 +11,9 @@
   border-radius: 22px;
   overflow: hidden;
   align-items: center;
+  min-height: 10rem;
 }
+
 .menuItem {
   padding: 20px;
   text-align: left;
@@ -21,54 +23,62 @@
   padding: 30px 10px;
   height: 100%;
 }
+
 .menuTab {
   display: grid;
-  grid-template-columns: 20% auto;
+  grid-template-columns: min-content auto;
   gap: 20px;
-  padding-bottom: 10px;
+  /* padding-bottom: 10px; */
 }
-.menuLinks {
+
+/* .menuLinks {
   display: flex;
   flex-direction: column;
+  margin-bottom: 1.25rem;
+} */
+
+.menuLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
 }
+
 .close {
-  padding: 0px 0px 10px 0px;
+  /* padding: 0px 0px 10px 0px; */
+  margin-bottom: 0.5rem;
 }
-.close button {
-  background: none;
-  color: white;
-  border: none;
-  font-family: "formula_condensedregular", roboto;
-  font-size: 16px;
-  align-items: center;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-}
+
+.close button,
 .btn {
   background: none;
-  background-color: none;
-  border: 1px white solid;
-  border-radius: 17px;
   color: white;
-  padding: 14px 20px 14px 20px;
-  margin-bottom: 10px;
-  letter-spacing: 1.2px;
   font-family: "formula_condensedregular", roboto;
-  font-size: 16px;
+  letter-spacing: 1.2px;
+  font-size: 0.8rem;
   align-items: center;
   display: inline-flex;
-  align-items: center;
-  gap: 8px;
   cursor: pointer;
+  gap: 6px;
+}
+
+.close button {
+  border: none;
+}
+
+.btn {
+  border: 1px white solid;
+  border-radius: 17px;
   transition: background-color 0.3s ease-in-out;
+  padding: 0.5rem 1rem;
+  flex-basis: unset;
 }
 
 .btn svg {
-  min-width: 1.5rem;
-  height: auto;
-  margin-top: -3px;
+  min-width: 1.25rem;
+  margin-top: -0.25rem;
+  height: 1.2rem;
+  width: 1.2rem;
 }
 
 .btn:hover > svg path {
@@ -113,13 +123,16 @@
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
 } */
+
 .team {
   grid-template-columns: repeat(3, 1fr); /* 2 equal columns */
   grid-template-rows: repeat(2, 1fr);
 }
+
 .team .menuSubLinkBody {
   background-position: top !important;
 }
+
 .menuSubLinkBody {
   display: flex;
   align-items: center;
@@ -134,6 +147,19 @@
   transition: border-color 0.3s ease-in-out;
   text-transform: uppercase;
 }
+
+.menuSubLinkBody {
+  max-width: 100%;
+  height: auto;
+  max-height: 10.5rem;
+}
+
+.menuSubLinkBody::before {
+  content: "";
+  display: block;
+  padding-top: 60%;
+}
+
 .menuSubLinkBody:hover,
 .menuSubLinkBody.current {
   border: white solid 1px;
@@ -141,13 +167,13 @@
 
 .menuSubLinkBody p {
   font-family: "formula_condensedbold", roboto;
-  font-size: 40px;
+  font-size: 1rem;
   text-align: center;
   letter-spacing: 3px;
-  line-height: 40px;
   padding: 0px;
   text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
 }
+
 .menuSubLinkBodyLink {
   font-family: "formula_condensedbold", roboto;
   font-size: 20px;
@@ -192,42 +218,69 @@
     display: block;
   }
 }
-@media (max-width: 600px) {
+
+@media (max-width: 768px) {
   .menuTab {
     display: block;
   }
-  .menuLinks {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 5px;
-  }
-  .menuSubLinkBody {
-    height: 30vh;
-  }
-}
-.socials {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  cursor: pointer;
 }
 
 @media (max-width: 460px) {
-  .btn {
-    padding: 10px 10px 10px 10px;
-  }
-  .menuSubLinkBody {
-    height: 20vh;
-  }
-  .menuSubLinkBody p {
-    font-size: 20px;
-    letter-spacing: 3px;
-    line-height: 20px;
-  }
   .team {
     grid-template-columns: repeat(2, 1fr); /* 2 equal columns */
     grid-template-rows: repeat(2, 1fr);
+  }
+}
+
+@media only screen and (min-width: 25rem) {
+  .menuSubLinkBody p {
+    font-size: 1.4rem;
+  }
+}
+
+@media only screen and (min-width: 36rem) {
+  .btn {
+    padding: 0.5rem 1rem;
+    gap: 6px;
+    flex-basis: unset;
+  }
+
+  .btn svg {
+    height: 1.2rem;
+    width: 1.2rem;
+  }
+
+  .menuSubLinkBody p {
+    font-size: 1.8rem;
+  }
+}
+
+@media only screen and (min-width: 48rem) {
+  .menuLinks {
+    margin-bottom: 0;
+  }
+
+  .btn {
+    padding: 0.6rem 1.2rem;
+    flex-basis: 100%;
+  }
+
+  .close button,
+  .btn {
+    font-size: 1.2rem;
+    gap: 8px;
+  }
+
+  .btn svg {
+    height: auto;
+    width: auto;
+  }
+
+  .menuSubLinkBody p {
+    font-size: 2rem;
+  }
+
+  .menuSubLinkBody {
+    max-height: 17.5rem;
   }
 }

@@ -25,6 +25,7 @@
   font-weight: normal;
   text-transform: uppercase;
   cursor: pointer;
+  font-size: 1rem;
 }
 
 .links a:hover {
@@ -32,15 +33,27 @@
 }
 
 .socials {
-   display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
 }
 
 .copyright {
-    font-family: roboto;
+  font-family: roboto;
   font-size: 15px;
   color: #fff;
+}
+
+@media only screen and (min-width: 36rem) {
+  .links a {
+    font-size: 1.2rem;
+  }
+}
+
+@media only screen and (min-width: 48rem) {
+  .links a {
+    font-size: 1.25rem;
+  }
 }

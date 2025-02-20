@@ -1,58 +1,63 @@
-
 /* Header */
-.header{
-    position: relative;
-    top: 0;
+.header {
+  position: relative;
+  top: 0;
   left: 50%;
-    transition: visibility 0.3s ease;
+  transition: visibility 0.3s ease;
   transform: translateX(-50%);
   width: 100%;
   max-width: 1300px;
   text-align: center;
-    z-index: 1000;
-    padding: 10px;
-
+  z-index: 1000;
+  padding: 10px;
 }
-.topheader, .navheader{
-    display: grid;
+
+.topheader,
+.navheader {
+  display: grid;
   grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
   gap: 10px; /* Space between grid items */
   width: 95%;
-padding-bottom: 10px;
+  padding-bottom: 10px;
   margin: 0 auto;
   align-items: center;
 }
-.topheader div, .nav-header div{
+.topheader div,
+.nav-header div {
   text-align: center;
   font-size: 1.2rem;
 }
-.lefthead{
-    display: flex;
+.lefthead {
+  display: flex;
+  position: relative;
+  z-index: 500;
 }
-.lefthead .navlinks, .lefthead .navicons {
-    text-align: left;
-    cursor: pointer;
+.lefthead .navlinks,
+.lefthead .navicons {
+  text-align: left;
+  cursor: pointer;
 }
-.navlinks:hover{
-    color: #FFD700;
+.navlinks:hover,
+.navlinks a.current {
+  color: #ffd700;
 }
-.righthead .navlinks, .righthead .navicons{
-    text-align: right;
-    cursor: pointer;
+.righthead .navlinks,
+.righthead .navicons {
+  text-align: right;
+  cursor: pointer;
 }
-.middlehead{
-
-    cursor: pointer;
+.middlehead {
+  cursor: pointer;
 }
-.navlinks a{
-    font-size: 16px;
+.navlinks a {
+  font-size: 16px;
 }
-.odd a{
-    padding-right: 20px;
+.odd a {
+  padding-right: 20px;
 }
-.middlehead h3{
-      color: #FFD700;
-    font-size: 16px;
+.middlehead h3 {
+  color: #ffd700;
+  font-size: 16px;
 }
 /* Header End */
 
@@ -68,10 +73,9 @@ padding-bottom: 10px;
   transform: translateX(-50%) translateY(-100%); /* Start hidden above the screen */
   width: 100%;
   height: 100vh;
-  /* background-color: #00000073; */
   max-width: 1300px;
   text-align: center;
-  z-index: 1000;
+  z-index: 1200;
   padding: 1.5rem 15px 0 5px;
   margin: 0 auto;
   transition: transform 0.3s ease-in-out, visibility 0.3s ease-in-out;
@@ -85,7 +89,7 @@ padding-bottom: 10px;
 
 /* When menu is closed */
 .closed {
-  transform: translateX(-50%) translateY(-100%); /* Slide the menu back up out of view */
+  transform: translateX(-50%) translateY(-150%); /* Slide the menu back up out of view */
   transition: transform 0.3s ease-in-out; /* Smooth transition */
 }
 
@@ -96,47 +100,50 @@ padding-bottom: 10px;
 }
 
 @media (max-width: 500px) {
-.topheader {
+  .topheader {
     display: none;
-}}
+  }
+}
 
-.headerContainer{
-        position: fixed;
-        background-color: none; 
-        height: 0%;
-    top: 0;
+.headerContainer {
+  position: fixed;
+  background-color: none;
+  height: 0%;
+  top: 0;
   left: 50%;
-    transition: visibility 0.3s ease;
+  transition: visibility 0.3s ease;
   transform: translateX(-50%);
   width: 100%;
   max-width: 100%;
   text-align: center;
-    z-index: 1000;
-    padding: 10px; 
-    opacity: 1;
+  z-index: 1000;
+  padding: 10px;
+  opacity: 1;
   visibility: visible;
-  transition: height 0.5s ease-in-out, opacity 1s ease-in-out, visibility 0.5s ease-in-out,  background-color 0.5s ease-in-out;
+  transition: height 0.5s ease-in-out, opacity 1s ease-in-out,
+    visibility 0.5s ease-in-out, background-color 0.5s ease-in-out;
 }
-.Bopen{
-        background-color: #00000073 !important; 
-        height: 100% !important;
+.Bopen {
+  background-color: #00000073 !important;
+  height: 100% !important;
 }
-.scrollingUp{
-background: linear-gradient(rgb(2, 80, 153) 0%, rgba(50, 148, 231, 0) 100%);
-transition: background 0.5s ease-in-out;
-    height: 20%;
+.scrollingUp {
+  background: linear-gradient(rgb(2, 80, 153) 0%, rgba(50, 148, 231, 0) 100%);
+  transition: background 0.5s ease-in-out;
+  height: 20%;
 }
 
-.topheader{
-    opacity: 1;
+.topheader {
+  opacity: 1;
   visibility: visible;
-overflow: hidden;
-    height: 100%;
-  transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out, height 0.5s ease-in-out;
+  overflow: hidden;
+  height: 100%;
+  transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out,
+    height 0.5s ease-in-out;
 }
 
-.scrollingUp .topheader{
-     opacity: 0;
+/* .scrollingUp .topheader {
+  opacity: 0;
   visibility: hidden;
-    height: 0;
- }
+  height: 0;
+} */

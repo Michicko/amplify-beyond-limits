@@ -250,10 +250,10 @@ Section {
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
   border: none;
-  padding: 10px;
+  padding: 0.3rem 0.5rem;
   cursor: pointer;
   z-index: 10;
-  font-size: 24px;
+  font-size: 0.75rem;
   border-radius: 100px;
 }
 
@@ -394,20 +394,31 @@ td {
   background-color: #025099;
 }
 /* Latest News */
-.Latest-News-Top {
+
+.section__news {
+  margin-top: 1rem;
+}
+
+.news-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
 }
-.Latest-News-Top h2 {
-  padding: 1rem 0;
-  font-size: 20px;
+
+.news-header h2,
+.news-header a {
+  font-size: 1rem;
 }
-.Latest-News-Top a {
+
+.news-header a {
   cursor: pointer;
 }
-.Latest-News-Top a:hover {
+
+.news-header a:hover {
   text-decoration: underline;
 }
 
@@ -461,17 +472,19 @@ td {
   width: 30rem;
   margin: 0 auto;
 }
+
 .interlude {
   width: 80%;
   margin: 0 auto;
   text-align: center;
   padding: 5rem 0rem;
 }
+
 .interlude p {
   font-family: roboto;
-  font-size: 18px;
+  font-size: 1rem;
   font-weight: 400;
-  width: 68%;
+  width: 85%;
   margin: 0 auto;
   letter-spacing: 0px;
 }
@@ -506,7 +519,6 @@ td {
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
-  padding-top: 20px;
 }
 
 .articles,
@@ -514,7 +526,8 @@ td {
   width: 100%;
   display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-auto-rows: 1fr;
 }
 
 .title__container {
@@ -526,7 +539,7 @@ td {
 .title__container h2 {
   color: white;
   border: none;
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-family: "formula_condensedregular", roboto;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -537,7 +550,7 @@ td {
   padding: 0.5rem 2rem;
 }
 
-@media (min-width: 36rem) {
+@media only screen and (min-width: 36rem) {
   .video-list {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -553,9 +566,25 @@ td {
   .line2 {
     font-size: 3.5rem;
   }
+
+  .prev-slide,
+  .next-slide {
+    padding: 0.5rem 0.8rem;
+    font-size: 1rem;
+  }
+
+  .interlude p {
+    font-size: 1.2rem;
+    width: 72%;
+  }
+
+  .news-header h2,
+  .news-header a {
+    font-size: 1.2rem;
+  }
 }
 
-@media (min-width: 48rem) {
+@media only screen and (min-width: 48rem) {
   .video-list {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -566,5 +595,15 @@ td {
 
   .line2 {
     font-size: 4rem;
+  }
+
+  .title__container h2 {
+    font-size: 1.8rem;
+  }
+
+  .prev-slide,
+  .next-slide {
+    padding: 0.6rem 1rem;
+    font-size: 1.2rem;
   }
 }
