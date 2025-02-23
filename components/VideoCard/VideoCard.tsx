@@ -4,19 +4,17 @@ import styles from "./VideoCard.module.css"; // Assuming CSS module is in the sa
 import { IHighlight } from "@/lib/definitions";
 import { FaPlay } from "react-icons/fa";
 import loaderProp from "@/lib/imageLoader";
+import ImageComp from "../ImageComp/ImageComp";
 
 const VideoCard = ({ highlight }: { highlight: IHighlight }) => {
   return (
     <div className={styles.videoCard}>
       <div className={styles.thumbnailWrapper}>
-        <Image
-          src={highlight.thumbnail}
+        <ImageComp
           alt={highlight.title}
-          fill={true}
-          unoptimized
-          loader={loaderProp}
-          className={styles.thumbnail}
-          style={{ objectFit: "cover" }}
+          image={highlight.thumbnail}
+          placeholder={highlight.thumbnail}
+          priority={false}
         />
       </div>
       <div className={styles.buttonContainer}>

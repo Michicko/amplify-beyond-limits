@@ -1,5 +1,30 @@
 const MenuLinks = [
   {
+    innerLinks: ["/"],
+    id: 29,
+    name: "HOME",
+    icon: (
+      <svg
+        id="Livello_1"
+        viewBox="0 0 128 128"
+        xmlns="http://www.w3.org/2000/svg"
+        width="29"
+        height="30"
+      >
+        <path d="M127.12,60.22,115.46,48.56h0L69,2.05a7,7,0,0,0-9.9,0L12.57,48.53h0L.88,60.22a3,3,0,0,0,4.24,4.24l6.57-6.57V121a7,7,0,0,0,7,7H46a7,7,0,0,0,7-7V81a1,1,0,0,1,1-1H74a1,1,0,0,1,1,1v40a7,7,0,0,0,7,7h27.34a7,7,0,0,0,7-7V57.92l6.54,6.54a3,3,0,0,0,4.24-4.24ZM110.34,121a1,1,0,0,1-1,1H82a1,1,0,0,1-1-1V81a7,7,0,0,0-7-7H54a7,7,0,0,0-7,7v40a1,1,0,0,1-1,1H18.69a1,1,0,0,1-1-1V51.9L63.29,6.29a1,1,0,0,1,1.41,0l45.63,45.63Z" />
+      </svg>
+    ),
+    subMenu: [
+      {
+        id: 291,
+        link: "/",
+        name: "Homepage",
+        image: "/images/home-header-bg.png",
+      },
+    ],
+  },
+  {
+    innerLinks: ["/news", "/beyond-tv"],
     id: 30,
     name: "NEWS",
     icon: (
@@ -32,6 +57,7 @@ const MenuLinks = [
     ],
   },
   {
+    innerLinks: ["/season"],
     id: 31,
     name: "COMPETITION",
     icon: (
@@ -64,6 +90,7 @@ const MenuLinks = [
     ],
   },
   {
+    innerLinks: ["/teams/under-19", "/teams/under-17"],
     id: 32,
     name: "TEAMS",
     icon: (
@@ -83,19 +110,20 @@ const MenuLinks = [
     subMenu: [
       {
         id: 321,
-        link: "/under-19",
+        link: "/teams/under-19",
         name: "under-19",
         image: "/images/under19.png",
       },
       {
         id: 322,
-        link: "/under-17",
+        link: "/teams/under-17",
         name: "under-17",
         image: "/images/under17.png",
       },
     ],
   },
   {
+    innerLinks: ["/team-stats", "/player-stats"],
     id: 33,
     name: "STATS",
     icon: (
@@ -128,6 +156,7 @@ const MenuLinks = [
     ],
   },
   {
+    innerLinks: ["/history", "/honors"],
     id: 34,
     name: "ABOUT",
     icon: (
@@ -147,7 +176,7 @@ const MenuLinks = [
     subMenu: [
       {
         id: 341,
-        link: "/thistory",
+        link: "/history",
         name: "our history",
         image: "/images/ourhistory.jpg",
       },

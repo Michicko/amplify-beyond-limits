@@ -1,8 +1,34 @@
 .menu {
   background-color: #002247;
   width: 100%;
-  margin: 0 auto;
   border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.menu__box {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 3000;
+  padding: var(--md);
+  transition: transform 0.5s linear;
+  transform: translateY(-100%);
+}
+
+.logo {
+  position: relative;
+  height: 5rem;
+  width: 5rem;
+  margin: 0 auto;
+}
+
+.menu__box.open {
+  transform: translateY(0);
 }
 
 .menuContainer {
@@ -12,30 +38,30 @@
   overflow: hidden;
   align-items: center;
   min-height: 10rem;
+  overflow: hidden;
 }
 
 .menuItem {
   padding: 20px;
   text-align: left;
 }
+
 .menuText {
   background-color: #1a6dbb;
   padding: 30px 10px;
   height: 100%;
+  text-align: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .menuTab {
   display: grid;
   grid-template-columns: min-content auto;
   gap: 20px;
-  /* padding-bottom: 10px; */
 }
-
-/* .menuLinks {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 1.25rem;
-} */
 
 .menuLinks {
   display: flex;
@@ -55,7 +81,7 @@
   color: white;
   font-family: "formula_condensedregular", roboto;
   letter-spacing: 1.2px;
-  font-size: 0.8rem;
+  font-size: var(--base);
   align-items: center;
   display: inline-flex;
   cursor: pointer;
@@ -68,7 +94,7 @@
 
 .btn {
   border: 1px white solid;
-  border-radius: 17px;
+  border-radius: var(--sm);
   transition: background-color 0.3s ease-in-out;
   padding: 0.5rem 1rem;
   flex-basis: unset;
@@ -79,6 +105,7 @@
   margin-top: -0.25rem;
   height: 1.2rem;
   width: 1.2rem;
+  fill: var(--white);
 }
 
 .btn:hover > svg path {
@@ -253,6 +280,10 @@
   .menuSubLinkBody p {
     font-size: 1.8rem;
   }
+
+  .menu__box {
+    padding: calc(var(--xxxl) + 0.5rem) var(--lg);
+  }
 }
 
 @media only screen and (min-width: 48rem) {
@@ -267,8 +298,9 @@
 
   .close button,
   .btn {
-    font-size: 1.2rem;
+    font-size: var(--md);
     gap: 8px;
+    font-weight: 600;
   }
 
   .btn svg {
@@ -281,6 +313,6 @@
   }
 
   .menuSubLinkBody {
-    max-height: 17.5rem;
+    max-height: 20rem;
   }
 }

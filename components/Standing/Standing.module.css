@@ -1,0 +1,89 @@
+.standing > *:first-child {
+  margin-bottom: var(--sm);
+}
+
+.standing table {
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+.standing table,
+.standing thead,
+.standing tr {
+  width: 100%;
+}
+
+.standing thead,
+.standing th {
+  text-align: left;
+  vertical-align: middle;
+}
+
+.standing thead {
+  padding-left: var(--md);
+}
+
+.standing thead tr > *:first-child,
+.standing tbody tr > *:first-child {
+  padding-left: var(--sm);
+}
+
+.standing thead tr > *:last-child,
+.standing tbody tr > *:last-child {
+  padding-right: var(--sm);
+}
+
+.standing tbody tr,
+.standing tbody td {
+  height: calc(var(--xxxl) + 0.25rem);
+}
+
+tr.shade {
+  background: var(--blue-500);
+}
+
+.standing table {
+  margin-bottom: var(--md);
+}
+
+.btn-box {
+  margin-bottom: var(--lg);
+}
+
+.img-box {
+  position: relative;
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.standing tbody > *:not(:last-child) {
+  border-bottom: 1px solid var(--t-border);
+}
+
+.standing th,
+.standing td {
+  font-size: var(--base);
+  font-weight: 600;
+  font-family: var(--font);
+}
+
+.standing th {
+  text-transform: uppercase;
+}
+
+@media only screen and (min-width: 36rem) {
+  .standing th,
+  .standing td {
+    font-size: calc(var(--base) + 0.3rem);
+  }
+
+  .standing thead tr > *:first-child,
+  .standing tbody tr > *:first-child {
+    padding-left: var(--base);
+  }
+
+  .standing thead tr > *:last-child,
+  .standing tbody tr > *:last-child {
+    padding-right: var(--base);
+  }
+}

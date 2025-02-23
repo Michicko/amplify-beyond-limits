@@ -6,11 +6,18 @@ export interface IHighlight {
   videoUrl: string;
 }
 
+export interface ILink {
+  href: string;
+  name: string;
+}
+
 export interface IArticle {
   id: string;
   title: string;
   createdAt: string;
+  category: "match preview" | "match report" | "club news";
   image: string;
+  match?: IMatch;
 }
 
 export interface ISocial {
@@ -18,4 +25,126 @@ export interface ISocial {
   link: string;
   icon: string;
   name: string;
+}
+
+export interface IPositionStats {}
+
+export interface IPlayerPosition {
+  name: string;
+  stats: unknown;
+}
+
+export interface IPlayer {
+  id?: number;
+  name: string;
+  firstname?: string;
+  lastname?: string;
+  position: {
+    long: string;
+    short: string;
+  };
+  squad_no?: number;
+  role: string;
+  year_signed?: number;
+  stats?: unknown;
+  description?: string;
+  dob?: string;
+  height?: number;
+  weight?: number;
+  dominant_foot?: "Left" | "Right";
+  image?: {
+    home: string;
+    away: string;
+  };
+  team?: number;
+}
+
+export interface IScorers {
+  scorer: IPlayer;
+  assist: IPlayer;
+  time: string;
+}
+
+export interface ICompetition {
+  logo: string;
+  name: string;
+  type: string;
+  round: string | number;
+}
+
+export interface IMatch {
+  id: number;
+  competition: ICompetition;
+  home: {
+    logo: string;
+    name: string;
+  };
+  away: {
+    logo: string;
+    name: string;
+  };
+  date: string;
+  location: string;
+  time: string;
+  status: string;
+  lineup: IPlayer[];
+  result: {
+    home: number;
+    away: number;
+  };
+  stats: {
+    passes: {
+      home: number;
+      away: number;
+    };
+    offside: {
+      home: number;
+      away: number;
+    };
+    corners: {
+      home: number;
+      away: number;
+    };
+    shots: {
+      home: number;
+      away: number;
+    };
+    yellow_cards: {
+      home: number;
+      away: number;
+    };
+    red_cards: {
+      home: number;
+      away: number;
+    };
+  };
+  scorers: IScorers[];
+  mvp: IPlayer;
+  // preview: string;
+  // result_context: string;
+  form: {
+    home: string[];
+    away: string[];
+  };
+  players_to_watch: {
+    players: IPlayer[];
+    note: string;
+  };
+}
+
+export interface ITeam {
+  name: { long: string; short: string };
+  logo: string;
+}
+
+export interface IStandingTeam {
+  team: ITeam;
+  position: number;
+  stats: {
+    p: number;
+    w: number;
+    d: number;
+    l: number;
+    pts: number;
+  };
 }

@@ -1,4 +1,13 @@
 /* Simple CSS for Tabs and News List */
+
+.articles {
+  width: 100%;
+  display: grid;
+  gap: var(--md);
+  /* grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); */
+  grid-auto-rows: 1fr;
+}
+
 .newsPage {
   padding: 5rem 10px;
 }
@@ -180,6 +189,24 @@
 .shareButton:hover {
   background-color: #ffd700;
   color: #2e70b3;
+}
+
+@media only screen and (min-width: 36rem) {
+  .articles {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media only screen and (min-width: 60rem) {
+  .articles {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media only screen and (min-width: 75rem) {
+  .articles {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 /* Starting into tablets somewhere in here */

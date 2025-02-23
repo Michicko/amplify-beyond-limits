@@ -1,5 +1,4 @@
-import { useState } from "react";
-import Image from "next/image";
+import { useEffect, useState } from "react";
 import styles from "./Menu.module.css";
 import Link from "next/link";
 import MenuLinks from "./MenuLinks";
@@ -7,12 +6,17 @@ import MenuBtn from "./MenuBtn";
 import CloseBtn from "./CloseBtn";
 import { useRouter } from "next/router";
 import Socials from "../Social/Socials";
+import clsx from "clsx";
+import ImageComp from "../ImageComp/ImageComp";
 
 export default function Menu({ closeMenu }: { closeMenu: () => void }) {
-  const [activeTab, setActiveTab] = useState(0);
-  const currentMenu = MenuLinks[activeTab];
   const router = useRouter();
   const { pathname } = router;
+  const getIndex = () => {
+    return MenuLinks.findIndex((el) => el.innerLinks.includes(pathname));
+  };
+  const [activeTab, setActiveTab] = useState(getIndex() < 0 ? 0 : getIndex());
+  const currentMenu = MenuLinks[activeTab];
 
   // Function to change the active tab
   const handleTabClick = (index: number) => {
@@ -20,7 +24,7 @@ export default function Menu({ closeMenu }: { closeMenu: () => void }) {
   };
 
   return (
-    <div className={styles.menu}>
+    <div className={clsx(styles.menu)}>
       <div className={styles.menuContainer}>
         <div className={styles.menuItem}>
           {/* Close button now calls closeMenu */}
@@ -75,27 +79,24 @@ export default function Menu({ closeMenu }: { closeMenu: () => void }) {
           </div>
         </div>
         <div className={styles.menuText}>
-          <div className={styles.menuTextTop}>
-            <div className={styles.logo}>
-              <Image
-                src="/images/bright-logo.png"
-                alt="Beyond Limits FA Logo"
-                width={75}
-                height={75}
-                unoptimized
-              />
-            </div>
-            <section className={styles.menuInterlude}>
-              <p>
-                At Beyond Limits Football Academy, we believe in more than just
-                developing exceptional football talent; we strive to shape
-                responsible, empowered individuals who contribute positively to
-                society. As the juniors of the esteemed Remo Stars in the
-                Nigerian Professional Football League, we take pride in our
-                commitment to community development.
-              </p>
-            </section>
+          <div className={styles.logo}>
+            <ImageComp
+              alt="Beyond Limits FA Logo"
+              image="/images/bright-logo.png"
+              placeholder="/images/bright-logo.png"
+              priority={true}
+            />
           </div>
+          <section className={styles.menuInterlude}>
+            <p>
+              At Beyond Limits Football Academy, we believe in more than just
+              developing exceptional football talent; we strive to shape
+              responsible, empowered individuals who contribute positively to
+              society. As the juniors of the esteemed Remo Stars in the Nigerian
+              Professional Football League, we take pride in our commitment to
+              community development.
+            </p>
+          </section>
           <div className={styles.menuTextBottom}>
             {/* socials */}
             <Socials />

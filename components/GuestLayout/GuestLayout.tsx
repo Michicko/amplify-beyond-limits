@@ -9,6 +9,41 @@ import { API_URL, TOKEN_STORAGE_KEY } from "@/config/constants";
 import React, { ReactNode, useEffect, useState } from "react";
 import Header from "../Header/Header";
 import Footer from "../Footer/footer";
+import Nav from "../Nav/Nav";
+import { Roboto } from "next/font/google";
+import localFont from "next/font/local";
+
+const roboto = Roboto({
+  weight: ["100", "300", "400", "500", "700", "900"],
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const formula_condensed = localFont({
+  src: [
+    {
+      path: "../../public/fonts/formulacondensed-light-webfont.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/FormulaCondensed-Regular.woff2",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/formulacondensed-bold-webfont.woff2",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/FormulaCondensed-Bold.woff2",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  variable: "--formula-condensed",
+});
 
 const GuestLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -76,14 +111,17 @@ const GuestLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
         backgroundPosition: "center",
         backgroundAttachment: "fixed",
         width: "100%",
+        minHeight: "100vh",
         display: "flex",
         justifyContent: "center",
         padding: "0px",
       }}
+      className={`${formula_condensed.className} ${roboto.className}`}
     >
       <div className="container">
-        <Header />
-        <main className="flex-grow ">{children}</main>
+        {/* <Header /> */}
+        <Nav />
+        {children}
         <Footer />
       </div>
     </div>

@@ -1,0 +1,59 @@
+.match__sm-card > *:first-child {
+  margin-bottom: var(--sm);
+}
+
+.match__body-box {
+  width: 100%;
+  padding: var(--md) var(--lg);
+  padding-bottom: var(--lg);
+  text-align: center;
+  gap: var(--xl);
+}
+
+.match__body-box > *:last-child {
+  margin: 0 auto;
+  margin-top: var(--lg);
+}
+
+.match__logo-box {
+  position: relative;
+  height: var(--lg);
+  width: var(--lg);
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.match__team-logo {
+  position: relative;
+  height: 2.8rem;
+  width: 2.8rem;
+  border-radius: 50%;
+}
+
+.match__team-logo img {
+  object-fit: contain !important;
+  object-position: center;
+}
+
+.match__team-logo-box {
+  position: relative;
+  height: 3.5rem;
+  width: 3.5rem;
+  background: var(--white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media only screen and (min-width: 36rem) {
+  .match__team-logo {
+    height: 3.5rem;
+    width: 3.5rem;
+  }
+
+  .match__team-logo-box {
+    height: 5rem;
+    width: 5rem;
+  }
+}

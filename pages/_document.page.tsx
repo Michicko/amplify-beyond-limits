@@ -4,7 +4,11 @@ import theme from "@/config/theme";
 
 export default function Document() {
   return (
-    <Html lang="en" className='scroll-smooth' style={{scrollBehavior:'smooth'}}>
+    <Html
+      lang="en"
+      className={`scroll-smooth`}
+      style={{ scrollBehavior: "smooth" }}
+    >
       <Head />
       <body>
         <ColorModeScript initialColorMode={theme.config.initialColorMode} />

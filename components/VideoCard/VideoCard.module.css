@@ -3,6 +3,8 @@
   width: 100%;
   height: auto;
   position: relative;
+  overflow: hidden;
+  border-radius: var(--base);
 }
 
 .videoCard:hover {
@@ -15,6 +17,8 @@
   min-height: 5rem;
   max-width: 100%;
   height: auto;
+  border-radius: var(--base);
+  overflow: hidden;
 }
 
 .thumbnailWrapper::before {

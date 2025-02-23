@@ -1,0 +1,47 @@
+.btn {
+  background: transparent;
+  outline: transparent;
+  border: transparent;
+  min-width: 10rem;
+  border-radius: var(--sm);
+  font-size: var(--md);
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: var(--base) var(--md);
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--base);
+  cursor: pointer;
+  letter-spacing: 0.05rem;
+  font-size: var(--md);
+  font-family: var(--font);
+}
+
+.btn.primary {
+  background: var(--primary-dark);
+}
+
+.btn.secondary {
+  background: var(--secondary-light);
+  color: var(--blue-400);
+}
+
+.btn.secondary:hover {
+  background: var(--yellow-500);
+  color: var(--yellow-100);
+}
+
+.btn.secondary svg {
+  fill: var(--blue-400);
+}
+
+.btn svg {
+  height: var(--base);
+  width: var(--base);
+}
+
+.btn.secondary:hover svg {
+  fill: var(--yellow-100);
+}
