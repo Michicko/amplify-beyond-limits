@@ -931,6 +931,34 @@ export const players = [
     },
     team: "under-19",
   },
+  {
+    id: 126,
+    position: {
+      long: "defender",
+      short: "cb",
+    },
+    squad_no: 30,
+    name: "Aigbe Bolaji",
+    firstname: "Bolaji",
+    lastname: "Aigbe",
+    role: "starting",
+    year_signed: 2024,
+    stats: {
+      matches: 24,
+      goals: 2,
+      assists: 0,
+    },
+    description: "Bolaji is a cool player knoows for his pace",
+    dob: "2007-5-6",
+    height: 191,
+    weight: 70,
+    dominant_foot: "Left",
+    image: {
+      home: "/images/player-3.png",
+      away: "/images/player-2.png",
+    },
+    team: "under-19",
+  },
 ];
 
 export const standings = [

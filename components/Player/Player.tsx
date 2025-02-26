@@ -3,7 +3,13 @@ import clsx from "clsx";
 import styles from "./Player.module.css";
 import ImageComp from "../ImageComp/ImageComp";
 
-const Player = ({ player }: { player: IPlayer }) => {
+const Player = ({
+  player,
+  handleOnClick,
+}: {
+  player: IPlayer;
+  handleOnClick: (playerId: number) => void;
+}) => {
   const playerStyles = {
     background: `url(/images/player-bg.png)`,
     backgroundRepeat: "no-repeat",
@@ -33,7 +39,11 @@ const Player = ({ player }: { player: IPlayer }) => {
               <p className={clsx(styles.squad_no)}>{player.squad_no}</p>
             </div>
             <div className={clsx(styles.btn__box)}>
-              <button type="button" className={clsx(styles.player__btn)}>
+              <button
+                type="button"
+                className={clsx(styles.player__btn)}
+                onClick={() => handleOnClick(player.id)}
+              >
                 View Profile
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

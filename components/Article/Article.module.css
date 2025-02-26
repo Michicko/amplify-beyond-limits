@@ -28,6 +28,11 @@
   width: 100%;
 }
 
+.img-wrapper img {
+  object-fit: contain !important;
+  object-position: center !important;
+}
+
 .img-wrapper::before {
   display: block;
   content: "";

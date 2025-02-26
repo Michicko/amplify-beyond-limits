@@ -35,7 +35,7 @@ export interface IPlayerPosition {
 }
 
 export interface IPlayer {
-  id?: number;
+  id: number;
   name: string;
   firstname?: string;
   lastname?: string;

@@ -7,11 +7,13 @@ const Button = ({
   link,
   text,
   type,
+  handleOnClick,
 }: {
   isLink: boolean;
   link?: { href: string };
   text: string;
   type: "primary" | "secondary";
+  handleOnClick?: () => void;
 }) => {
   const classNames = clsx(styles.btn, styles[type]);
 
@@ -34,7 +36,7 @@ const Button = ({
       </svg>
     </Link>
   ) : (
-    <button className={classNames}>
+    <button className={classNames} onClick={handleOnClick}>
       {text}
       <svg
         xmlns="http://www.w3.org/2000/svg"

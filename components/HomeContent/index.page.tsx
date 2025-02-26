@@ -50,7 +50,7 @@ const Home = () => {
             heading={"Our players"}
             link={{ name: "View more players", href: "/players/under-19" }}
           />
-          <PlayerList players={players} />
+          <PlayerList players={players.slice(0, 3)} />
         </section>
         <Container type="section" centered={true} size="md" space_top={true}>
           <>
