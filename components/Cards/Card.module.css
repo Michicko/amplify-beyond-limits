@@ -12,6 +12,11 @@
   width: 100%;
 }
 
+.card{
+  border-radius: var(--base);
+  overflow: hidden;
+}
+
 .card__header {
   height: calc(var(--xxxl) + 0.25rem);
   border-top-right-radius: var(--base);
@@ -30,12 +35,12 @@
 }
 
 .card__header.dark,
-.card.dark {
+.card.dark, .card__body.dark {
   background: var(--blue-500);
 }
 
 .card__header.light,
-.card.light {
+.card.light, .card__body.light {
   background: var(--blue-400);
 }
 

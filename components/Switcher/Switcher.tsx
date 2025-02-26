@@ -1,21 +1,20 @@
-import Switch from "./Switch";
 import styles from "./Switcher.module.css";
 import clsx from "clsx";
 
 const Switcher = ({
-  links,
   theme,
   bg,
+  children,
 }: {
-  links: { href: string; name: string }[];
   theme: "theme-1" | "theme-2";
   bg: "trans" | "white";
+  children: React.ReactElement;
 }) => {
   return (
-    <div className={clsx(styles.switcher, styles[bg], styles[theme])}>
-      {links.map((link) => {
-        return <Switch link={link} theme={theme} />;
-      })}
+    <div className={clsx(styles.switcher__container)}>
+      <div className={clsx(styles.switcher, styles[bg], styles[theme])}>
+        {children}
+      </div>
     </div>
   );
 };

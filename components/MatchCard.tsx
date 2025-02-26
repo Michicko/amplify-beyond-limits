@@ -21,9 +21,7 @@ const MatchCard = ({
           )}
           <h3 className="league-name">{league}</h3>
         </div>
-        <p className="match-date">
-          {date}
-        </p>
+        <p className="match-date">{date}</p>
       </div>
 
       {/* Match Teams (Logos and Names) */}
@@ -31,11 +29,7 @@ const MatchCard = ({
         {/* Home Team */}
         <div className="team">
           {homeTeamLogo && (
-            <img
-              src={homeTeamLogo}
-              alt={homeTeam}
-              className="team-logo"
-            />
+            <img src={homeTeamLogo} alt={homeTeam} className="team-logo" />
           )}
         </div>
 
@@ -47,21 +41,14 @@ const MatchCard = ({
         {/* Away Team */}
         <div className="team">
           {awayTeamLogo && (
-            <img
-              src={awayTeamLogo}
-              alt={awayTeam}
-              className="team-logo"
-            />
+            <img src={awayTeamLogo} alt={awayTeam} className="team-logo" />
           )}
         </div>
       </div>
 
       {/* View Match Button */}
       <div className="match-button">
-        <a
-          href={matchLink}
-          className=""
-        >
+        <a href={matchLink} className="">
           View Match →
         </a>
       </div>

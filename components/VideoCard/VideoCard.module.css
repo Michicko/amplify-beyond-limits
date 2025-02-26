@@ -7,6 +7,17 @@
   border-radius: var(--base);
 }
 
+.videocards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sm);
+  margin-bottom: var(--xl);
+}
+
+.videocards {
+  gap: var(--lg);
+}
+
 .videoCard:hover {
   transform: translateY(-5px);
 }
@@ -23,7 +34,7 @@
 
 .thumbnailWrapper::before {
   content: "";
-  padding-top: 150%;
+  padding-top: 130%;
   display: block;
 }
 
@@ -85,9 +96,24 @@
   fill: #ffd700;
 }
 
-@media (min-width: 48rem) {
+@media only screen and (min-width: 48rem) {
   .play-icon {
     height: 4rem;
     width: 4rem;
+  }
+  .videocards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media only screen and (min-width: 60rem) {
+  .videocards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media only screen and (min-width: 75rem) {
+  .videocards {
+    gap: var(--xl);
   }
 }

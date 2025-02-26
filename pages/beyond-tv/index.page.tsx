@@ -1,29 +1,20 @@
 import GuestLayout from "@/components/GuestLayout/GuestLayout";
-import PageHeader from "@/components/PageHeader/PageHeader";
-import PageTitle from "@/components/PageHeader/PageTitle";
-import VideoCard from "@/components/VideoCard/VideoCard";
+import ArticleLayout from "@/components/Layouts/ArticleLayout";
+import VideoCards from "@/components/VideoCard/VideoCards";
 import { IHighlight } from "@/lib/definitions";
 import { match_highlights } from "@/lib/placeholder-data";
 import { ReactElement } from "react";
 
 const BeyondTv = ({ highlights }: { highlights: IHighlight[] }) => {
+    const links = [{name: 'Academy news', href: '/news'}, {name: 'Beyond limits tv', href: '/beyond-tv'}]
+
   return (
-    <>
-      <PageHeader
-        title={"Beyond Limits Tv"}
-        lead={"Watch our highlights"}
-        image={"/images/beyondtv.jpg"}
-      />
-      <PageTitle text={"Highlights"} />
+    <ArticleLayout bg="trans" theme="theme-1" links={links}>
       <div className="main-container">
-        <div className="highlights">
-          {highlights.map((highlight) => {
-            return <VideoCard highlight={highlight} key={highlight.id} />;
-          })}
-        </div>
+        <VideoCards videos={highlights}/>
         {/* pagination */}
       </div>
-    </>
+    </ArticleLayout>
   );
 };
 

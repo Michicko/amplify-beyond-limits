@@ -2,12 +2,13 @@
   background: transparent;
   outline: transparent;
   border: transparent;
-  min-width: 10rem;
+  min-width: 6rem;
   border-radius: var(--sm);
   font-size: var(--md);
   text-transform: uppercase;
   font-weight: 600;
-  padding: var(--base) var(--md);
+  padding: var(--base);
+  padding-top: calc(var(--base) + 0.2rem);
   line-height: 1;
   display: inline-flex;
   align-items: center;
@@ -15,7 +16,7 @@
   gap: var(--base);
   cursor: pointer;
   letter-spacing: 0.05rem;
-  font-size: var(--md);
+  font-size: var(--base);
   font-family: var(--font);
 }
 
@@ -40,8 +41,28 @@
 .btn svg {
   height: var(--base);
   width: var(--base);
+  display: none;
 }
 
 .btn.secondary:hover svg {
   fill: var(--yellow-100);
+}
+
+@media only screen and (min-width: 25rem) {
+  .btn svg {
+    display: block;
+  }
+}
+
+@media only screen and (min-width: 36rem) {
+  .btn {
+    padding: var(--base) var(--md);
+    padding-top: calc(var(--base) + 0.2rem);
+  }
+}
+
+@media only screen and (min-width: 48rem) {
+  .btn {
+    font-size: var(--md);
+  }
 }

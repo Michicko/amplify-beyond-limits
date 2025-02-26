@@ -1,4 +1,3 @@
-import Image from "next/image";
 import styles from "./Header.module.css";
 import clsx from "clsx";
 import React from "react";
@@ -8,13 +7,15 @@ const MainHeader = ({
   bg,
   alt,
   children,
+  overlay,
 }: {
   bg: string;
   alt: string;
   children: React.ReactElement;
+  overlay?: boolean;
 }) => {
   return (
-    <header className={styles.header}>
+    <header className={clsx(styles.header, overlay && styles.overlay)}>
       <ImageComp image={bg} alt={alt} priority={true} />
       <div className={clsx(styles.header__content)}>{children}</div>
     </header>

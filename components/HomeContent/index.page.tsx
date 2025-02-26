@@ -4,18 +4,19 @@ import {
   match_2,
   match_highlights,
   players,
+  standing,
 } from "@/lib/placeholder-data";
 import MainHeader from "../MainHeader/MainHeader";
 import clsx from "clsx";
-import MatchSmallCard from "../MatchCards/MatchSmallCard";
+import MatchCard from "../MatchCards/MatchCard";
 import Standing from "../Standing/Standing";
 import ArticleList from "../Article/ArticleList";
 import populateArticles from "@/lib/populateArticle";
 import SectionHeader from "../Section/SectionHeader";
 import PlayerList from "../Player/PlayerList";
-import styles from "./HomeNews.module.css";
 import Button from "../Button/Button";
-import VideoCard from "../VideoCard/VideoCard";
+import VideoCards from "../VideoCard/VideoCards";
+import Container from "../Container/Container";
 
 const Home = () => {
   // const { data, isLoading } = useGetHomeDataQuery();
@@ -33,9 +34,9 @@ const Home = () => {
       </MainHeader>
       <main className="main">
         <section className="match__updates">
-          <MatchSmallCard match={match} heading={"Previous Match"} />
-          <MatchSmallCard match={match_2} heading={"Next Match"} />
-          <Standing />
+          <MatchCard match={match} heading={"Previous Match"} no_btn={false} />
+          <MatchCard match={match_2} heading={"Next Match"} />
+          <Standing showFull={false} standing={standing} showHeading={true} />
         </section>
         <section>
           <SectionHeader
@@ -51,25 +52,29 @@ const Home = () => {
           />
           <PlayerList players={players} />
         </section>
-        <section className={clsx(styles.section__padded)}>
-          <SectionHeader
-            heading={"Upcoming matches"}
-            no_link={true}
-            center={true}
-            letterCase="capitalize"
-          />
-          <div className={clsx(styles.matches)}>
-            <MatchSmallCard match={match_2} no_btn={true} />
-            <MatchSmallCard match={match_2} no_btn={true} />
-            <MatchSmallCard match={match_2} no_btn={true} />
-          </div>
-          <Button
-            isLink={true}
-            text="View more matches"
-            type="secondary"
-            link={{ href: "/matches" }}
-          />
-        </section>
+        <Container type="section" centered={true} size="md" space_top={true}>
+          <>
+            <SectionHeader
+              heading={"Upcoming matches"}
+              no_link={true}
+              center={true}
+              letterCase="capitalize"
+            />
+            <Container type="div" grid={true}>
+              <>
+                <MatchCard match={match_2} no_btn={true} theme="dark" />
+                <MatchCard match={match_2} no_btn={true} />
+                <MatchCard match={match_2} no_btn={true} theme="dark" />
+              </>
+            </Container>
+            <Button
+              isLink={true}
+              text="View more matches"
+              type="secondary"
+              link={{ href: "/fixtures" }}
+            />
+          </>
+        </Container>
         <section className="interlude">
           <p>
             At Beyond Limits Football Academy, we believe in more than just
@@ -80,13 +85,11 @@ const Home = () => {
             community development.
           </p>
         </section>
-        <section className={clsx(styles.section__padded)}>
-          <div className={clsx(styles.highlights)}>
-            {match_highlights.slice(0, 3).map((highlight) => {
-              return <VideoCard highlight={highlight} key={highlight.id} />;
-            })}
-          </div>
-        </section>
+        <Container type="section">
+          <Container type="div" size="md">
+            <VideoCards videos={match_highlights.slice(0, 3)} />
+          </Container>
+        </Container>
       </main>
     </>
   );

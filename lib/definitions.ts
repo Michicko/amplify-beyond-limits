@@ -65,11 +65,27 @@ export interface IScorers {
   time: string;
 }
 
+export interface ICompetitionPhase {
+  group?: string;
+  phase: "league" | "playoffs";
+  standing_id?: number;
+  finals?: string;
+  total_teams?: number;
+  fixtures?: string[];
+}
+
 export interface ICompetition {
+  id: number;
   logo: string;
-  name: string;
+  phase_type: "league" | "cup";
+  name: {
+    short: string;
+    long: string;
+  };
   type: string;
   round: string | number;
+  phases: ICompetitionPhase[];
+  slug: string;
 }
 
 export interface IMatch {
@@ -120,8 +136,8 @@ export interface IMatch {
   };
   scorers: IScorers[];
   mvp: IPlayer;
-  // preview: string;
-  // result_context: string;
+  preview: string;
+  result_context: string;
   form: {
     home: string[];
     away: string[];
@@ -145,6 +161,9 @@ export interface IStandingTeam {
     w: number;
     d: number;
     l: number;
+    f: number;
+    a: number;
+    gd: string;
     pts: number;
   };
 }

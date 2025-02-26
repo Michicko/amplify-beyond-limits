@@ -8,11 +8,13 @@
   padding-bottom: var(--lg);
   text-align: center;
   gap: var(--xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--lg);
 }
 
-.match__body-box > *:last-child {
-  margin: 0 auto;
-  margin-top: var(--lg);
+.match__body-box:has(button) button {
+  align-self: center;
 }
 
 .match__logo-box {
@@ -25,8 +27,8 @@
 
 .match__team-logo {
   position: relative;
-  height: 2.8rem;
-  width: 2.8rem;
+  height: 1.8rem;
+  width: 1.8rem;
   border-radius: 50%;
 }
 
@@ -37,8 +39,8 @@
 
 .match__team-logo-box {
   position: relative;
-  height: 3.5rem;
-  width: 3.5rem;
+  height: 2.5rem;
+  width: 2.5rem;
   background: var(--white);
   border-radius: 50%;
   display: flex;
@@ -48,12 +50,36 @@
 
 @media only screen and (min-width: 36rem) {
   .match__team-logo {
-    height: 3.5rem;
-    width: 3.5rem;
+    height: 2rem;
+    width: 2rem;
   }
 
   .match__team-logo-box {
-    height: 5rem;
-    width: 5rem;
+    height: 3rem;
+    width: 3rem;
   }
+}
+
+@media only screen and (min-width: 48rem) {
+  .match__body-box.xtra-padded {
+    padding: var(--md) var(--xxxl);
+    padding-bottom: var(--lg);
+  }
+}
+
+@media only screen and (min-width: 60rem) {
+  .match__body-box.xtra-padded {
+    padding: var(--md) var(--viii);
+    padding-bottom: var(--lg);
+  }
+}
+
+.match__team-logo-box.sm {
+  height: 1.8rem;
+  width: 1.8rem;
+}
+
+.match__team-logo-box.sm .match__team-logo {
+  height: 1.3rem;
+  width: 1.3rem;
 }

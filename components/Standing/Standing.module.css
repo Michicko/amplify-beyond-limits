@@ -35,7 +35,7 @@
 
 .standing tbody tr,
 .standing tbody td {
-  height: calc(var(--xxxl) + 0.25rem);
+  height: var(--xxl);
 }
 
 tr.shade {

@@ -69,6 +69,7 @@ export default function Menu({ closeMenu }: { closeMenu: () => void }) {
                       }}
                       onClick={closeMenu}
                       key={el.id}
+                      as={el.link}
                     >
                       <p>{el.name}</p>
                     </Link>

@@ -13,7 +13,7 @@ const Logo = ({
   size: "sm" | "base" | "md";
 }) => {
   return (
-    <Link href={"/"} className={clsx(styles.logo, styles[size])} as={"image"}>
+    <Link href={"/"} className={clsx(styles.logo, styles[size])} as={"/"}>
       <ImageComp
         image={image}
         alt={"Logo for Beyond the limits"}

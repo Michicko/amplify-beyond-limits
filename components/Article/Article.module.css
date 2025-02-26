@@ -164,6 +164,7 @@
   align-items: center;
   border-radius: var(--sm);
   padding: var(--sm) var(--base);
+  padding-top: var(--base);
   margin-bottom: var(--base);
 }
 

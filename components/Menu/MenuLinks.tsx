@@ -57,7 +57,7 @@ const MenuLinks = [
     ],
   },
   {
-    innerLinks: ["/season"],
+    innerLinks: ["/competitions"],
     id: 31,
     name: "COMPETITION",
     icon: (
@@ -77,7 +77,7 @@ const MenuLinks = [
     subMenu: [
       {
         id: 311,
-        link: "/season",
+        link: "/competitions",
         name: "season overview",
         image: "/images/fixtures.jpg",
       },

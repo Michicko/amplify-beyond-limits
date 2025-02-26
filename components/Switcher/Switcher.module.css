@@ -1,0 +1,74 @@
+.switcher {
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	gap: var(--md);
+	padding: var(--sm) var(--md);
+	border-radius: var(--sm);
+	margin: 0 auto;
+}
+
+.switcher__container {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow-x: auto;
+}
+
+.switcher.white {
+	background: var(--white);
+}
+
+.switch {
+	padding: var(--xs) var(--md);
+	padding-top: var(--sm);
+	border-radius: var(--sm);
+	font-size: var(--md);
+	font-weight: 500;
+	font-family: var(--font);
+	text-transform: uppercase;
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+}
+
+.switch.btn {
+	border: none;
+	outline: transparent;
+	background: transparent;
+}
+
+.switch.theme-1 {
+	background: transparent;
+	color: var(--white);
+}
+
+.switch.theme-2 {
+	color: var(--primary-dark);
+}
+
+.switch.theme-2:hover,
+.switch.theme-2.current {
+	background: var(--primary-dark);
+	color: var(--white);
+}
+
+.switch.theme-1:hover,
+.switch.theme-1.current {
+	background: var(--red-500);
+	color: var(--white);
+}
+
+/*.switch.btn.theme-1:hover,
+.switch.btn.theme-1.current {
+	background: transparent;
+	color: var(--red-500);
+}
+
+.switch.btn.theme-2:hover,
+.switch.btn.theme-2.current {
+	background: transparent;
+	color: var(--primary-dark);
+}
+*/

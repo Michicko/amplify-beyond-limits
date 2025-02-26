@@ -5,14 +5,16 @@ import clsx from "clsx";
 const CardBody = ({
   children,
   type,
+  theme
 }: {
   children: React.ReactElement;
   type: "tbody" | "div";
+  theme: "dark" | "light" | "trans"
 }) => {
   return type === "div" ? (
-    <div className={clsx(styles.card__body)}>{children}</div>
+    <div className={clsx(styles.card__body, styles[theme])}>{children}</div>
   ) : (
-    <tbody className={clsx(styles.card__body)}>{children}</tbody>
+    <tbody className={clsx(styles.card__body, styles[theme])}>{children}</tbody>
   );
 };
 

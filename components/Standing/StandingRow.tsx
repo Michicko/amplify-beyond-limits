@@ -3,23 +3,10 @@ import ImageComp from "../ImageComp/ImageComp";
 import Text from "../Typography/Text";
 import clsx from "clsx";
 import styles from "./Standing.module.css";
-import { useEffect, useState } from "react";
+import useGetScreenWidth from "@/hooks/useGetScreenWidth";
 
 const StandingRow = ({ el }: { el: IStandingTeam }) => {
-  const [screenSize, setScreenSize] = useState<number | null>(null);
-  useEffect(() => {
-    const checkScreenSize = () => {
-      if (window) {
-        setScreenSize(window.innerWidth);
-      }
-    };
-
-    window.addEventListener("resize", checkScreenSize);
-
-    return () => {
-      window.removeEventListener("resize", checkScreenSize);
-    };
-  }, []);
+  const { screenWidth } = useGetScreenWidth();
 
   return (
     <>
@@ -32,7 +19,7 @@ const StandingRow = ({ el }: { el: IStandingTeam }) => {
           <Text
             color="light"
             text={
-              screenSize && screenSize <= 576
+              screenWidth && screenWidth < 576
                 ? el.team.name.short
                 : el.team.name.long
             }
@@ -46,6 +33,9 @@ const StandingRow = ({ el }: { el: IStandingTeam }) => {
       <td>{el.stats.w}</td>
       <td>{el.stats.d}</td>
       <td>{el.stats.l}</td>
+      <td>{el.stats.f}</td>
+      <td>{el.stats.a}</td>
+      <td>{el.stats.gd}</td>
       <td>{el.stats.pts}</td>
     </>
   );

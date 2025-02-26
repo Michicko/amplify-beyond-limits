@@ -22,6 +22,11 @@
   --red-200: #ff92a9;
   --red-400: #ea1f2d;
   --red-500: #d7002c;
+  --green-100: #b9ffd5;
+  --green-200: #8affb9;
+  --green-300: #5bff9d;
+  --green-400: #00a341;
+  --overlay: rgba(0, 25, 48, 0.4);
   --xs: 0.25rem;
   --sm: 0.5rem;
   --base: 0.75rem;
@@ -600,6 +605,26 @@ td {
   letter-spacing: var(--xs);
 }
 
+.mt-sm {
+  margin-top: var(--sm);
+}
+
+.mt-base {
+  margin-top: var(--base);
+}
+
+.mt-md {
+  margin-top: var(--md);
+}
+
+.mt-xl {
+  margin-top: var(--xl);
+}
+
+.mt-xxl {
+  margin-top: var(--xxl);
+}
+
 .gap-sm {
   gap: var(--sm);
 }
@@ -613,6 +638,22 @@ td {
 
 .gap-xs {
   gap: var(--xs);
+}
+
+.gap-lg {
+  gap: var(--lg);
+}
+
+.gap-xl {
+  gap: var(--xl);
+}
+
+.gap-xxl {
+  gap: var(--xxl);
+}
+
+.gap-v {
+  gap: var(--v);
 }
 
 .px-sm {
@@ -629,6 +670,10 @@ td {
 
 .px-lg {
   padding: 0 var(--lg);
+}
+
+.my-xl {
+  margin: var(--xl) 0;
 }
 
 .py-base {
@@ -652,12 +697,36 @@ td {
   height: 100%;
 }
 
+.x-auto {
+  overflow-x: auto;
+}
+
 .flex {
   display: flex;
 }
 
+.col {
+  flex-direction: column;
+}
+
 .items-center {
   align-items: center;
+}
+
+.items-start {
+  align-items: flex-start;
+}
+
+.self-start {
+  align-self: flex-start;
+}
+
+.self-center {
+  align-self: center;
+}
+
+.justify-start {
+  justify-content: flex-start;
 }
 
 .justify-between {
@@ -672,6 +741,13 @@ td {
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--md);
+}
+
+/*hide scrollbar*/
+@supports (scrollbar-color: auto) {
+  body.hide-scrollbar::-webkit-scrollbar {
+    width: 0;
+  }
 }
 
 @media only screen and (min-width: 36rem) {

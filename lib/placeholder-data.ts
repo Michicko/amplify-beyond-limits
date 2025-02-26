@@ -303,7 +303,10 @@ export const match = {
   id: 25,
   competition: {
     logo: "/images/tcc_league_logo.svg",
-    name: "Tcc",
+    name: {
+      short: "Tccc",
+      long: "The Creative Championship cup",
+    },
     type: "league",
     round: 5,
   },
@@ -534,10 +537,13 @@ export const match = {
 };
 
 export const match_2 = {
-  id: 25,
+  id: 27,
   competition: {
     logo: "/images/tcc_league_logo.svg",
-    name: "Tcc",
+    name: {
+      short: "Tccc",
+      long: "The Creative Championship cup",
+    },
     type: "league",
     round: 5,
   },
@@ -767,6 +773,8 @@ export const match_2 = {
   },
 };
 
+export const match_list = [27, 27, 27, 27, 27];
+
 export const standing = [
   {
     team: {
@@ -779,6 +787,9 @@ export const standing = [
       w: 8,
       d: 0,
       l: 2,
+      f: 5,
+      a: 6,
+      gd: "5:6",
       pts: 24,
     },
   },
@@ -793,6 +804,9 @@ export const standing = [
       w: 7,
       d: 1,
       l: 2,
+      f: 5,
+      a: 6,
+      gd: "5:6",
       pts: 23,
     },
   },
@@ -807,6 +821,9 @@ export const standing = [
       w: 7,
       d: 2,
       l: 2,
+      f: 5,
+      a: 6,
+      gd: "5:6",
       pts: 23,
     },
   },
@@ -914,4 +931,727 @@ export const players = [
     },
     team: "under-19",
   },
+];
+
+export const standings = [
+  {
+    id: 1,
+    competition_id: 1,
+    table: [
+      {
+        team: {
+          name: { long: "Imperial Fc", short: "IFC" },
+          logo: "/images/imperial_team_logo.svg",
+        },
+        position: 1,
+        stats: {
+          p: 11,
+          w: 8,
+          d: 0,
+          l: 2,
+          f: 5,
+          a: 6,
+          gd: "5:6",
+          pts: 24,
+        },
+      },
+      {
+        team: {
+          name: { long: "Enugu fc", short: "EFC" },
+          logo: "/images/beyond-match.png",
+        },
+        position: 2,
+        stats: {
+          p: 11,
+          w: 7,
+          d: 1,
+          l: 2,
+          f: 5,
+          a: 6,
+          gd: "5:6",
+          pts: 23,
+        },
+      },
+      {
+        team: {
+          name: { long: "Beyond limits fc", short: "BLFC" },
+          logo: "/images/beyond-match.png",
+        },
+        position: 3,
+        stats: {
+          p: 11,
+          w: 7,
+          d: 2,
+          l: 2,
+          f: 5,
+          a: 6,
+          gd: "5:6",
+          pts: 23,
+        },
+      },
+    ],
+  },
+  {
+    id: 2,
+    competition_id: 2,
+    table: [
+      {
+        team: {
+          name: { long: "Imperial Fc", short: "IFC" },
+          logo: "/images/imperial_team_logo.svg",
+        },
+        position: 1,
+        stats: {
+          p: 11,
+          w: 8,
+          d: 0,
+          l: 2,
+          f: 5,
+          a: 6,
+          gd: "5:6",
+          pts: 24,
+        },
+      },
+      {
+        team: {
+          name: { long: "Lagos fc", short: "LFC" },
+          logo: "/images/beyond-match.png",
+        },
+        position: 2,
+        stats: {
+          p: 11,
+          w: 7,
+          d: 1,
+          l: 2,
+          f: 5,
+          a: 6,
+          gd: "5:6",
+          pts: 23,
+        },
+      },
+      {
+        team: {
+          name: { long: "Beyond limits fc", short: "BLFC" },
+          logo: "/images/beyond-match.png",
+        },
+        position: 3,
+        stats: {
+          p: 11,
+          w: 7,
+          d: 2,
+          l: 2,
+          f: 5,
+          a: 6,
+          gd: "5:6",
+          pts: 23,
+        },
+      },
+    ],
+  },
+];
+
+export const competitions = [
+  {
+    id: 1,
+    type: "league",
+    phase_type: "league",
+    slug: "nnl",
+    name: {
+      short: "NNL",
+      long: "Nigerian National League",
+    },
+    logo: "/images/nnl.png",
+    phases: [
+      {
+        phase: "league phase",
+        standing: [
+          {
+            team: {
+              name: { long: "Imperial Fc", short: "IFC" },
+              logo: "/images/imperial_team_logo.svg",
+            },
+            position: 1,
+            stats: {
+              p: 11,
+              w: 8,
+              d: 0,
+              l: 2,
+              f: 5,
+              a: 6,
+              gd: "5:6",
+              pts: 24,
+            },
+          },
+          {
+            team: {
+              name: { long: "Enugu fc", short: "EFC" },
+              logo: "/images/beyond-match.png",
+            },
+            position: 2,
+            stats: {
+              p: 11,
+              w: 7,
+              d: 1,
+              l: 2,
+              f: 5,
+              a: 6,
+              gd: "5:6",
+              pts: 23,
+            },
+          },
+          {
+            team: {
+              name: { long: "Beyond limits fc", short: "BLFC" },
+              logo: "/images/beyond-match.png",
+            },
+            position: 3,
+            stats: {
+              p: 11,
+              w: 7,
+              d: 2,
+              l: 2,
+              f: 5,
+              a: 6,
+              gd: "5:6",
+              pts: 23,
+            },
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 2,
+    type: "league",
+    phase_type: "league",
+    slug: "tccl",
+    name: {
+      short: "TCCL",
+      long: "The Creative Championship League",
+    },
+    logo: "/images/tccl.png",
+    phases: [
+      {
+        phase: "league phase",
+        standing: [
+          {
+            team: {
+              name: { long: "Imperial Fc", short: "IFC" },
+              logo: "/images/imperial_team_logo.svg",
+            },
+            position: 1,
+            stats: {
+              p: 11,
+              w: 8,
+              d: 0,
+              l: 2,
+              f: 5,
+              a: 6,
+              gd: "5:6",
+              pts: 24,
+            },
+          },
+          {
+            team: {
+              name: { long: "Enugu fc", short: "EFC" },
+              logo: "/images/beyond-match.png",
+            },
+            position: 2,
+            stats: {
+              p: 11,
+              w: 7,
+              d: 1,
+              l: 2,
+              f: 5,
+              a: 6,
+              gd: "5:6",
+              pts: 23,
+            },
+          },
+          {
+            team: {
+              name: { long: "Beyond limits fc", short: "BLFC" },
+              logo: "/images/beyond-match.png",
+            },
+            position: 3,
+            stats: {
+              p: 11,
+              w: 7,
+              d: 2,
+              l: 2,
+              f: 5,
+              a: 6,
+              gd: "5:6",
+              pts: 23,
+            },
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 3,
+    type: "cup",
+    phase_type: "mixed",
+    slug: "tccc",
+    name: {
+      short: "TCCC",
+      long: "The Creative Championship cup",
+    },
+    logo: "/images/tccc.png",
+    phases: [
+      {
+        phase: "league phase",
+        standing: [
+          {
+            team: {
+              name: { long: "Imperial Fc", short: "IFC" },
+              logo: "/images/imperial_team_logo.svg",
+            },
+            position: 1,
+            stats: {
+              p: 11,
+              w: 8,
+              d: 0,
+              l: 2,
+              f: 5,
+              a: 6,
+              gd: "5:6",
+              pts: 24,
+            },
+          },
+          {
+            team: {
+              name: { long: "Enugu fc", short: "EFC" },
+              logo: "/images/beyond-match.png",
+            },
+            position: 2,
+            stats: {
+              p: 11,
+              w: 7,
+              d: 1,
+              l: 2,
+              f: 5,
+              a: 6,
+              gd: "5:6",
+              pts: 23,
+            },
+          },
+          {
+            team: {
+              name: { long: "Beyond limits fc", short: "BLFC" },
+              logo: "/images/beyond-match.png",
+            },
+            position: 3,
+            stats: {
+              p: 11,
+              w: 7,
+              d: 2,
+              l: 2,
+              f: 5,
+              a: 6,
+              gd: "5:6",
+              pts: 23,
+            },
+          },
+        ],
+      },
+      {
+        phase: "playoffs",
+        rounds: [
+          {
+            round: "quarterfinals",
+            matches: [
+              {
+                id: 123,
+                home: {
+                  name: {
+                    long: "Beyond Limits Fc",
+                    short: "BLFC",
+                  },
+                  logo: "/images/bright-logo.png",
+                },
+                away: {
+                  name: {
+                    long: "Atlantic Business",
+                    short: "ABFC",
+                  },
+                  logo: "/images/atlantic_business.png",
+                },
+                result: {
+                  home: 3,
+                  away: 0,
+                  overtime: null,
+                  penalties: null,
+                },
+              },
+              {
+                id: 122,
+                home: {
+                  name: {
+                    long: "gbagada fc",
+                    short: "GFC",
+                  },
+                  logo: "/images/gbagada_fc.png",
+                },
+                away: {
+                  name: {
+                    long: "sporting lagos",
+                    short: "SLFC",
+                  },
+                  logo: "/images/sporting_lagos.png",
+                },
+                result: {
+                  home: 2,
+                  away: 1,
+                  overtime: null,
+                  penalties: null,
+                },
+              },
+              {
+                id: 124,
+                home: {
+                  name: {
+                    long: "real saphire fc",
+                    short: "RSFC",
+                  },
+                  logo: "/images/real_saphire_fc.png",
+                },
+                away: {
+                  name: {
+                    long: "imperial fc",
+                    short: "IFC",
+                  },
+                  logo: "/images/imperial_fc.png",
+                },
+                result: {
+                  home: 2,
+                  away: 2,
+                  overtime: null,
+                  penalties: {
+                    home: 2,
+                    away: 4,
+                  },
+                },
+              },
+              {
+                id: 125,
+                home: {
+                  name: {
+                    long: "VOE fc",
+                    short: "VFC",
+                  },
+                  logo: "/images/voe_fc.png",
+                },
+                away: {
+                  name: {
+                    long: "dino fc",
+                    short: "DFC",
+                  },
+                  logo: "/images/dino_fc.png",
+                },
+                result: {
+                  home: 0,
+                  away: 2,
+                  overtime: null,
+                  penalties: null,
+                },
+              },
+            ],
+          },
+          {
+            round: "semifinals",
+            matches: [
+              {
+                id: 126,
+                home: {
+                  name: {
+                    long: "Beyond Limits Fc",
+                    short: "BLFC",
+                  },
+                  logo: "/images/bright-logo.png",
+                },
+                away: {
+                  name: {
+                    long: "imperial fc",
+                    short: "IFC",
+                  },
+                  logo: "/images/imperial_fc.png",
+                },
+                result: {
+                  home: null,
+                  away: null,
+                  overtime: null,
+                  penalties: {
+                    home: null,
+                    away: null,
+                  },
+                },
+              },
+              {
+                id: 127,
+                home: {
+                  name: {
+                    long: "gbagada fc",
+                    short: "GFC",
+                  },
+                  logo: "/images/gbagada_fc.png",
+                },
+                away: {
+                  name: {
+                    long: "dino fc",
+                    short: "DFC",
+                  },
+                  logo: "/images/dino_fc.png",
+                },
+                result: {
+                  home: 1,
+                  away: 3,
+                  overtime: null,
+                  penalties: {
+                    home: null,
+                    away: null,
+                  },
+                },
+              },
+            ],
+          },
+          // {
+          //   round: "3rd place",
+          //   matches: ["macth_id_7"],
+          // },
+          // {
+          //   round: "final",
+          //   matches: ["macth_id_8"],
+          // },
+        ],
+      },
+    ],
+  },
+];
+
+export const tccc = [
+  {
+    phase: "playoffs",
+    finals: "quarterfinals",
+    matches: [
+      {
+        id: 123,
+        home: {
+          name: {
+            long: "Beyond Limits Fc",
+            short: "BLFC",
+          },
+          logo: "/images/bright-logo.png",
+        },
+        away: {
+          name: {
+            long: "Atlantic Business",
+            short: "ABFC",
+          },
+          logo: "/images/atlantic_business.png",
+        },
+        result: {
+          home: 3,
+          away: 0,
+          overtime: null,
+          penalties: null,
+        },
+      },
+      {
+        id: 122,
+        home: {
+          name: {
+            long: "gbagada fc",
+            short: "GFC",
+          },
+          logo: "/images/gbagada_fc.png",
+        },
+        away: {
+          name: {
+            long: "sporting lagos",
+            short: "SLFC",
+          },
+          logo: "/images/sporting_lagos.png",
+        },
+        result: {
+          home: 2,
+          away: 1,
+          overtime: null,
+          penalties: null,
+        },
+      },
+      {
+        id: 124,
+        home: {
+          name: {
+            long: "real saphire fc",
+            short: "RSFC",
+          },
+          logo: "/images/real_saphire_fc.png",
+        },
+        away: {
+          name: {
+            long: "imperial fc",
+            short: "IFC",
+          },
+          logo: "/images/imperial_fc.png",
+        },
+        result: {
+          home: 2,
+          away: 2,
+          overtime: null,
+          penalties: {
+            home: 2,
+            away: 4,
+          },
+        },
+      },
+      {
+        id: 125,
+        home: {
+          name: {
+            long: "VOE fc",
+            short: "VFC",
+          },
+          logo: "/images/voe_fc.png",
+        },
+        away: {
+          name: {
+            long: "dino fc",
+            short: "DFC",
+          },
+          logo: "/images/dino_fc.png",
+        },
+        result: {
+          home: 0,
+          away: 2,
+          overtime: null,
+          penalties: null,
+        },
+      },
+    ],
+  },
+  {
+    phase: "playoffs",
+    finals: "semifinals",
+    matches: [
+      {
+        id: 126,
+        home: {
+          name: {
+            long: "Beyond Limits Fc",
+            short: "BLFC",
+          },
+          logo: "/images/bright-logo.png",
+        },
+        away: {
+          name: {
+            long: "imperial fc",
+            short: "IFC",
+          },
+          logo: "/images/imperial_fc.png",
+        },
+        result: {
+          home: null,
+          away: null,
+          overtime: null,
+          penalties: {
+            home: null,
+            away: null,
+          },
+        },
+      },
+      {
+        id: 127,
+        home: {
+          name: {
+            long: "gbagada fc",
+            short: "GFC",
+          },
+          logo: "/images/gbagada_fc.png",
+        },
+        away: {
+          name: {
+            long: "dino fc",
+            short: "DFC",
+          },
+          logo: "/images/dino_fc.png",
+        },
+        result: {
+          home: 1,
+          away: 3,
+          overtime: null,
+          penalties: {
+            home: null,
+            away: null,
+          },
+        },
+      },
+    ],
+  },
+  // {
+  //   phase: "playoffs",
+  //   finals: "3rd-place",
+  //   matches: [
+  //     {
+  //       id: 126,
+  //       home: {
+  //         name: {
+  //           long: "Beyond Limits Fc",
+  //           short: "BLFC",
+  //         },
+  //         logo: "/images/bright-logo.png",
+  //       },
+  //       away: {
+  //         name: {
+  //           long: "imperial fc",
+  //           short: "IFC",
+  //         },
+  //         logo: "/images/imperial_fc.png",
+  //       },
+  //       result: {
+  //         home: null,
+  //         away: null,
+  //         overtime: null,
+  //         penalties: {
+  //           home: null,
+  //           away: null,
+  //         },
+  //       },
+  //     },
+  //   ],
+  // },
+  // {
+  //   phase: "playoffs",
+  //   finals: "final",
+  //   matches: [
+  //     {
+  //       id: 126,
+  //       home: {
+  //         name: {
+  //           long: "Beyond Limits Fc",
+  //           short: "BLFC",
+  //         },
+  //         logo: "/images/bright-logo.png",
+  //       },
+  //       away: {
+  //         name: {
+  //           long: "imperial fc",
+  //           short: "IFC",
+  //         },
+  //         logo: "/images/imperial_fc.png",
+  //       },
+  //       result: {
+  //         home: null,
+  //         away: null,
+  //         overtime: null,
+  //         penalties: {
+  //           home: null,
+  //           away: null,
+  //         },
+  //       },
+  //     },
+  //   ],
+  // },
 ];

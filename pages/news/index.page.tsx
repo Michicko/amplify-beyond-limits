@@ -1,21 +1,25 @@
 import GuestLayout from "@/components/GuestLayout/GuestLayout";
-import React, { useState } from "react";
+import React from "react";
 import { ReactElement } from "react";
 import { IArticle } from "@/lib/definitions";
-import PageTitle from "@/components/PageHeader/PageTitle";
-import { articles, match } from "@/lib/placeholder-data";
+import { articles } from "@/lib/placeholder-data";
 import ArticleList from "@/components/Article/ArticleList";
 import populateArticles from "@/lib/populateArticle";
+import ArticleLayout from "@/components/Layouts/ArticleLayout";
 
 const News = ({ articles }: { articles: IArticle[] }) => {
+  const links = [
+    { name: "Academy news", href: "/news" },
+    { name: "Beyon limits tv", href: "/beyond-tv" },
+  ];
+
   return (
-    <>
-      <PageTitle text={"Articles"} />
+    <ArticleLayout links={links} theme="theme-1" bg="trans">
       <div className="main-container">
         <ArticleList articles={populateArticles(articles)} />
         {/* pagination */}
       </div>
-    </>
+    </ArticleLayout>
   );
 };
 

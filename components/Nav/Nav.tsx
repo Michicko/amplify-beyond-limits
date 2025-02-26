@@ -19,7 +19,7 @@ const Nav = () => {
       <div className={clsx(styles["nav__sm"])}>
         <div className={clsx(styles.left)}>
           <NavLink link={{ href: "/gallery", name: "gallery" }} />
-          <NavLink link={{ href: "/fixture", name: "fixture" }} />
+          <NavLink link={{ href: "/fixtures", name: "fixtures" }} />
         </div>
         <Text
           text="Youth Development Program of Remo Stars FC"

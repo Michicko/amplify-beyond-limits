@@ -1,0 +1,43 @@
+.competitions {
+	display: flex;
+	flex-direction: column;
+	gap: var(--base);
+}
+
+.competition {
+	display: flex;
+	align-items: center;
+	gap: var(--base);
+	background: var(--blue-400);
+	padding: var(--sm) var(--base);
+	border-radius: var(--base);
+	transition: transform 0.3s linear;
+}
+
+.competition:hover {
+	transform: scale(0.99);
+}
+
+.competition__logo-box {
+	position: relative;
+	height: 2rem;
+	width: 2rem;
+	border-radius: 50%;
+	overflow: hidden;
+}
+
+.competition__name {
+	font-size: var(--base);
+	font-weight: 500;
+}
+
+@media only screen and (min-width: 36rem) {
+	.competition__logo-box {
+		height: 2.5rem;
+		width: 2.5rem;
+	}
+
+	.competition__name {
+		font-size: var(--md);
+	}
+}
