@@ -5,3 +5,11 @@
   gap: 10px;
   cursor: pointer;
 }
+
+.social-share-links {
+  margin-top: var(--xl);
+  display: flex;
+  gap: var(--sm);
+  display: flex;
+  flex-wrap: wrap;
+}

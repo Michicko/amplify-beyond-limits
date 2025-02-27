@@ -8,15 +8,23 @@ const MainHeader = ({
   alt,
   children,
   overlay,
+  loadingScreen,
 }: {
   bg: string;
   alt: string;
   children: React.ReactElement;
   overlay?: boolean;
+  loadingScreen?: boolean;
 }) => {
   return (
-    <header className={clsx(styles.header, overlay && styles.overlay)}>
-      <ImageComp image={bg} alt={alt} priority={true} />
+    <header
+      className={clsx(
+        styles.header,
+        overlay && styles.overlay,
+        loadingScreen && styles.loading,
+      )}
+    >
+      {!loadingScreen && <ImageComp image={bg} alt={alt} priority={true} />}
       <div className={clsx(styles.header__content)}>{children}</div>
     </header>
   );

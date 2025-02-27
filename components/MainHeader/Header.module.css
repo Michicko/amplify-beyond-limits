@@ -9,15 +9,19 @@
   min-height: 20rem;
 }
 
+.header.loading {
+  background: var(--blue-200);
+}
+
 .header::before {
   content: "";
   display: block;
   padding-top: 80%;
 }
 
-.header.overlay::after{
+.header.overlay::after {
   display: block;
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   right: 0;

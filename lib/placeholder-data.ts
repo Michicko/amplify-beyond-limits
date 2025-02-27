@@ -50,6 +50,12 @@ export const articles = [
     createdAt: "2024-06-15",
     image: "/images/winners.jpg",
     category: "club news",
+    content: `
+      <h1>What is going on</h1>
+      <p>Today we're going to discuss about the beautiful game of football. I know you must 
+      have heared about this over and over again</p>
+      <p>We are going to discuss Beyond Limits.</p>
+      `,
   },
   {
     id: "2",
@@ -59,6 +65,12 @@ export const articles = [
     createdAt: "2024-06-01",
     image: "/images/trophy-boy.jpg",
     match: 25,
+    content: `
+      <h1>What is going on</h1>
+      <p>Today we're going to discuss about the beautiful game of football. I know you must 
+      have heared about this over and over again</p>
+      <p>We are going to discuss Beyond Limits.</p>
+      `,
   },
   {
     id: "3",
@@ -67,6 +79,12 @@ export const articles = [
       "Academy Breaks Records with 10-Game Unbeaten Streak, Securing Place in NNL",
     createdAt: "2024-05-28",
     image: "/images/results.jpg",
+    content: `
+      <h1>What is going on</h1>
+      <p>Today we're going to discuss about the beautiful game of football. I know you must 
+      have heared about this over and over again</p>
+      <p>We are going to discuss Beyond Limits.</p>
+      `,
   },
   {
     id: "4",
@@ -75,6 +93,12 @@ export const articles = [
       "End of Season Gala: Beyond Limits FA Celebrates Success with Players and Coaches",
     createdAt: "2024-05-20",
     image: "/images/teamstats.jpg",
+    content: `
+      <h1>What is going on</h1>
+      <p>Today we're going to discuss about the beautiful game of football. I know you must 
+      have heared about this over and over again</p>
+      <p>We are going to discuss Beyond Limits.</p>
+      `,
   },
   {
     id: "5",
@@ -84,6 +108,12 @@ export const articles = [
     createdAt: "2024-05-15",
     image: "/images/honors.jpg",
     match: 25,
+    content: `
+      <h1>What is going on</h1>
+      <p>Today we're going to discuss about the beautiful game of football. I know you must 
+      have heared about this over and over again</p>
+      <p>We are going to discuss Beyond Limits.</p>
+      `,
   },
   {
     id: "6",
@@ -93,6 +123,12 @@ export const articles = [
     createdAt: "2024-06-01",
     image: "/images/trophy-boy.jpg",
     match: 25,
+    content: `
+      <h1>What is going on</h1>
+      <p>Today we're going to discuss about the beautiful game of football. I know you must 
+      have heared about this over and over again</p>
+      <p>We are going to discuss Beyond Limits.</p>
+      `,
   },
 ];
 
