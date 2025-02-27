@@ -181,3 +181,7 @@
     font-size: var(--vi);
   }
 }
+
+.text.thin {
+  font-weight: 400;
+}

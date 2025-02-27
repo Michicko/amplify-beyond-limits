@@ -2396,3 +2396,34 @@ export const under19Players = [
 
   // Continue for the rest of the players...
 ];
+
+export const honors = [
+  {
+    competition: { short: "NNL", long: "Nigerian National League" },
+    trophy: "/images/nnl-trophy.png",
+    numbers_won: 1,
+    years: [2024],
+    article_id: 3,
+  },
+  {
+    competition: { short: "VC", long: "Viareggio cup" },
+    trophy: "/images/vc-trophy.png",
+    numbers_won: 1,
+    years: [2024],
+    article_id: 3,
+  },
+  {
+    competition: { short: "tccc", long: "The Creative Championship cup" },
+    trophy: "/images/tccc-trophy.png",
+    numbers_won: 1,
+    years: [2023, 2024],
+    article_id: 3,
+  },
+  {
+    competition: { short: "tccl", long: "The Creative Championship league" },
+    trophy: "/images/tccl-trophy.png",
+    numbers_won: 1,
+    years: [2024],
+    article_id: 3,
+  },
+];

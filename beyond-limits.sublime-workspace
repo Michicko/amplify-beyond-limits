@@ -4,6 +4,66 @@
 		"selected_items":
 		[
 			[
+				"cl",
+				"className?"
+			],
+			[
+				"w",
+				"white"
+			],
+			[
+				"Text",
+				"Text"
+			],
+			[
+				"bg",
+				"background"
+			],
+			[
+				"art",
+				"article__link"
+			],
+			[
+				"ar",
+				"article-container"
+			],
+			[
+				"ArticleL",
+				"ArticleList"
+			],
+			[
+				"Heading",
+				"Heading"
+			],
+			[
+				"curr",
+				"currentUrl"
+			],
+			[
+				"ImgComp",
+				"ImageComp"
+			],
+			[
+				"ds",
+				"display"
+			],
+			[
+				"player",
+				"player_rows"
+			],
+			[
+				"goal",
+				"goalkeeper"
+			],
+			[
+				"playe",
+				"players"
+			],
+			[
+				"Player",
+				"Player"
+			],
+			[
 				"obje",
 				"object-position"
 			],
@@ -12,16 +72,8 @@
 				"player-kit"
 			],
 			[
-				"cl",
-				"className?"
-			],
-			[
 				"bdrr",
 				"border-radius"
-			],
-			[
-				"bg",
-				"background"
 			],
 			[
 				"d",
@@ -34,10 +86,6 @@
 			[
 				"fist",
 				"first-child"
-			],
-			[
-				"ds",
-				"display"
 			],
 			[
 				"jc",
@@ -128,10 +176,6 @@
 				"no_btn"
 			],
 			[
-				"curr",
-				"currentPhase"
-			],
-			[
 				"current",
 				"currentPhase"
 			],
@@ -182,10 +226,6 @@
 			[
 				"ta",
 				"text-align"
-			],
-			[
-				"Heading",
-				"Heading"
 			],
 			[
 				"com",
@@ -310,10 +350,6 @@
 			[
 				"st",
 				"status"
-			],
-			[
-				"Text",
-				"Text"
 			],
 			[
 				"MatchC",
@@ -463,731 +499,6 @@
 	},
 	"buffers":
 	[
-		{
-			"contents": "import React from \"react\";\n\nfunction Team() {\n\tconst router = useRouter();\n\tconst { teamSlug } = router.query;\n\n\treturn (\n\t\t<div>\n\t\t\t<h1>Team {}</h1>\n\t\t</div>\n\t);\n}\n\nexport default Team;\n",
-			"file": "pages/teams/[teamSlug]/index.page.tsx",
-			"file_size": 188,
-			"file_write_time": 133850627592247251,
-			"settings":
-			{
-				"buffer_size": 187,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			},
-			"undo_stack":
-			[
-				[
-					4,
-					1,
-					"insert",
-					{
-						"characters": "r"
-					},
-					"AQAAAAAAAAAAAAAAAQAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					6,
-					1,
-					"insert",
-					{
-						"characters": "f"
-					},
-					"AQAAAAEAAAAAAAAAAgAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAAQAAAAAAAAABAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					8,
-					1,
-					"insert",
-					{
-						"characters": "ce"
-					},
-					"AgAAAAIAAAAAAAAAAwAAAAAAAAAAAAAAAwAAAAAAAAAEAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAAgAAAAAAAAACAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					11,
-					1,
-					"insert_completion",
-					{
-						"completion": "import React from 'react'\n\nfunction ${1:${TM_FILENAME/(.+)\\..+|.*/$1/:name}}() {\n\treturn (\n\t\t<div>\n\t\t\t$0\n\t\t</div>\n\t)\n}\n\nexport default ${1:${TM_FILENAME_BASE}}",
-						"format": "snippet",
-						"keep_prefix": false,
-						"must_insert": false,
-						"trigger": "rfce"
-					},
-					"AgAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAcmZjZQAAAAAAAAAAcQAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAABAAAAAAAAAAEAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					13,
-					1,
-					"insert",
-					{
-						"characters": "T"
-					},
-					"BAAAAGcAAAAAAAAAaAAAAAAAAAAAAAAAaAAAAAAAAABoAAAAAAAAAAoAAABpbmRleC5wYWdlJAAAAAAAAAAlAAAAAAAAAAAAAAAlAAAAAAAAACUAAAAAAAAACgAAAGluZGV4LnBhZ2U",
-					"AQAAAAAAAAACAAAAJAAAAAAAAAAuAAAAAAAAAAAAAAAAAPC/ZwAAAAAAAABxAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					15,
-					1,
-					"insert",
-					{
-						"characters": "eam"
-					},
-					"BgAAAF8AAAAAAAAAYAAAAAAAAAAAAAAAJQAAAAAAAAAmAAAAAAAAAAAAAABhAAAAAAAAAGIAAAAAAAAAAAAAACYAAAAAAAAAJwAAAAAAAAAAAAAAYwAAAAAAAABkAAAAAAAAAAAAAAAnAAAAAAAAACgAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAACAAAAJQAAAAAAAAAlAAAAAAAAAAAAAAAAAPC/XwAAAAAAAABfAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					17,
-					1,
-					"js_prettier",
-					{
-						"auto_format_prettier_config_path": null,
-						"save_file": true
-					},
-					"AgAAAAAAAAAAAAAAWgAAAAAAAABlAAAAaW1wb3J0IFJlYWN0IGZyb20gJ3JlYWN0JwoKZnVuY3Rpb24gVGVhbSgpIHsKCXJldHVybiAoCgkJPGRpdj4KCQkJCgkJPC9kaXY+CgkpCn0KCmV4cG9ydCBkZWZhdWx0IFRlYW1aAAAAAAAAAFsAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAACAAAAKAAAAAAAAAAoAAAAAAAAAAAAAAAAAPC/ZQAAAAAAAABlAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					24,
-					1,
-					"auto_indent_tag",
-					null,
-					"AQAAADsAAAAAAAAAQAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAOwAAAAAAAAA7AAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					26,
-					1,
-					"insert",
-					{
-						"characters": "h"
-					},
-					"AQAAAD4AAAAAAAAAPwAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAPgAAAAAAAAA+AAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					28,
-					1,
-					"insert",
-					{
-						"characters": "2"
-					},
-					"AQAAAD8AAAAAAAAAQAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAPwAAAAAAAAA/AAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					31,
-					2,
-					"left_delete",
-					null,
-					"AgAAAD8AAAAAAAAAPwAAAAAAAAABAAAAMj4AAAAAAAAAPgAAAAAAAAABAAAAaA",
-					"AQAAAAAAAAABAAAAQAAAAAAAAABAAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					32,
-					1,
-					"insert",
-					{
-						"characters": "<h1"
-					},
-					"AwAAAD4AAAAAAAAAPwAAAAAAAAAAAAAAPwAAAAAAAABAAAAAAAAAAAAAAABAAAAAAAAAAEEAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAPgAAAAAAAAA+AAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					33,
-					1,
-					"emmet_expand_abbreviation",
-					{
-						"tab": true
-					},
-					"AgAAAD4AAAAAAAAAPgAAAAAAAAADAAAAPGgxPgAAAAAAAABHAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAQQAAAAAAAABBAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					34,
-					1,
-					"auto_indent_tag",
-					null,
-					"AQAAAEIAAAAAAAAASQAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAQgAAAAAAAABCAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					37,
-					1,
-					"insert",
-					{
-						"characters": "T"
-					},
-					"AQAAAEYAAAAAAAAARwAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAARgAAAAAAAABGAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					39,
-					1,
-					"insert",
-					{
-						"characters": "a"
-					},
-					"AQAAAEcAAAAAAAAASAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAARwAAAAAAAABHAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					41,
-					1,
-					"insert",
-					{
-						"characters": "m"
-					},
-					"AQAAAEgAAAAAAAAASQAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAASAAAAAAAAABIAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					43,
-					1,
-					"insert",
-					{
-						"characters": " "
-					},
-					"AQAAAEkAAAAAAAAASgAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAASQAAAAAAAABJAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					46,
-					1,
-					"insert",
-					{
-						"characters": "e"
-					},
-					"AQAAAEcAAAAAAAAASAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAARwAAAAAAAABHAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					49,
-					1,
-					"insert",
-					{
-						"characters": " "
-					},
-					"AQAAAEoAAAAAAAAASwAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAASgAAAAAAAABKAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					51,
-					1,
-					"insert",
-					{
-						"characters": "$"
-					},
-					"AQAAAEsAAAAAAAAATAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAASwAAAAAAAABLAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					52,
-					1,
-					"insert_snippet",
-					{
-						"contents": "{$0}"
-					},
-					"AQAAAEwAAAAAAAAATgAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAATAAAAAAAAABMAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					55,
-					1,
-					"left_delete",
-					null,
-					"AQAAAEsAAAAAAAAASwAAAAAAAAABAAAAJA",
-					"AQAAAAAAAAABAAAATAAAAAAAAABMAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					60,
-					1,
-					"insert",
-					{
-						"characters": "\n"
-					},
-					"AgAAAC0AAAAAAAAALgAAAAAAAAAAAAAALgAAAAAAAAAvAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAALQAAAAAAAAAtAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					63,
-					1,
-					"insert",
-					{
-						"characters": "const"
-					},
-					"BQAAAC8AAAAAAAAAMAAAAAAAAAAAAAAAMAAAAAAAAAAxAAAAAAAAAAAAAAAxAAAAAAAAADIAAAAAAAAAAAAAADIAAAAAAAAAMwAAAAAAAAAAAAAAMwAAAAAAAAA0AAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAALwAAAAAAAAAvAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					64,
-					1,
-					"insert",
-					{
-						"characters": " router"
-					},
-					"BwAAADQAAAAAAAAANQAAAAAAAAAAAAAANQAAAAAAAAA2AAAAAAAAAAAAAAA2AAAAAAAAADcAAAAAAAAAAAAAADcAAAAAAAAAOAAAAAAAAAAAAAAAOAAAAAAAAAA5AAAAAAAAAAAAAAA5AAAAAAAAADoAAAAAAAAAAAAAADoAAAAAAAAAOwAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAANAAAAAAAAAA0AAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					65,
-					1,
-					"insert",
-					{
-						"characters": " ="
-					},
-					"AgAAADsAAAAAAAAAPAAAAAAAAAAAAAAAPAAAAAAAAAA9AAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAOwAAAAAAAAA7AAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					66,
-					1,
-					"insert",
-					{
-						"characters": " useRou"
-					},
-					"BwAAAD0AAAAAAAAAPgAAAAAAAAAAAAAAPgAAAAAAAAA/AAAAAAAAAAAAAAA/AAAAAAAAAEAAAAAAAAAAAAAAAEAAAAAAAAAAQQAAAAAAAAAAAAAAQQAAAAAAAABCAAAAAAAAAAAAAABCAAAAAAAAAEMAAAAAAAAAAAAAAEMAAAAAAAAARAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAPQAAAAAAAAA9AAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					68,
-					1,
-					"insert",
-					{
-						"characters": "ter"
-					},
-					"AwAAAEQAAAAAAAAARQAAAAAAAAAAAAAARQAAAAAAAABGAAAAAAAAAAAAAABGAAAAAAAAAEcAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAARAAAAAAAAABEAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					69,
-					1,
-					"insert_snippet",
-					{
-						"contents": "($0)"
-					},
-					"AQAAAEcAAAAAAAAASQAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAARwAAAAAAAABHAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					72,
-					1,
-					"insert",
-					{
-						"characters": ";"
-					},
-					"AQAAAEkAAAAAAAAASgAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAASQAAAAAAAABJAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					74,
-					1,
-					"insert",
-					{
-						"characters": "\n"
-					},
-					"AgAAAEoAAAAAAAAASwAAAAAAAAAAAAAASwAAAAAAAABMAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAASgAAAAAAAABKAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					80,
-					1,
-					"left_delete",
-					null,
-					"AgAAAEYAAAAAAAAARgAAAAAAAAABAAAAckoAAAAAAAAASgAAAAAAAAABAAAACQ",
-					"AQAAAAAAAAABAAAARwAAAAAAAABHAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					81,
-					1,
-					"insert",
-					{
-						"characters": "r"
-					},
-					"AQAAAEYAAAAAAAAARwAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAARgAAAAAAAABGAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					85,
-					1,
-					"left_delete",
-					null,
-					"AQAAAEYAAAAAAAAARgAAAAAAAAABAAAAcg",
-					"AQAAAAAAAAABAAAARwAAAAAAAABHAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					86,
-					1,
-					"insert",
-					{
-						"characters": "r"
-					},
-					"AQAAAEYAAAAAAAAARwAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAARgAAAAAAAABGAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					89,
-					1,
-					"insert",
-					{
-						"characters": "\n"
-					},
-					"AgAAAEoAAAAAAAAASwAAAAAAAAAAAAAASwAAAAAAAABMAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAASgAAAAAAAABKAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					91,
-					1,
-					"insert",
-					{
-						"characters": "c"
-					},
-					"AQAAAEwAAAAAAAAATQAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAATAAAAAAAAABMAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					93,
-					1,
-					"insert",
-					{
-						"characters": "o"
-					},
-					"AQAAAE0AAAAAAAAATgAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAATQAAAAAAAABNAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					94,
-					1,
-					"insert",
-					{
-						"characters": "nst"
-					},
-					"AwAAAE4AAAAAAAAATwAAAAAAAAAAAAAATwAAAAAAAABQAAAAAAAAAAAAAABQAAAAAAAAAFEAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAATgAAAAAAAABOAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					95,
-					1,
-					"insert",
-					{
-						"characters": " "
-					},
-					"AQAAAFEAAAAAAAAAUgAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAUQAAAAAAAABRAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					97,
-					1,
-					"insert",
-					{
-						"characters": "rou"
-					},
-					"AwAAAFIAAAAAAAAAUwAAAAAAAAAAAAAAUwAAAAAAAABUAAAAAAAAAAAAAABUAAAAAAAAAFUAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAUgAAAAAAAABSAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					98,
-					3,
-					"left_delete",
-					null,
-					"AwAAAFQAAAAAAAAAVAAAAAAAAAABAAAAdVMAAAAAAAAAUwAAAAAAAAABAAAAb1IAAAAAAAAAUgAAAAAAAAABAAAAcg",
-					"AQAAAAAAAAABAAAAVQAAAAAAAABVAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					99,
-					1,
-					"insert_snippet",
-					{
-						"contents": "{$0}"
-					},
-					"AQAAAFIAAAAAAAAAVAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAUgAAAAAAAABSAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					101,
-					1,
-					"insert",
-					{
-						"characters": " ="
-					},
-					"AgAAAFQAAAAAAAAAVQAAAAAAAAAAAAAAVQAAAAAAAABWAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAVAAAAAAAAABUAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					102,
-					1,
-					"insert",
-					{
-						"characters": " router"
-					},
-					"BwAAAFYAAAAAAAAAVwAAAAAAAAAAAAAAVwAAAAAAAABYAAAAAAAAAAAAAABYAAAAAAAAAFkAAAAAAAAAAAAAAFkAAAAAAAAAWgAAAAAAAAAAAAAAWgAAAAAAAABbAAAAAAAAAAAAAABbAAAAAAAAAFwAAAAAAAAAAAAAAFwAAAAAAAAAXQAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAVgAAAAAAAABWAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					107,
-					1,
-					"insert",
-					{
-						"characters": ".params"
-					},
-					"BwAAAF0AAAAAAAAAXgAAAAAAAAAAAAAAXgAAAAAAAABfAAAAAAAAAAAAAABfAAAAAAAAAGAAAAAAAAAAAAAAAGAAAAAAAAAAYQAAAAAAAAAAAAAAYQAAAAAAAABiAAAAAAAAAAAAAABiAAAAAAAAAGMAAAAAAAAAAAAAAGMAAAAAAAAAZAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAXQAAAAAAAABdAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					112,
-					1,
-					"insert",
-					{
-						"characters": "t"
-					},
-					"AQAAAFMAAAAAAAAAVAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAUwAAAAAAAABTAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					114,
-					1,
-					"insert",
-					{
-						"characters": "e"
-					},
-					"AQAAAFQAAAAAAAAAVQAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAVAAAAAAAAABUAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					116,
-					1,
-					"insert",
-					{
-						"characters": "am-slug"
-					},
-					"BwAAAFUAAAAAAAAAVgAAAAAAAAAAAAAAVgAAAAAAAABXAAAAAAAAAAAAAABXAAAAAAAAAFgAAAAAAAAAAAAAAFgAAAAAAAAAWQAAAAAAAAAAAAAAWQAAAAAAAABaAAAAAAAAAAAAAABaAAAAAAAAAFsAAAAAAAAAAAAAAFsAAAAAAAAAXAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAVQAAAAAAAABVAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					123,
-					1,
-					"left_delete",
-					null,
-					"AQAAAEsAAAAAAAAASwAAAAAAAAAiAAAACWNvbnN0IHt0ZWFtLXNsdWd9ID0gcm91dGVyLnBhcmFtcw",
-					"AQAAAAAAAAABAAAAbQAAAAAAAABLAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					133,
-					1,
-					"reindent",
-					null,
-					"AQAAAEsAAAAAAAAATAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAASwAAAAAAAABLAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					135,
-					1,
-					"insert",
-					{
-						"characters": "const"
-					},
-					"BQAAAEwAAAAAAAAATQAAAAAAAAAAAAAATQAAAAAAAABOAAAAAAAAAAAAAABOAAAAAAAAAE8AAAAAAAAAAAAAAE8AAAAAAAAAUAAAAAAAAAAAAAAAUAAAAAAAAABRAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAATAAAAAAAAABMAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					136,
-					1,
-					"insert",
-					{
-						"characters": " "
-					},
-					"AQAAAFEAAAAAAAAAUgAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAUQAAAAAAAABRAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					139,
-					1,
-					"insert_snippet",
-					{
-						"contents": "{$0}"
-					},
-					"AQAAAFIAAAAAAAAAVAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAUgAAAAAAAABSAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					141,
-					1,
-					"insert",
-					{
-						"characters": "t"
-					},
-					"AQAAAFMAAAAAAAAAVAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAUwAAAAAAAABTAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					143,
-					1,
-					"insert",
-					{
-						"characters": "eamSlug"
-					},
-					"BwAAAFQAAAAAAAAAVQAAAAAAAAAAAAAAVQAAAAAAAABWAAAAAAAAAAAAAABWAAAAAAAAAFcAAAAAAAAAAAAAAFcAAAAAAAAAWAAAAAAAAAAAAAAAWAAAAAAAAABZAAAAAAAAAAAAAABZAAAAAAAAAFoAAAAAAAAAAAAAAFoAAAAAAAAAWwAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAVAAAAAAAAABUAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					145,
-					1,
-					"insert",
-					{
-						"characters": " ="
-					},
-					"AgAAAFwAAAAAAAAAXQAAAAAAAAAAAAAAXQAAAAAAAABeAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAXAAAAAAAAABcAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					146,
-					1,
-					"insert",
-					{
-						"characters": " router.pa"
-					},
-					"CgAAAF4AAAAAAAAAXwAAAAAAAAAAAAAAXwAAAAAAAABgAAAAAAAAAAAAAABgAAAAAAAAAGEAAAAAAAAAAAAAAGEAAAAAAAAAYgAAAAAAAAAAAAAAYgAAAAAAAABjAAAAAAAAAAAAAABjAAAAAAAAAGQAAAAAAAAAAAAAAGQAAAAAAAAAZQAAAAAAAAAAAAAAZQAAAAAAAABmAAAAAAAAAAAAAABmAAAAAAAAAGcAAAAAAAAAAAAAAGcAAAAAAAAAaAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAXgAAAAAAAABeAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					147,
-					1,
-					"insert",
-					{
-						"characters": "rams"
-					},
-					"BAAAAGgAAAAAAAAAaQAAAAAAAAAAAAAAaQAAAAAAAABqAAAAAAAAAAAAAABqAAAAAAAAAGsAAAAAAAAAAAAAAGsAAAAAAAAAbAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAaAAAAAAAAABoAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					149,
-					1,
-					"js_prettier",
-					{
-						"auto_format_prettier_config_path": null,
-						"save_file": true
-					},
-					"AgAAAAAAAAAAAAAAuwAAAAAAAAC4AAAAaW1wb3J0IFJlYWN0IGZyb20gInJlYWN0IjsKCmZ1bmN0aW9uIFRlYW0oKSB7Cgljb25zdCByb3V0ZXIgPSB1c2VSb3V0ZXIoKTsKCWNvbnN0IHt0ZWFtU2x1Z30gPSByb3V0ZXIucGFyYW1zCgoJcmV0dXJuIDxkaXY+CgkJPGgxPgoJCQlUZWFtIHt9IAoJCTwvaDE+Cgk8L2Rpdj47Cn0KCmV4cG9ydCBkZWZhdWx0IFRlYW07CrsAAAAAAAAAvAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAbAAAAAAAAABsAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					163,
-					6,
-					"left_delete",
-					null,
-					"BgAAAG0AAAAAAAAAbQAAAAAAAAABAAAAc2wAAAAAAAAAbAAAAAAAAAABAAAAbWsAAAAAAAAAawAAAAAAAAABAAAAYWoAAAAAAAAAagAAAAAAAAABAAAAcmkAAAAAAAAAaQAAAAAAAAABAAAAYWgAAAAAAAAAaAAAAAAAAAABAAAAcA",
-					"AQAAAAAAAAABAAAAbgAAAAAAAABuAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					164,
-					1,
-					"insert",
-					{
-						"characters": "query"
-					},
-					"BQAAAGgAAAAAAAAAaQAAAAAAAAAAAAAAaQAAAAAAAABqAAAAAAAAAAAAAABqAAAAAAAAAGsAAAAAAAAAAAAAAGsAAAAAAAAAbAAAAAAAAAAAAAAAbAAAAAAAAABtAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAaAAAAAAAAABoAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					174,
-					1,
-					"left_delete",
-					null,
-					"AQAAAEYAAAAAAAAARgAAAAAAAAABAAAAcg",
-					"AQAAAAAAAAABAAAARwAAAAAAAABHAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					175,
-					1,
-					"insert",
-					{
-						"characters": "r"
-					},
-					"AQAAAEYAAAAAAAAARwAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAARgAAAAAAAABGAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					180,
-					1,
-					"insert",
-					{
-						"characters": "\n"
-					},
-					"AQAAABoAAAAAAAAAGwAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAGgAAAAAAAAAaAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					182,
-					1,
-					"insert",
-					{
-						"characters": "import"
-					},
-					"BgAAABsAAAAAAAAAHAAAAAAAAAAAAAAAHAAAAAAAAAAdAAAAAAAAAAAAAAAdAAAAAAAAAB4AAAAAAAAAAAAAAB4AAAAAAAAAHwAAAAAAAAAAAAAAHwAAAAAAAAAgAAAAAAAAAAAAAAAgAAAAAAAAACEAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAGwAAAAAAAAAbAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					183,
-					1,
-					"insert",
-					{
-						"characters": " "
-					},
-					"AQAAACEAAAAAAAAAIgAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAIQAAAAAAAAAhAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					186,
-					1,
-					"insert_snippet",
-					{
-						"contents": "{$0}"
-					},
-					"AQAAACIAAAAAAAAAJAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAIgAAAAAAAAAiAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					188,
-					1,
-					"insert",
-					{
-						"characters": "useROu"
-					},
-					"BgAAACMAAAAAAAAAJAAAAAAAAAAAAAAAJAAAAAAAAAAlAAAAAAAAAAAAAAAlAAAAAAAAACYAAAAAAAAAAAAAACYAAAAAAAAAJwAAAAAAAAAAAAAAJwAAAAAAAAAoAAAAAAAAAAAAAAAoAAAAAAAAACkAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAIwAAAAAAAAAjAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					189,
-					2,
-					"left_delete",
-					null,
-					"AgAAACgAAAAAAAAAKAAAAAAAAAABAAAAdScAAAAAAAAAJwAAAAAAAAABAAAATw",
-					"AQAAAAAAAAABAAAAKQAAAAAAAAApAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					190,
-					1,
-					"insert",
-					{
-						"characters": "out"
-					},
-					"AwAAACcAAAAAAAAAKAAAAAAAAAAAAAAAKAAAAAAAAAApAAAAAAAAAAAAAAApAAAAAAAAACoAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAJwAAAAAAAAAnAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					192,
-					17,
-					"left_delete",
-					null,
-					"EQAAACoAAAAAAAAAKgAAAAAAAAABAAAAfSkAAAAAAAAAKQAAAAAAAAABAAAAdCgAAAAAAAAAKAAAAAAAAAABAAAAdScAAAAAAAAAJwAAAAAAAAABAAAAbyYAAAAAAAAAJgAAAAAAAAABAAAAUiUAAAAAAAAAJQAAAAAAAAABAAAAZSQAAAAAAAAAJAAAAAAAAAABAAAAcyMAAAAAAAAAIwAAAAAAAAABAAAAdSIAAAAAAAAAIgAAAAAAAAABAAAAeyEAAAAAAAAAIQAAAAAAAAABAAAAICAAAAAAAAAAIAAAAAAAAAABAAAAdB8AAAAAAAAAHwAAAAAAAAABAAAAch4AAAAAAAAAHgAAAAAAAAABAAAAbx0AAAAAAAAAHQAAAAAAAAABAAAAcBwAAAAAAAAAHAAAAAAAAAABAAAAbRsAAAAAAAAAGwAAAAAAAAABAAAAaRoAAAAAAAAAGgAAAAAAAAABAAAACg",
-					"AQAAAAAAAAABAAAAKwAAAAAAAAArAAAAAAAAAAAAAAAAAPC/"
-				]
-			]
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -1246,21 +557,48 @@
 	"expanded_folders":
 	[
 		"/home/michky/projects/amplify-beyond-limits",
+		"/home/michky/projects/amplify-beyond-limits/components",
+		"/home/michky/projects/amplify-beyond-limits/components/Article",
+		"/home/michky/projects/amplify-beyond-limits/components/HomeContent",
+		"/home/michky/projects/amplify-beyond-limits/components/Layouts",
+		"/home/michky/projects/amplify-beyond-limits/components/MainHeader",
+		"/home/michky/projects/amplify-beyond-limits/components/Social",
+		"/home/michky/projects/amplify-beyond-limits/components/Typography",
+		"/home/michky/projects/amplify-beyond-limits/components/UpcomingMatches",
+		"/home/michky/projects/amplify-beyond-limits/lib",
 		"/home/michky/projects/amplify-beyond-limits/pages",
+		"/home/michky/projects/amplify-beyond-limits/pages/news",
+		"/home/michky/projects/amplify-beyond-limits/pages/results",
+		"/home/michky/projects/amplify-beyond-limits/pages/tables",
 		"/home/michky/projects/amplify-beyond-limits/pages/teams",
-		"/home/michky/projects/amplify-beyond-limits/pages/teams/[team-slug]",
+		"/home/michky/projects/amplify-beyond-limits/pages/teams/[teamSlug]",
 		"/home/michky/projects/amplify-beyond-limits/styles"
 	],
 	"file_history":
 	[
+		"/home/michky/projects/amplify-beyond-limits/pages/news/[articleSlug]/index.page.tsx",
+		"/home/michky/projects/amplify-beyond-limits/components/Layouts/Layout.module.css",
+		"/home/michky/projects/amplify-beyond-limits/pages/news/News.module.css",
+		"/home/michky/projects/amplify-beyond-limits/lib/placeholder-data.ts",
+		"/home/michky/projects/amplify-beyond-limits/components/MainHeader/MainHeader.tsx",
+		"/home/michky/projects/amplify-beyond-limits/components/MainHeader/Header.module.css",
+		"/home/michky/projects/amplify-beyond-limits/components/Article/Article.tsx",
+		"/home/michky/projects/amplify-beyond-limits/components/Article/ArticleList.tsx",
+		"/home/michky/projects/amplify-beyond-limits/components/Article/Article.module.css",
+		"/home/michky/projects/amplify-beyond-limits/components/Social/SocialShareLinks.tsx",
+		"/home/michky/projects/amplify-beyond-limits/components/Button/Button.module.css",
+		"/home/michky/projects/amplify-beyond-limits/components/Button/ShareButton.tsx",
+		"/home/michky/projects/amplify-beyond-limits/components/Social/socials.module.css",
+		"/home/michky/projects/amplify-beyond-limits/pages/teams/[teamSlug]/Team.module.css",
+		"/home/michky/projects/amplify-beyond-limits/pages/teams/[teamSlug]/index.page.tsx",
+		"/home/michky/projects/amplify-beyond-limits/components/Typography/Heading.tsx",
+		"/home/michky/projects/amplify-beyond-limits/pages/tables/index.page.tsx",
 		"/home/michky/projects/amplify-beyond-limits/components/HomeContent/index.page.tsx",
 		"/home/michky/projects/amplify-beyond-limits/pages/team/playersData.js",
-		"/home/michky/projects/amplify-beyond-limits/components/Article/Article.module.css",
 		"/home/michky/projects/amplify-beyond-limits/components/VideoCard/VideoCard.module.css",
 		"/home/michky/projects/amplify-beyond-limits/components/Player/PlayerInfo.tsx",
 		"/home/michky/projects/amplify-beyond-limits/components/Player/PlayerModal.tsx",
 		"/home/michky/projects/amplify-beyond-limits/components/Modal/Modal.tsx",
-		"/home/michky/projects/amplify-beyond-limits/lib/placeholder-data.ts",
 		"/home/michky/projects/amplify-beyond-limits/components/Player/Player.module.css",
 		"/home/michky/projects/amplify-beyond-limits/components/Player/PlayerList.tsx",
 		"/home/michky/projects/amplify-beyond-limits/components/Modal/Modal.module.css",
@@ -1270,7 +608,6 @@
 		"/home/michky/projects/amplify-beyond-limits/lib/definitions.ts",
 		"/home/michky/projects/amplify-beyond-limits/components/Standing/Standing.tsx",
 		"/home/michky/projects/amplify-beyond-limits/components/Standing/StandingRow.tsx",
-		"/home/michky/projects/amplify-beyond-limits/components/Button/Button.module.css",
 		"/home/michky/projects/amplify-beyond-limits/components/Standing/Standing.module.css",
 		"/home/michky/projects/amplify-beyond-limits/components/MatchCards/MatchFixtureDetails.tsx",
 		"/home/michky/projects/amplify-beyond-limits/components/MatchCards/MatchResultDetails.tsx",
@@ -1281,14 +618,11 @@
 		"/home/michky/projects/amplify-beyond-limits/components/Typography/Typography.module.css",
 		"/home/michky/projects/amplify-beyond-limits/components/Typography/Text.tsx",
 		"/home/michky/projects/amplify-beyond-limits/components/MatchCards/MatchCompetitionLogo.tsx",
-		"/home/michky/projects/amplify-beyond-limits/pages/tables/index.page.tsx",
-		"/home/michky/projects/amplify-beyond-limits/components/Layouts/Layout.module.css",
 		"/home/michky/projects/amplify-beyond-limits/components/Layouts/CompetitionsLayout/CompetitionsLayout.tsx",
 		"/home/michky/projects/amplify-beyond-limits/components/TournamentBracket/TournamentBracket.tsx",
 		"/home/michky/projects/amplify-beyond-limits/components/Switcher/ButtonSwitch.tsx",
 		"/home/michky/projects/amplify-beyond-limits/components/Switcher/Switcher.tsx",
 		"/home/michky/projects/amplify-beyond-limits/components/Switcher/LinkSwitch.tsx",
-		"/home/michky/projects/amplify-beyond-limits/components/Typography/Heading.tsx",
 		"/home/michky/projects/amplify-beyond-limits/components/Layouts/CompetitionsLayout/MixedType.tsx",
 		"/home/michky/projects/amplify-beyond-limits/pages/competitions/Competitions.module.css",
 		"/home/michky/projects/amplify-beyond-limits/pages/competitions/index.page.tsx",
@@ -1315,7 +649,6 @@
 		"/home/michky/projects/amplify-beyond-limits/components/Calendar/CalendarMonth.tsx",
 		"/home/michky/projects/amplify-beyond-limits/hooks/useGetScreenWidth.tsx",
 		"/home/michky/projects/amplify-beyond-limits/components/MatchCards/MatchBtn.tsx",
-		"/home/michky/projects/amplify-beyond-limits/components/MainHeader/MainHeader.tsx",
 		"/home/michky/projects/amplify-beyond-limits/components/Nav/Nav.tsx",
 		"/home/michky/projects/amplify-beyond-limits/pages/fixtures/fixtures.tsx'",
 		"/home/michky/projects/amplify-beyond-limits/components/Layouts/CompetitionsLayout/LayoutContainer.tsx",
@@ -1335,7 +668,6 @@
 		"/home/michky/projects/amplify-beyond-limits/pages/competitions/[competitionSlug]/fixtures/index.page.tsx",
 		"/home/michky/projects/amplify-beyond-limits/pages/competitions/[competitionSlug]/results/index.page.tsx",
 		"/home/michky/projects/amplify-beyond-limits/pages/competitions/[competitionSlug]/tables/index.page.tsx",
-		"/home/michky/projects/amplify-beyond-limits/components/MainHeader/Header.module.css",
 		"/home/michky/projects/amplify-beyond-limits/components/Menu/MenuLinks.tsx",
 		"/home/michky/projects/amplify-beyond-limits/pages/Competitions/index.page.tsx",
 		"/home/michky/projects/amplify-beyond-limits/pages/Competitions/[competitionSlug]/index.page.tsx",
@@ -1358,7 +690,7 @@
 	],
 	"find":
 	{
-		"height": 27.0
+		"height": 26.0
 	},
 	"find_in_files":
 	{
@@ -1372,6 +704,14 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"--ms",
+			"news",
+			"NewsArticle",
+			"title",
+			"space",
+			"content",
+			" // ",
+			"shareText",
 			"var(--base)",
 			"PlayerDetails",
 			"player-details",
@@ -1508,154 +848,12 @@
 		{
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "pages/teams/[teamSlug]/index.page.tsx",
-					"selected": true,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 187,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								26,
-								26
-							]
-						],
-						"settings":
-						{
-							"auto_complete_triggers":
-							[
-								{
-									"characters": "<",
-									"selector": "text.html, text.xml"
-								},
-								{
-									"rhs_empty": true,
-									"selector": "punctuation.accessor"
-								},
-								{
-									"characters": ".\"'/@<",
-									"selector": "meta.tag, source - comment - string.quoted.double.block - string.quoted.single.block - string.unquoted.heredoc",
-									"server": "LSP-typescript"
-								}
-							],
-							"bracket_highlighter.busy": false,
-							"bracket_highlighter.locations":
-							{
-								"close":
-								{
-								},
-								"icon":
-								{
-								},
-								"open":
-								{
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.regions":
-							[
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content"
-							],
-							"color_helper.scan":
-							{
-								"allow_scanning": false,
-								"color_class":
-								[
-									{
-										"class": "css-level-4",
-										"scopes": ""
-									}
-								],
-								"color_trigger": "(?xi)\n(?:\n    \\b(?<![-#&$])(?:\n        color\\((?!\\s*-)|(?:hsla?|(?:ok)?(?:lch|lab)|hwb|rgba?)\\(\n) |\n\\b(?<![-#&$])[\\w]{3,}(?![(-])\\b|(?<![&])\\#)\n",
-								"current_ext": ".tsx",
-								"current_syntax": "JavaScript/TSX",
-								"enabled": true,
-								"last_updated": 1740578129.96,
-								"scanning": "-comment"
-							},
-							"git_gutter_is_enabled": true,
-							"lsp_active": true,
-							"lsp_uri": "file:///home/michky/projects/amplify-beyond-limits/pages/teams/%5BteamSlug%5D/index.page.tsx",
-							"open_with_edit": true,
-							"show_definitions": false,
-							"syntax": "Packages/JavaScript/TSX.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"stack_multiselect": false,
-					"type": "text"
-				}
 			]
 		}
 	],
 	"incremental_find":
 	{
-		"height": 27.0
+		"height": 26.0
 	},
 	"input":
 	{
@@ -1708,7 +906,7 @@
 	"project": "beyond-limits.sublime-project",
 	"replace":
 	{
-		"height": 50.0
+		"height": 48.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -1747,7 +945,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 254.0,
+	"side_bar_width": 247.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

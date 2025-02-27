@@ -90,9 +90,9 @@ const MenuLinks = [
     ],
   },
   {
-    innerLinks: ["/teams/under-19", "/teams/under-17"],
+    innerLinks: ["/players/under-19", "/players/under-17"],
     id: 32,
-    name: "TEAMS",
+    name: "Players",
     icon: (
       <svg
         width="29"
@@ -110,13 +110,13 @@ const MenuLinks = [
     subMenu: [
       {
         id: 321,
-        link: "/teams/under-19",
+        link: "/players/under-19",
         name: "under-19",
         image: "/images/under19.png",
       },
       {
         id: 322,
-        link: "/teams/under-17",
+        link: "/players/under-17",
         name: "under-17",
         image: "/images/under17.png",
       },
@@ -156,7 +156,7 @@ const MenuLinks = [
     ],
   },
   {
-    innerLinks: ["/history", "/honors"],
+    innerLinks: ["/history", "/honours"],
     id: 34,
     name: "ABOUT",
     icon: (
@@ -182,8 +182,8 @@ const MenuLinks = [
       },
       {
         id: 342,
-        link: "/honors",
-        name: "honors",
+        link: "/honours",
+        name: "honours",
         image: "/images/honors.jpg",
       },
     ],

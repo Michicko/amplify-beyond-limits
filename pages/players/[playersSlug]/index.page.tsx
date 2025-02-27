@@ -8,7 +8,7 @@ import { IPlayer } from "@/lib/definitions";
 import { players } from "@/lib/placeholder-data";
 import { useRouter } from "next/router";
 import React, { ReactElement } from "react";
-import styles from "./Team.module.css";
+import styles from "./Player.module.css";
 import clsx from "clsx";
 
 interface IPos {
@@ -16,7 +16,7 @@ interface IPos {
 	players: IPlayer[];
 }
 
-function Team() {
+function Players() {
 	const router = useRouter();
 	const { teamSlug } = router.query;
 	let positions = ["goalkeeper", "defender", "midfielder", "winger", "forward"];
@@ -79,8 +79,8 @@ function Team() {
 	);
 }
 
-Team.getLayout = function getLayout(page: ReactElement) {
+Players.getLayout = function getLayout(page: ReactElement) {
 	return <GuestLayout>{page}</GuestLayout>;
 };
 
-export default Team;
+export default Players;

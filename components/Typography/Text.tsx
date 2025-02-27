@@ -8,6 +8,7 @@ const Text = ({
   size,
   center,
   hide_on_sm,
+  thin,
 }: {
   text: string | number;
   color: string;
@@ -15,6 +16,7 @@ const Text = ({
   center?: boolean;
   size?: "md" | "lg" | "sm" | "xs" | "tiny" | "base";
   hide_on_sm?: boolean;
+  thin?: boolean;
 }) => {
   return (
     <p
@@ -24,6 +26,7 @@ const Text = ({
         size && styles[size],
         center && styles.center,
         hide_on_sm && styles["hide-on-sm"],
+        thin && styles.thin,
         {
           [styles.upper]: upper,
         },
