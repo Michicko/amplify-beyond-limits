@@ -10,7 +10,8 @@ export const under19Players = [
     jerseyNumber: 15,
     height: "182.5",
     weight: "79",
-    imageUrl: "https://backend.liverpoolfc.com/sites/default/files/styles/lg/public/2024-08/mohamed-salah-alternative-body-v2-2024.png?itok=VMLtOKVH",
+    imageUrl:
+      "https://backend.liverpoolfc.com/sites/default/files/styles/lg/public/2024-08/mohamed-salah-alternative-body-v2-2024.png?itok=VMLtOKVH",
   },
   {
     id: 2,
@@ -23,7 +24,8 @@ export const under19Players = [
     jerseyNumber: 30,
     height: "191",
     weight: "70",
-    imageUrl: "https://backend.liverpoolfc.com/sites/default/files/styles/lg/public/2024-08/mohamed-salah-alternative-body-v2-2024.png?itok=VMLtOKVH",
+    imageUrl:
+      "https://backend.liverpoolfc.com/sites/default/files/styles/lg/public/2024-08/mohamed-salah-alternative-body-v2-2024.png?itok=VMLtOKVH",
   },
   {
     id: 3,
@@ -36,7 +38,8 @@ export const under19Players = [
     jerseyNumber: 20,
     height: "173.5",
     weight: "70",
-    imageUrl: "https://backend.liverpoolfc.com/sites/default/files/styles/lg/public/2024-08/mohamed-salah-alternative-body-v2-2024.png?itok=VMLtOKVH",
+    imageUrl:
+      "https://backend.liverpoolfc.com/sites/default/files/styles/lg/public/2024-08/mohamed-salah-alternative-body-v2-2024.png?itok=VMLtOKVH",
   },
   {
     id: 4,
@@ -49,7 +52,8 @@ export const under19Players = [
     jerseyNumber: 29,
     height: "175",
     weight: "64",
-    imageUrl: "https://backend.liverpoolfc.com/sites/default/files/styles/lg/public/2024-08/mohamed-salah-alternative-body-v2-2024.png?itok=VMLtOKVH",
+    imageUrl:
+      "https://backend.liverpoolfc.com/sites/default/files/styles/lg/public/2024-08/mohamed-salah-alternative-body-v2-2024.png?itok=VMLtOKVH",
   },
   {
     id: 5,
@@ -62,7 +66,8 @@ export const under19Players = [
     jerseyNumber: 49,
     height: "176.5",
     weight: "72",
-    imageUrl: "https://backend.liverpoolfc.com/sites/default/files/styles/lg/public/2024-08/mohamed-salah-alternative-body-v2-2024.png?itok=VMLtOKVH",
+    imageUrl:
+      "https://backend.liverpoolfc.com/sites/default/files/styles/lg/public/2024-08/mohamed-salah-alternative-body-v2-2024.png?itok=VMLtOKVH",
   },
   {
     id: 6,
@@ -75,7 +80,8 @@ export const under19Players = [
     jerseyNumber: 1,
     height: "195",
     weight: "97",
-    imageUrl: "https://backend.liverpoolfc.com/sites/default/files/styles/lg/public/2024-08/mohamed-salah-alternative-body-v2-2024.png?itok=VMLtOKVH",
+    imageUrl:
+      "https://backend.liverpoolfc.com/sites/default/files/styles/lg/public/2024-08/mohamed-salah-alternative-body-v2-2024.png?itok=VMLtOKVH",
   },
   {
     id: 7,
@@ -88,7 +94,8 @@ export const under19Players = [
     jerseyNumber: 21,
     height: "170",
     weight: "63",
-    imageUrl: "https://backend.liverpoolfc.com/sites/default/files/styles/lg/public/2024-08/mohamed-salah-alternative-body-v2-2024.png?itok=VMLtOKVH",
+    imageUrl:
+      "https://backend.liverpoolfc.com/sites/default/files/styles/lg/public/2024-08/mohamed-salah-alternative-body-v2-2024.png?itok=VMLtOKVH",
   },
   {
     id: 8,
@@ -101,7 +108,8 @@ export const under19Players = [
     jerseyNumber: 9,
     height: "179",
     weight: "73",
-    imageUrl: "https://backend.liverpoolfc.com/sites/default/files/styles/lg/public/2024-08/mohamed-salah-alternative-body-v2-2024.png?itok=VMLtOKVH",
+    imageUrl:
+      "https://backend.liverpoolfc.com/sites/default/files/styles/lg/public/2024-08/mohamed-salah-alternative-body-v2-2024.png?itok=VMLtOKVH",
   },
   {
     id: 9,
@@ -114,7 +122,8 @@ export const under19Players = [
     jerseyNumber: 32,
     height: "186.5",
     weight: "78",
-    imageUrl: "https://backend.liverpoolfc.com/sites/default/files/styles/lg/public/2024-08/mohamed-salah-alternative-body-v2-2024.png?itok=VMLtOKVH",
+    imageUrl:
+      "https://backend.liverpoolfc.com/sites/default/files/styles/lg/public/2024-08/mohamed-salah-alternative-body-v2-2024.png?itok=VMLtOKVH",
   },
   {
     id: 10,
@@ -127,7 +136,8 @@ export const under19Players = [
     jerseyNumber: 3,
     height: "167",
     weight: "58",
-    imageUrl: "https://backend.liverpoolfc.com/sites/default/files/styles/lg/public/2024-08/mohamed-salah-alternative-body-v2-2024.png?itok=VMLtOKVH",
+    imageUrl:
+      "https://backend.liverpoolfc.com/sites/default/files/styles/lg/public/2024-08/mohamed-salah-alternative-body-v2-2024.png?itok=VMLtOKVH",
   },
   {
     id: 11,
@@ -140,7 +150,8 @@ export const under19Players = [
     jerseyNumber: 17,
     height: "175",
     weight: "65",
-    imageUrl: "https://backend.liverpoolfc.com/sites/default/files/styles/lg/public/2024-08/mohamed-salah-alternative-body-v2-2024.png?itok=VMLtOKVH",
+    imageUrl:
+      "https://backend.liverpoolfc.com/sites/default/files/styles/lg/public/2024-08/mohamed-salah-alternative-body-v2-2024.png?itok=VMLtOKVH",
   },
   {
     id: 12,
@@ -153,7 +164,8 @@ export const under19Players = [
     jerseyNumber: 4,
     height: "164",
     weight: "62",
-    imageUrl: "https://backend.liverpoolfc.com/sites/default/files/styles/lg/public/2024-08/mohamed-salah-alternative-body-v2-2024.png?itok=VMLtOKVH",
+    imageUrl:
+      "https://backend.liverpoolfc.com/sites/default/files/styles/lg/public/2024-08/mohamed-salah-alternative-body-v2-2024.png?itok=VMLtOKVH",
   },
   {
     id: 13,
@@ -166,7 +178,8 @@ export const under19Players = [
     jerseyNumber: 7,
     height: "169",
     weight: "55",
-    imageUrl: "https://backend.liverpoolfc.com/sites/default/files/styles/lg/public/2024-08/mohamed-salah-alternative-body-v2-2024.png?itok=VMLtOKVH",
+    imageUrl:
+      "https://backend.liverpoolfc.com/sites/default/files/styles/lg/public/2024-08/mohamed-salah-alternative-body-v2-2024.png?itok=VMLtOKVH",
   },
   {
     id: 14,
@@ -179,7 +192,8 @@ export const under19Players = [
     jerseyNumber: 37,
     height: "176",
     weight: "68",
-    imageUrl: "https://backend.liverpoolfc.com/sites/default/files/styles/lg/public/2024-08/mohamed-salah-alternative-body-v2-2024.png?itok=VMLtOKVH",
+    imageUrl:
+      "https://backend.liverpoolfc.com/sites/default/files/styles/lg/public/2024-08/mohamed-salah-alternative-body-v2-2024.png?itok=VMLtOKVH",
   },
   {
     id: 15,
@@ -192,7 +206,8 @@ export const under19Players = [
     jerseyNumber: 2,
     height: "168",
     weight: "60",
-    imageUrl: "https://backend.liverpoolfc.com/sites/default/files/styles/lg/public/2024-08/mohamed-salah-alternative-body-v2-2024.png?itok=VMLtOKVH",
+    imageUrl:
+      "https://backend.liverpoolfc.com/sites/default/files/styles/lg/public/2024-08/mohamed-salah-alternative-body-v2-2024.png?itok=VMLtOKVH",
   },
   {
     id: 16,
@@ -205,7 +220,8 @@ export const under19Players = [
     jerseyNumber: 13,
     height: "172",
     weight: "66",
-    imageUrl: "https://backend.liverpoolfc.com/sites/default/files/styles/lg/public/2024-08/mohamed-salah-alternative-body-v2-2024.png?itok=VMLtOKVH",
+    imageUrl:
+      "https://backend.liverpoolfc.com/sites/default/files/styles/lg/public/2024-08/mohamed-salah-alternative-body-v2-2024.png?itok=VMLtOKVH",
   },
   {
     id: 17,
@@ -218,7 +234,8 @@ export const under19Players = [
     jerseyNumber: 14,
     height: "173",
     weight: "62",
-    imageUrl: "https://backend.liverpoolfc.com/sites/default/files/styles/lg/public/2024-08/mohamed-salah-alternative-body-v2-2024.png?itok=VMLtOKVH",
+    imageUrl:
+      "https://backend.liverpoolfc.com/sites/default/files/styles/lg/public/2024-08/mohamed-salah-alternative-body-v2-2024.png?itok=VMLtOKVH",
   },
   {
     id: 18,
@@ -231,7 +248,8 @@ export const under19Players = [
     jerseyNumber: 24,
     height: "165",
     weight: "56",
-    imageUrl: "https://backend.liverpoolfc.com/sites/default/files/styles/lg/public/2024-08/mohamed-salah-alternative-body-v2-2024.png?itok=VMLtOKVH",
+    imageUrl:
+      "https://backend.liverpoolfc.com/sites/default/files/styles/lg/public/2024-08/mohamed-salah-alternative-body-v2-2024.png?itok=VMLtOKVH",
   },
   {
     id: 19,
@@ -244,7 +262,8 @@ export const under19Players = [
     jerseyNumber: 33,
     height: "176.5",
     weight: "62",
-    imageUrl: "https://backend.liverpoolfc.com/sites/default/files/styles/lg/public/2024-08/mohamed-salah-alternative-body-v2-2024.png?itok=VMLtOKVH",
+    imageUrl:
+      "https://backend.liverpoolfc.com/sites/default/files/styles/lg/public/2024-08/mohamed-salah-alternative-body-v2-2024.png?itok=VMLtOKVH",
   },
   {
     id: 20,
@@ -257,7 +276,8 @@ export const under19Players = [
     jerseyNumber: 11,
     height: "171",
     weight: "62",
-    imageUrl: "https://backend.liverpoolfc.com/sites/default/files/styles/lg/public/2024-08/mohamed-salah-alternative-body-v2-2024.png?itok=VMLtOKVH",
+    imageUrl:
+      "https://backend.liverpoolfc.com/sites/default/files/styles/lg/public/2024-08/mohamed-salah-alternative-body-v2-2024.png?itok=VMLtOKVH",
   },
   {
     id: 21,
@@ -270,7 +290,8 @@ export const under19Players = [
     jerseyNumber: 6,
     height: "183",
     weight: "74",
-    imageUrl: "https://backend.liverpoolfc.com/sites/default/files/styles/lg/public/2024-08/mohamed-salah-alternative-body-v2-2024.png?itok=VMLtOKVH",
+    imageUrl:
+      "https://backend.liverpoolfc.com/sites/default/files/styles/lg/public/2024-08/mohamed-salah-alternative-body-v2-2024.png?itok=VMLtOKVH",
   },
   {
     id: 22,
@@ -283,7 +304,8 @@ export const under19Players = [
     jerseyNumber: 19,
     height: "173",
     weight: "68",
-    imageUrl: "https://backend.liverpoolfc.com/sites/default/files/styles/lg/public/2024-08/mohamed-salah-alternative-body-v2-2024.png?itok=VMLtOKVH",
+    imageUrl:
+      "https://backend.liverpoolfc.com/sites/default/files/styles/lg/public/2024-08/mohamed-salah-alternative-body-v2-2024.png?itok=VMLtOKVH",
   },
   {
     id: 23,
@@ -296,7 +318,8 @@ export const under19Players = [
     jerseyNumber: 23,
     height: "170",
     weight: "58",
-    imageUrl: "https://backend.liverpoolfc.com/sites/default/files/styles/lg/public/2024-08/mohamed-salah-alternative-body-v2-2024.png?itok=VMLtOKVH",
+    imageUrl:
+      "https://backend.liverpoolfc.com/sites/default/files/styles/lg/public/2024-08/mohamed-salah-alternative-body-v2-2024.png?itok=VMLtOKVH",
   },
   {
     id: 24,
@@ -309,7 +332,8 @@ export const under19Players = [
     jerseyNumber: 12,
     height: "178",
     weight: "63",
-    imageUrl: "https://backend.liverpoolfc.com/sites/default/files/styles/lg/public/2024-08/mohamed-salah-alternative-body-v2-2024.png?itok=VMLtOKVH",
+    imageUrl:
+      "https://backend.liverpoolfc.com/sites/default/files/styles/lg/public/2024-08/mohamed-salah-alternative-body-v2-2024.png?itok=VMLtOKVH",
   },
   {
     id: 25,
@@ -322,7 +346,8 @@ export const under19Players = [
     jerseyNumber: 8,
     height: "168",
     weight: "63",
-    imageUrl: "https://backend.liverpoolfc.com/sites/default/files/styles/lg/public/2024-08/mohamed-salah-alternative-body-v2-2024.png?itok=VMLtOKVH",
+    imageUrl:
+      "https://backend.liverpoolfc.com/sites/default/files/styles/lg/public/2024-08/mohamed-salah-alternative-body-v2-2024.png?itok=VMLtOKVH",
   },
   {
     id: 26,
@@ -335,7 +360,8 @@ export const under19Players = [
     jerseyNumber: 10,
     height: "179",
     weight: "70",
-    imageUrl: "https://backend.liverpoolfc.com/sites/default/files/styles/lg/public/2024-08/mohamed-salah-alternative-body-v2-2024.png?itok=VMLtOKVH",
+    imageUrl:
+      "https://backend.liverpoolfc.com/sites/default/files/styles/lg/public/2024-08/mohamed-salah-alternative-body-v2-2024.png?itok=VMLtOKVH",
   },
   {
     id: 27,
@@ -348,7 +374,8 @@ export const under19Players = [
     jerseyNumber: 5,
     height: "182",
     weight: "67",
-    imageUrl: "https://backend.liverpoolfc.com/sites/default/files/styles/lg/public/2024-08/mohamed-salah-alternative-body-v2-2024.png?itok=VMLtOKVH",
+    imageUrl:
+      "https://backend.liverpoolfc.com/sites/default/files/styles/lg/public/2024-08/mohamed-salah-alternative-body-v2-2024.png?itok=VMLtOKVH",
   },
   {
     id: 28,
@@ -361,7 +388,8 @@ export const under19Players = [
     jerseyNumber: 16,
     height: "179",
     weight: "75",
-    imageUrl: "https://backend.liverpoolfc.com/sites/default/files/styles/lg/public/2024-08/mohamed-salah-alternative-body-v2-2024.png?itok=VMLtOKVH",
+    imageUrl:
+      "https://backend.liverpoolfc.com/sites/default/files/styles/lg/public/2024-08/mohamed-salah-alternative-body-v2-2024.png?itok=VMLtOKVH",
   },
   {
     id: 29,
@@ -374,7 +402,8 @@ export const under19Players = [
     jerseyNumber: 18,
     height: "184",
     weight: "80",
-    imageUrl: "https://backend.liverpoolfc.com/sites/default/files/styles/lg/public/2024-08/mohamed-salah-alternative-body-v2-2024.png?itok=VMLtOKVH",
+    imageUrl:
+      "https://backend.liverpoolfc.com/sites/default/files/styles/lg/public/2024-08/mohamed-salah-alternative-body-v2-2024.png?itok=VMLtOKVH",
   },
   {
     id: 30,
@@ -387,7 +416,8 @@ export const under19Players = [
     jerseyNumber: 28,
     height: "180.5",
     weight: "67",
-    imageUrl: "https://backend.liverpoolfc.com/sites/default/files/styles/lg/public/2024-08/mohamed-salah-alternative-body-v2-2024.png?itok=VMLtOKVH",
+    imageUrl:
+      "https://backend.liverpoolfc.com/sites/default/files/styles/lg/public/2024-08/mohamed-salah-alternative-body-v2-2024.png?itok=VMLtOKVH",
   },
 
   // Continue for the rest of the players...

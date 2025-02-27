@@ -19,6 +19,7 @@ const Heading = ({
     `${styles["heading-" + level]}`,
     letterCase && styles[letterCase],
     center && styles.center,
+    styles[color],
   );
   return level === 1 ? (
     <h1 className={classNames}>{text}</h1>

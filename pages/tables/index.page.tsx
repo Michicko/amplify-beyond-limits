@@ -1,6 +1,4 @@
-import CompetitionFilters from "@/components/Competitions/CompetitionFilters";
 import GuestLayout from "@/components/GuestLayout/GuestLayout";
-import CompetitionsLayout from "@/components/Layouts/CompetitionsLayout/CompetitionsLayout";
 import LayoutContainer from "@/components/Layouts/CompetitionsLayout/LayoutContainer";
 import LayoutHeader from "@/components/Layouts/CompetitionsLayout/LayoutHeader";
 import LayoutMain from "@/components/Layouts/CompetitionsLayout/LayoutMain";
