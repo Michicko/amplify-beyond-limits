@@ -179,7 +179,6 @@ function Stats({ match }: { match: IMatch }) {
 export default Stats;
 
 export async function getServerSideProps(context: { query: { id: number } }) {
-	console.log(context.query.id);
 	const res_match = placeholder_match;
 
 	return { props: { match: res_match } };
