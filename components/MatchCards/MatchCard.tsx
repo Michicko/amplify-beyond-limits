@@ -7,7 +7,7 @@ import Text from "../Typography/Text";
 import CardBody from "../Cards/CardBody";
 import { IMatch } from "@/lib/definitions";
 import formatDate from "@/lib/formatDate";
-import MatchTeamLogo from "./MatchTeamLogo";
+import MatchLogo from "./MatchLogo";
 import MatchFixtureDetails from "./MatchFixtureDetails";
 import MatchResultDetails from "./MatchResultDetails";
 import MatchCompetitionLogo from "./MatchCompetitionLogo";
@@ -71,9 +71,10 @@ const MatchCard = ({
                       hide_on_sm={true}
                     />
                   )}
-                  <MatchTeamLogo
+                  <MatchLogo
                     logo={match.home.logo}
                     name={match.home.name}
+                    size="md"
                   />
                 </div>
                 {match.status === "upcoming" ? (
@@ -105,9 +106,10 @@ const MatchCard = ({
                     !no_btn ? "self-start" : "self-center",
                   )}
                 >
-                  <MatchTeamLogo
+                  <MatchLogo
                     logo={match.away.logo}
                     name={match.away.name}
+                    size="md"
                   />
                   {showName && (
                     <Text

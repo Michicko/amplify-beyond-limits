@@ -30,7 +30,7 @@ function MatchFixtureDetails({
 				/>
 			</div>
 			{!no_btn && (
-				<div className={clsx("mt-xxl")}>
+				<div className={clsx("mt-xl")}>
 					<MatchBtn status={status} id={id} />
 				</div>
 			)}

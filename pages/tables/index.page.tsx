@@ -34,7 +34,7 @@ function Tables() {
 	return (
 		<>
 			<MainHeader
-				bg={"/images/fixtures-layout-header-bg.png"}
+				bg={"/images/tables.jpg"}
 				alt="2024 / 2025 ongoing campaign"
 				overlay={true}
 			>

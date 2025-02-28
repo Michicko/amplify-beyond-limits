@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./TournamentBracket.module.css";
 import clsx from "clsx";
-import MatchTeamLogo from "../MatchCards/MatchTeamLogo";
+import MatchLogo from "../MatchCards/MatchLogo";
 
 function TournamentBracketMatchDetails({
 	team,
@@ -30,7 +30,7 @@ function TournamentBracketMatchDetails({
 				>
 					{team.name.short}
 				</abbr>
-				<MatchTeamLogo logo={team.logo} name={team.name.long} size="sm" />
+				<MatchLogo logo={team.logo} name={team.name.long} size="sm" />
 			</td>
 			<td className={clsx(styles["tournament-bracket__score"])}>
 				<span className={clsx(styles["tournament-bracket__number"])}>

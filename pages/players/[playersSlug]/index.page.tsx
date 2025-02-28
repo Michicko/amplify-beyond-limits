@@ -4,48 +4,21 @@ import LayoutMain from "@/components/Layouts/CompetitionsLayout/LayoutMain";
 import MainHeader from "@/components/MainHeader/MainHeader";
 import PlayerList from "@/components/Player/PlayerList";
 import Heading from "@/components/Typography/Heading";
-import { IPlayer } from "@/lib/definitions";
 import { players } from "@/lib/placeholder-data";
 import { useRouter } from "next/router";
 import React, { ReactElement } from "react";
 import styles from "./Player.module.css";
 import clsx from "clsx";
-
-interface IPos {
-	position: string;
-	players: IPlayer[];
-}
+import groupPlayersByPositions from "@/lib/groupPlayerByPositions";
 
 function Players() {
 	const router = useRouter();
-	const { teamSlug } = router.query;
-	let positions = ["goalkeeper", "defender", "midfielder", "winger", "forward"];
+	const { playersSlug } = router.query;
 
-	const rows: IPos[] = [];
-
-	players.forEach((player) => {
-		const pos = rows.find((role) => role.position === player.position.long);
-		if (!pos) {
-			rows.push({
-				position: player.position.long,
-				players: [player],
-			});
-		} else {
-			pos.players.push(player);
-		}
-	});
-
-	positions = positions.map((el) => {
-		const pos = rows.find(
-			(col) => col.position.toLowerCase() === el.toLowerCase(),
-		);
-		if (pos) return pos;
-		return el;
-	});
-
-	console.log(positions);
-
-	const player_rows = positions.map((pos) => {
+	const player_rows = groupPlayersByPositions(
+		["goalkeeper", "defender", "midfielder", "winger", "forward"],
+		players,
+	).map((pos) => {
 		return (
 			<div key={pos.position}>
 				<Heading level={2} text={`${pos.position}s`} />
@@ -64,7 +37,7 @@ function Players() {
 				<LayoutHeader>
 					<>
 						<Heading
-							text={`Beyond Limits ${teamSlug}`}
+							text={`Beyond Limits ${playersSlug}`}
 							color="white"
 							level={1}
 							letterCase="upper"

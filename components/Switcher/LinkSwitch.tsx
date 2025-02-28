@@ -7,9 +7,11 @@ import { useRouter } from "next/router";
 const LinkSwitch = ({
   link,
   theme,
+  currentLink,
 }: {
   link: ILink;
   theme: "theme-1" | "theme-2";
+  currentLink?: string;
 }) => {
   const router = useRouter();
   const { pathname } = router;
@@ -18,7 +20,7 @@ const LinkSwitch = ({
     <Link
       href={link.href}
       className={clsx(styles.switch, styles[theme], {
-        [styles.current]: pathname === link.href,
+        [styles.current]: (currentLink || pathname) === link.href,
       })}
     >
       {link.name}

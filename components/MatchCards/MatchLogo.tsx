@@ -3,22 +3,22 @@ import styles from "./MatchCard.module.css";
 import clsx from "clsx";
 import ImageComp from "../ImageComp/ImageComp";
 
-function MatchTeamLogo({
+function MatchLogo({
 	name,
 	logo,
 	size,
 }: {
 	name: string;
 	logo: string;
-	size?: "sm" | "normal";
+	size?: "sm" | "md" | "lg";
 }) {
 	return (
-		<div className={clsx(styles["match__team-logo-box"], size && styles[size])}>
-			<div className={clsx(styles["match__team-logo"])}>
+		<div className={clsx(styles["match-team__logo-bg"], size && styles[size])}>
+			<div className={clsx(styles["match-team__logo"])}>
 				<ImageComp image={logo} alt={`${name} logo`} />
 			</div>
 		</div>
 	);
 }
 
-export default MatchTeamLogo;
+export default MatchLogo;

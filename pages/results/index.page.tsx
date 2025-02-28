@@ -1,5 +1,4 @@
 import Calendar from "@/components/Calendar/Calendar";
-import GuestLayout from "@/components/GuestLayout/GuestLayout";
 import CompetitionsLayout from "@/components/Layouts/CompetitionsLayout/CompetitionsLayout";
 import MatchCard from "@/components/MatchCards/MatchCard";
 import { match, match_list } from "@/lib/placeholder-data";
@@ -13,8 +12,8 @@ function Results() {
 	return (
 		<CompetitionsLayout
 			pageTitle="Results"
-			pageLead="All Results"
 			seasons={seasons}
+			headerBg="/images/results.jpg"
 		>
 			<>
 				<Calendar />
@@ -36,9 +35,5 @@ function Results() {
 		</CompetitionsLayout>
 	);
 }
-
-Results.getLayout = function getLayout(page: ReactElement) {
-	return <GuestLayout>{page}</GuestLayout>;
-};
 
 export default Results;

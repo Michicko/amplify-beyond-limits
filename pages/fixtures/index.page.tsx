@@ -18,7 +18,7 @@ function Fixtures() {
 	return (
 		<CompetitionsLayout
 			pageTitle="Fixtures"
-			pageLead="All fixtures"
+			headerBg="/images/fixtures.jpg"
 			seasons={seasons}
 		>
 			<>

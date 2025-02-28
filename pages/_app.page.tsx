@@ -16,6 +16,7 @@ import { Amplify } from "aws-amplify";
 import "@aws-amplify/ui-react/styles.css";
 
 import outputs from "@/amplify_outputs.json";
+import GuestLayout from "@/components/GuestLayout/GuestLayout";
 Amplify.configure(outputs);
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
@@ -95,7 +96,14 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
           <link rel="manifest" href="/manifest.json" />
         </Head>
         <NextTopLoader color="#ffd700" height={4} />
-        {getLayout(<Component {...pageProps} />)}
+        {/*{getLayout(<Component {...pageProps} />)}*/}
+        {Component.getLayout ? (
+          getLayout(<Component {...pageProps} />)
+        ) : (
+          <GuestLayout>
+            <Component {...pageProps} />
+          </GuestLayout>
+        )}
       </div>
     </Provider>
   );

@@ -10,7 +10,7 @@ function MatchBtn({
 }) {
 	return (
 		<Button
-			isLink={false}
+			isLink={true}
 			text={
 				status === "upcoming"
 					? "Match Preview"
@@ -21,9 +21,9 @@ function MatchBtn({
 			type="secondary"
 			link={
 				status === "upcoming"
-					? { href: `/match/${id}/preview` }
+					? { href: `/matches/${id}/preview` }
 					: status === "completed"
-					? { href: `/match/${id}/report` }
+					? { href: `/matches/${id}/report` }
 					: { href: "#" }
 			}
 		/>

@@ -5,8 +5,22 @@
   line-height: 1.2;
 }
 
+.text.mb-xs {
+  margin-bottom: var(--xs);
+}
+
+.text.mb-sm {
+  margin-bottom: var(--sm);
+}
+
 .text.hide-on-sm {
   display: none;
+}
+
+.text.base {
+  font-size: calc(var(--base) + 0.2rem);
+  font-weight: 500;
+  letter-spacing: 1px;
 }
 
 .text.md {
@@ -14,7 +28,8 @@
   font-weight: 700;
 }
 
-.text.secondary {
+.text.secondary,
+.heading.secondary {
   color: var(--secondary-light);
 }
 
@@ -163,6 +178,10 @@
   .heading.heading-1 {
     font-size: var(--xl);
   }
+
+  .text.md {
+    font-size: calc(var(--md) + 0.2rem);
+  }
 }
 
 @media only screen and (min-width: 60rem) {
@@ -173,6 +192,10 @@
 
   .heading.heading-1 {
     font-size: var(--xxxl);
+  }
+
+  .text.md {
+    font-size: calc(var(--md) + 0.5rem);
   }
 }
 
