@@ -10,7 +10,7 @@ const Heading = ({
 }: {
   level: number;
   text: string;
-  letterCase?: "upper" | "lower" | "capitalize";
+  letterCase?: "upper" | "lower" | "capitalize" | "normal";
   color?: string;
   center?: boolean;
 }) => {
@@ -19,7 +19,7 @@ const Heading = ({
     `${styles["heading-" + level]}`,
     letterCase && styles[letterCase],
     center && styles.center,
-    styles[color],
+    color && styles[color],
   );
   return level === 1 ? (
     <h1 className={classNames}>{text}</h1>

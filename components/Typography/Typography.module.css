@@ -103,6 +103,10 @@
   text-transform: lowercase;
 }
 
+.heading.normal {
+  text-transform: none;
+}
+
 .link {
   display: flex;
   align-items: center;

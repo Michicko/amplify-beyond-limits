@@ -1,0 +1,15 @@
+.search {
+	padding: var(--xxl) var(--md);
+	padding-bottom: var--lg;
+}
+
+.search-body {
+	margin-top: var(--lg);
+	width: 100%;
+	padding-top: var(--xl);
+}
+
+.search-results {
+	max-width: 960px;
+	margin: 0 auto;
+}

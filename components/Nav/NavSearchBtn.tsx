@@ -1,9 +1,12 @@
 import styles from "./Nav.module.css";
 import clsx from "clsx";
 
-const NavSearchBtn = () => {
+const NavSearchBtn = ({ handleOnClick }: { handleOnClick: () => void }) => {
   return (
-    <button className={clsx(styles["nav__btn"], styles["search-btn"])}>
+    <button
+      className={clsx(styles["nav__btn"], styles["search-btn"])}
+      onClick={handleOnClick}
+    >
       <svg
         version="1.1"
         id="Layer_1"

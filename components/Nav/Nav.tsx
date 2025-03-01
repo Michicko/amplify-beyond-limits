@@ -7,14 +7,22 @@ import NavSearchBtn from "./NavSearchBtn";
 import Text from "../Typography/Text";
 import MenuBox from "../Menu/MenuBox";
 import { useState } from "react";
+import Search from "../Search/Search";
 
 const Nav = () => {
   const [isMenuOpened, setIsMenuOpened] = useState(false);
   const closeMenu = () => {
     setIsMenuOpened(false);
   };
+  const [isSearchBarOpened, setIsSearchBarOpened] = useState(false);
+
+  const openSearchBar = () => {
+    setIsSearchBarOpened(true);
+  };
+
   return (
     <>
+      <Search isOpened={isSearchBarOpened} setIsOpened={setIsSearchBarOpened} />
       <MenuBox closeMenu={closeMenu} isOpened={isMenuOpened} />
       <div className={clsx(styles["nav__sm"])}>
         <div className={clsx(styles.left)}>
@@ -30,7 +38,7 @@ const Nav = () => {
       <div className={clsx(styles["nav__main"])}>
         <NavMenuBtn setIsMenuOpened={setIsMenuOpened} />
         <Logo image="/images/nav-logo.svg" size="md" />
-        <NavSearchBtn />
+        <NavSearchBtn handleOnClick={openSearchBar} />
       </div>
     </>
   );
