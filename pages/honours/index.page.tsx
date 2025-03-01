@@ -1,10 +1,8 @@
-import GuestLayout from "@/components/GuestLayout/GuestLayout";
 import LayoutHeader from "@/components/Layouts/CompetitionsLayout/LayoutHeader";
 import LayoutMain from "@/components/Layouts/CompetitionsLayout/LayoutMain";
 import MainHeader from "@/components/MainHeader/MainHeader";
 import Heading from "@/components/Typography/Heading";
 import React from "react";
-import { ReactElement } from "react";
 import styles from "./Honours.module.css";
 import clsx from "clsx";
 import Text from "@/components/Typography/Text";
@@ -95,7 +93,4 @@ function Honours() {
     </>
   );
 }
-Honours.getLayout = function getLayout(page: ReactElement) {
-  return <GuestLayout>{page}</GuestLayout>;
-};
 export default Honours;

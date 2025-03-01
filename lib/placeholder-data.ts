@@ -1933,3 +1933,13 @@ export const honors = [
 ];
 
 export const matches = [25, 27];
+
+export const visuals = [
+  "/images/blvsig.png",
+  "/images/contact.jpg",
+  "/images/trophy-boy.jpg",
+  "/images/home-header-bg.png",
+  "/images/results.jpg",
+  "/images/trials.png",
+  "/images/results.jpg",
+];

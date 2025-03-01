@@ -1,41 +1,33 @@
-.contactHead {
+.contact-card {
+  background: var(--primary-dark);
+  max-width: 768px;
+  border-radius: 20px;
+  margin: var(--xxl) auto;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
-  width: 100%;
-  height: 75vh;
-  border-radius: 20px;
-  padding-bottom: 10%;
-  /* position: absolute; */
-}
-.contactCard {
-  background: #01305b;
-  width: 70%;
-  border-radius: 20px;
-
-  margin: 30px auto;
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
+  padding: var(--lg);
 }
 
-.contactCard h1 {
-  font-size: 4rem;
-  color: #ffd700;
-  margin-bottom: 30px;
+.contact-card h2 {
+  font-size: var(--xl);
+  color: var(--secondary-light);
+  margin-bottom: var(--lg);
+  font-weight: 500;
 }
 
-@media (max-width: 768px) {
+.contact-card p {
+  font-family: var(--font);
+  font-size: var(--md);
+  font-weight: 500;
+  color: var(--white);
 }
-@media (max-width: 600px) {
-  .contactHead h1 {
-    font-size: 4rem;
-  }
+.contact-link {
+  cursor: pointer;
+  text-decoration: underline;
 }
 
-@media (max-width: 400px) {
-  .contactHead h1 {
-    font-size: 3rem;
+@media only screen and (min-width: 36em) {
+  .contact-card h2 {
+    font-size: var(--xxxl);
   }
 }
