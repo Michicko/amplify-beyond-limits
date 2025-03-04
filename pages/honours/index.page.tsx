@@ -37,7 +37,7 @@ function Honours() {
               text={`At Beyond the Limits, we pride ourselves on our accomplishments. 
               Our devotion to developing young, talented players and pushing the boundaries has earned us numerous
               prestigious honours.`}
-              size="md"
+              size="base"
               thin={true}
             />
           </div>

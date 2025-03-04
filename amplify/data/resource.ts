@@ -87,8 +87,8 @@ const schema = a.schema({
     .model({
       firstName: a.string().required(),
       lastName: a.string().required(),
-      teamId: a.id(),
-      team: a.belongsTo("Team", "teamId"),
+      team_id: a.id(),
+      team: a.belongsTo("Team", "team_id"),
       position: a.customType({
         label: a.string(),
         value: a.string(),
@@ -106,7 +106,7 @@ const schema = a.schema({
     .model({
       name: a.string().required(),
       logo: a.string(),
-      players: a.hasMany("Player", "teamId"),
+      players: a.hasMany("Player", "team_id"),
     })
     .authorization((allow) => [allow.owner(), allow.publicApiKey()]),
 });
@@ -123,6 +123,7 @@ export const data = defineData({
     },
   },
 });
+
 
 /*== STEP 2 ===============================================================
 Go to your frontend source code. From your client-side code, generate a

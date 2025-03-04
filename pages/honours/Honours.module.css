@@ -12,7 +12,11 @@
 }
 
 .honours-intro p {
-	max-width: 55rem;
+	font-family: var(--font);
+	font-size: var(--md);
+	font-weight: 500;
+	color: var(--white);
+	max-width: 80%;
 }
 
 .honors {

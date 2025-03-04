@@ -4,6 +4,26 @@
 		"selected_items":
 		[
 			[
+				"un",
+				"underline"
+			],
+			[
+				"bdr",
+				"border-radius"
+			],
+			[
+				"c",
+				"className?"
+			],
+			[
+				"mx",
+				"max-width"
+			],
+			[
+				"Heading",
+				"Heading"
+			],
+			[
 				"bg",
 				"background"
 			],
@@ -50,10 +70,6 @@
 			[
 				"Text",
 				"Text"
-			],
-			[
-				"Heading",
-				"Heading"
 			],
 			[
 				"pd",
@@ -498,22 +514,6 @@
 			[
 				"fz",
 				"font-size"
-			],
-			[
-				"m",
-				"match__body-box"
-			],
-			[
-				"DS",
-				"display"
-			],
-			[
-				"che",
-				"checkScreenSize"
-			],
-			[
-				"useGet",
-				"useGetScreenWidth"
 			]
 		]
 	},
@@ -578,17 +578,34 @@
 	[
 		"/home/michky/projects/amplify-beyond-limits",
 		"/home/michky/projects/amplify-beyond-limits/components",
-		"/home/michky/projects/amplify-beyond-limits/components/Nav",
-		"/home/michky/projects/amplify-beyond-limits/components/Search",
-		"/home/michky/projects/amplify-beyond-limits/components/Switcher",
-		"/home/michky/projects/amplify-beyond-limits/components/TournamentBracket",
-		"/home/michky/projects/amplify-beyond-limits/components/UpcomingMatches",
+		"/home/michky/projects/amplify-beyond-limits/components/AuthHeader",
+		"/home/michky/projects/amplify-beyond-limits/components/AuthLayout",
+		"/home/michky/projects/amplify-beyond-limits/components/Section",
 		"/home/michky/projects/amplify-beyond-limits/pages",
-		"/home/michky/projects/amplify-beyond-limits/pages/Search"
+		"/home/michky/projects/amplify-beyond-limits/pages/admin",
+		"/home/michky/projects/amplify-beyond-limits/pages/admin/season"
 	],
 	"file_history":
 	[
+		"/home/michky/projects/amplify-beyond-limits/pages/admin/index.page.tsx",
+		"/home/michky/projects/amplify-beyond-limits/components/AuthLayout/AuthLayout.tsx",
+		"/home/michky/projects/amplify-beyond-limits/pages/admin/season/index.page.tsx",
+		"/home/michky/projects/amplify-beyond-limits/seed/article.json",
+		"/home/michky/projects/amplify-beyond-limits/components/TableCard.tsx",
+		"/home/michky/projects/amplify-beyond-limits/pages/honours/index.page.tsx",
+		"/home/michky/projects/amplify-beyond-limits/pages/honours/Honours.module.css",
+		"/home/michky/projects/amplify-beyond-limits/pages/contact/index.page.tsx",
+		"/home/michky/projects/amplify-beyond-limits/pages/contact/Contact.module.css",
+		"/home/michky/projects/amplify-beyond-limits/lib/placeholder-data.ts",
+		"/home/michky/projects/amplify-beyond-limits/pages/search/index.page.tsx",
+		"/home/michky/projects/amplify-beyond-limits/pages/gallery/index.page.tsx",
+		"/home/michky/projects/amplify-beyond-limits/pages/gallery/Gallery.module.css",
 		"/home/michky/projects/amplify-beyond-limits/components/Search/Search.tsx",
+		"/home/michky/projects/amplify-beyond-limits/components/Typography/Heading.tsx",
+		"/home/michky/projects/amplify-beyond-limits/.gitignore",
+		"/home/michky/projects/amplify-beyond-limits/pages/search/Search.module.css",
+		"/home/michky/projects/amplify-beyond-limits/components/Typography/Typography.module.css",
+		"/home/michky/projects/amplify-beyond-limits/pages/search/Search.module.css\nSearch.module.css",
 		"/home/michky/projects/amplify-beyond-limits/components/Search/Search.module.css",
 		"/home/michky/projects/amplify-beyond-limits/pages/Search/Search.module.css\nSearch.module.css",
 		"/home/michky/projects/amplify-beyond-limits/pages/Search/index.page.tsx",
@@ -603,7 +620,6 @@
 		"/home/michky/projects/amplify-beyond-limits/pages/history/History.module.css",
 		"/home/michky/projects/amplify-beyond-limits/pages/matches/[matchId]/stats/index.page.tsx",
 		"/home/michky/projects/amplify-beyond-limits/pages/matches/Match.module.css",
-		"/home/michky/projects/amplify-beyond-limits/lib/placeholder-data.ts",
 		"/home/michky/projects/amplify-beyond-limits/components/MatchCards/MatchCard.module.css",
 		"/home/michky/projects/amplify-beyond-limits/components/MatchCards/MatchStat.tsx",
 		"/home/michky/projects/amplify-beyond-limits/components/TournamentBracket/TournamentBracketMatchDetails.tsx",
@@ -611,7 +627,6 @@
 		"/home/michky/projects/amplify-beyond-limits/pages/matches/[matchId]/report/index.page.tsx",
 		"/home/michky/projects/amplify-beyond-limits/lib/groupPlayerByPositions.tsx",
 		"/home/michky/projects/amplify-beyond-limits/pages/players/[playersSlug]/index.page.tsx",
-		"/home/michky/projects/amplify-beyond-limits/components/Typography/Typography.module.css",
 		"/home/michky/projects/amplify-beyond-limits/components/MatchCards/MatchScoreTime.tsx",
 		"/home/michky/projects/amplify-beyond-limits/pages/matches/[matchId]/preview/index.page.tsx",
 		"/home/michky/projects/amplify-beyond-limits/components/MatchCards/TeamForm.tsx",
@@ -634,8 +649,6 @@
 		"/home/michky/projects/amplify-beyond-limits/pages/_app.page.tsx",
 		"/home/michky/projects/amplify-beyond-limits/pages/tables/index.page.tsx",
 		"/home/michky/projects/amplify-beyond-limits/pages/fixtures/index.page.tsx",
-		"/home/michky/projects/amplify-beyond-limits/pages/honours/Honours.module.css",
-		"/home/michky/projects/amplify-beyond-limits/pages/honours/index.page.tsx",
 		"/home/michky/projects/amplify-beyond-limits/components/Menu/MenuLinks.tsx",
 		"/home/michky/projects/amplify-beyond-limits/pages/news/[articleSlug]/index.page.tsx",
 		"/home/michky/projects/amplify-beyond-limits/pages/news/News.module.css",
@@ -650,7 +663,6 @@
 		"/home/michky/projects/amplify-beyond-limits/components/Social/socials.module.css",
 		"/home/michky/projects/amplify-beyond-limits/pages/teams/[teamSlug]/Team.module.css",
 		"/home/michky/projects/amplify-beyond-limits/pages/teams/[teamSlug]/index.page.tsx",
-		"/home/michky/projects/amplify-beyond-limits/components/Typography/Heading.tsx",
 		"/home/michky/projects/amplify-beyond-limits/components/HomeContent/index.page.tsx",
 		"/home/michky/projects/amplify-beyond-limits/pages/team/playersData.js",
 		"/home/michky/projects/amplify-beyond-limits/components/VideoCard/VideoCard.module.css",
@@ -702,20 +714,7 @@
 		"/home/michky/projects/amplify-beyond-limits/components/Layouts/LayoutContainer.tsx",
 		"/home/michky/projects/amplify-beyond-limits/components/Layouts/LayoutMain.tsx",
 		"/home/michky/projects/amplify-beyond-limits/components/Layouts/LayoutHeader.tsx",
-		"/home/michky/projects/amplify-beyond-limits/components/MatchCard.tsx",
-		"/home/michky/projects/amplify-beyond-limits/components/NavBar.tsx",
-		"/home/michky/projects/amplify-beyond-limits/lib/imageLoader.tsx",
-		"/home/michky/projects/amplify-beyond-limits/pages/news/index.page.tsx",
-		"/home/michky/projects/amplify-beyond-limits/components/VideoCard/VideoCard.tsx",
-		"/home/michky/projects/amplify-beyond-limits/beyond-limits.sublime-project",
-		"/home/michky/projects/amplify-beyond-limits/pages/competitions/[competitionSlug]/index.page.tsx",
-		"/home/michky/projects/amplify-beyond-limits/components/Layouts/CompetitionsLayout.tsx",
-		"/home/michky/projects/amplify-beyond-limits/pages/competitions/[competitionSlug]/fixtures/index.page.tsx",
-		"/home/michky/projects/amplify-beyond-limits/pages/competitions/[competitionSlug]/results/index.page.tsx",
-		"/home/michky/projects/amplify-beyond-limits/pages/competitions/[competitionSlug]/tables/index.page.tsx",
-		"/home/michky/projects/amplify-beyond-limits/pages/Competitions/index.page.tsx",
-		"/home/michky/projects/amplify-beyond-limits/pages/Competitions/[competitionSlug]/index.page.tsx",
-		"/home/michky/projects/amplify-beyond-limits/components/Layouts/FixturesLayout.tsx"
+		"/home/michky/projects/amplify-beyond-limits/components/MatchCard.tsx"
 	],
 	"find":
 	{
@@ -733,6 +732,11 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"filteredNavLinks",
+			"md",
+			"2rem",
+			"4rem",
+			"@include multiplier(\"",
 			"29",
 			"md",
 			"top",
@@ -855,12 +859,7 @@
 			"tournament-bracket__list",
 			"tournament-bracket__round-title",
 			"tabIndex",
-			"tabindex",
-			"datetime",
-			"class",
-			"\"team\"",
-			"class",
-			"currentCompetition"
+			"tabindex"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -979,7 +978,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 237.0,
+	"side_bar_width": 241.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

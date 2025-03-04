@@ -5,7 +5,7 @@
   --secondary-dark: #d79b00;
   --white: #fff;
   --black: #000;
-  --font: var(--formula-condensed), "Roboto", "serif";
+  --font: var(--formula-condensed);
   --blue-200: #79beff;
   --blue-300: var(--primary-light);
   --blue-400: #1a6dbb;

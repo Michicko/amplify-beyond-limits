@@ -71,7 +71,7 @@ const Standing = ({
                 isLink={true}
                 text={"View full table"}
                 type="secondary"
-                link={{ href: `/standing` }}
+                link={{ href: `/tables` }}
               />
             </div>
           )}

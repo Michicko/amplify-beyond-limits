@@ -103,12 +103,12 @@ const Match: NextPageWithLayout = () => {
     });
   }
 
-  useEffect(() => {
-    listSeasons();
-  }, []);
+  // useEffect(() => {
+  //   listSeasons();
+  // }, []);
 
   const handleCreateSeason = async (
-    values: ISeason
+    values: ISeason,
     // actions: FormikHelpers<ISeason>
   ) => {
     if (!values.name) return;
@@ -131,7 +131,7 @@ const Match: NextPageWithLayout = () => {
   };
 
   const handleEditSeason = async (
-    values: ISeason
+    values: ISeason,
     // actions: FormikHelpers<ISeason>F
   ) => {
     if (editSeason) {
@@ -173,7 +173,7 @@ const Match: NextPageWithLayout = () => {
     if (selectedLeagues.includes(id)) {
       setFieldValue(
         "leagues",
-        selectedLeagues.filter((leagueId) => leagueId !== id)
+        selectedLeagues.filter((leagueId) => leagueId !== id),
       );
     } else {
       setFieldValue("leagues", [...selectedLeagues, id]);
@@ -332,7 +332,7 @@ const Match: NextPageWithLayout = () => {
                       {leagues.length > 0 &&
                         leagues
                           .filter(
-                            (item) => item.competition === "INTERNATIONAL"
+                            (item) => item.competition === "INTERNATIONAL",
                           )
                           .map((league) => (
                             <Checkbox

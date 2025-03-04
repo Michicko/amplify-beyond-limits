@@ -17,6 +17,7 @@ import "@aws-amplify/ui-react/styles.css";
 
 import outputs from "@/amplify_outputs.json";
 import GuestLayout from "@/components/GuestLayout/GuestLayout";
+import { formula_condensed, roboto } from "@/styles/fonts";
 Amplify.configure(outputs);
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
@@ -32,7 +33,7 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
 
   return (
     <Provider store={store}>
-      <div>
+      <div className={`${formula_condensed.variable}`}>
         <Toaster toastOptions={{ duration: 4000 }} />
         <Head>
           <title>Beyond Limits FA</title>
